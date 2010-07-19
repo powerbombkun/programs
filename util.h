@@ -4,7 +4,7 @@
  *
  * @date   last update 2010-07-20 02:17:10
  *
- * @brief  ”Ä—pŠÖ”—Ş
+ * @brief  æ±ç”¨é–¢æ•°é¡
  *
  */
 #ifndef _UTIL_H
@@ -15,25 +15,25 @@
 extern "C" {
 #endif
   /**
-   * @brief ƒtƒ@ƒCƒ‹ƒTƒCƒYæ“¾ŠÖ”
-   * @param[in] file	ƒtƒ@ƒCƒ‹ƒpƒX
-   * @retval 0ˆÈã ƒtƒ@ƒCƒ‹ƒTƒCƒY
-   * @retval -1 ƒGƒ‰[
+   * @brief ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºå–å¾—é–¢æ•°
+   * @param[in] file	ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
+   * @retval 0ä»¥ä¸Š ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚º
+   * @retval -1 ã‚¨ãƒ©ãƒ¼
    */
   uint32_t getFileSize(const char* file);
   /**
-   * @brief Å‘åU•ƒŒƒxƒ‹æ“¾ŠÖ”
-   * @param[in] pData •„†•t‚«16bitƒf[ƒ^
-   * @param[in] nData 16bitƒf[ƒ^ŒÂ”
-   * @retval Å‘åU•ƒŒƒxƒ‹
+   * @brief æœ€å¤§æŒ¯å¹…ãƒ¬ãƒ™ãƒ«å–å¾—é–¢æ•°
+   * @param[in] pData ç¬¦å·ä»˜ã16bitãƒ‡ãƒ¼ã‚¿
+   * @param[in] nData 16bitãƒ‡ãƒ¼ã‚¿å€‹æ•°
+   * @retval æœ€å¤§æŒ¯å¹…ãƒ¬ãƒ™ãƒ«
    */
   int16_t getMaxAmp(const int16_t* p_data,int32_t n_data);
   /**
-   * @brief ƒtƒ@ƒCƒ‹–¼‚Ìæ“¾
+   * @brief ãƒ•ã‚¡ã‚¤ãƒ«åã®å–å¾—
    *
-   * @param[in] file ƒtƒ@ƒCƒ‹ƒpƒX
+   * @param[in] file ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
    *
-   * @retval ƒtƒ@ƒCƒ‹–¼•¶š—ñ
+   * @retval ãƒ•ã‚¡ã‚¤ãƒ«åæ–‡å­—åˆ—
    */
   const char* getFileName(const char* file);
 
