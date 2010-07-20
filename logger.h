@@ -4,7 +4,7 @@
  *
  * @date   last update 2010-07-20 22:40:36
  *
- * @brief  ƒvƒƒOƒ‰ƒ€Às‚ÉƒƒO‚ğo—Í‚·‚é‚½‚ß‚ÌŠÖ”‚ÌéŒ¾
+ * @brief  ãƒ—ãƒ­ã‚°ãƒ©ãƒ å®Ÿè¡Œæ™‚ã«ãƒ­ã‚°ã‚’å‡ºåŠ›ã™ã‚‹ãŸã‚ã®é–¢æ•°ã®å®£è¨€
  *
  */
 #ifndef _LOGGER_H
@@ -14,28 +14,28 @@
 
 #ifdef WIN32
 #include <string.h>
-#define __file__ (strrchr(__FILE__,'\\' ) + 1 )
+#define __file__ (strrchr(__FILE__,'Â¥Â¥' ) + 1 )
 #else
 #define __file__ (__FILE__)
 #endif
 
-#define LOG_NONE  (0x0000ul)    /**  o—Í‚È‚µ */
-#define LOG_FATAL (0x0001ul)    /**  ’v–½“I‚ÈƒGƒ‰[o—Íƒtƒ‰ƒO */
-#define LOG_ERROR (0x0002ul)    /** ƒGƒ‰[o—Íƒtƒ‰ƒO*/
-#define LOG_WARN  (0x0004ul)    /**  Œx—pƒƒOo—Íƒtƒ‰ƒO*/
-#define LOG_INFO  (0x0008ul)    /**  ƒgƒŒ[ƒX—pƒƒOo—Íƒtƒ‰ƒO*/
+#define LOG_NONE  (0x0000ul)    /**  å‡ºåŠ›ãªã— */
+#define LOG_FATAL (0x0001ul)    /**  è‡´å‘½çš„ãªã‚¨ãƒ©ãƒ¼å‡ºåŠ›ãƒ•ãƒ©ã‚° */
+#define LOG_ERROR (0x0002ul)    /** ã‚¨ãƒ©ãƒ¼å‡ºåŠ›ãƒ•ãƒ©ã‚°*/
+#define LOG_WARN  (0x0004ul)    /**  è­¦å‘Šç”¨ãƒ­ã‚°å‡ºåŠ›ãƒ•ãƒ©ã‚°*/
+#define LOG_INFO  (0x0008ul)    /**  ãƒˆãƒ¬ãƒ¼ã‚¹ç”¨ãƒ­ã‚°å‡ºåŠ›ãƒ•ãƒ©ã‚°*/
 
 
 #ifdef __cplusplus
 extern "C" {
 #endif
     /**
-     * ƒƒOo—Íƒtƒ‰ƒO
-     * •¡”İ’è‚·‚é‚ÍOR(|)‚Åw’è.
+     * ãƒ­ã‚°å‡ºåŠ›ãƒ•ãƒ©ã‚°
+     * è¤‡æ•°è¨­å®šã™ã‚‹æ™‚ã¯OR(|)ã§æŒ‡å®š.
      */
     typedef uint32_t logflag_t;
     /**
-     * ƒƒOEƒŒƒxƒ‹
+     * ãƒ­ã‚°ãƒ»ãƒ¬ãƒ™ãƒ«
      */
     typedef enum {
         LOG_LEVEL_FATAL,
@@ -49,12 +49,12 @@ extern "C" {
      */
     uint32_t log_getflag(void);
     /**
-     * @brief ƒƒK[‚Ì‰Šú‰».
-     *        –{ŠÖ”‚ğƒR[ƒ‹‚µ‚È‚¯‚ê‚Î(ƒfƒtƒHƒ‹ƒg)A
-     *        stream = stdoutAlevel=LOG_NONE‚Å‰Šú‰»‚³‚ê‚é.
+     * @brief ãƒ­ã‚¬ãƒ¼ã®åˆæœŸåŒ–.
+     *        æœ¬é–¢æ•°ã‚’ã‚³ãƒ¼ãƒ«ã—ãªã‘ã‚Œã°(ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ)ã€
+     *        stream = stdoutã€level=LOG_NONEã§åˆæœŸåŒ–ã•ã‚Œã‚‹.
      *
-     * @param[in] stream o—ÍƒXƒgƒŠ[ƒ€
-     * @param[in] flag   ƒƒOƒtƒ‰ƒO.OR(|)‚Å•¡”w’è‰Â”\.
+     * @param[in] stream å‡ºåŠ›ã‚¹ãƒˆãƒªãƒ¼ãƒ 
+     * @param[in] flag   ãƒ­ã‚°ãƒ•ãƒ©ã‚°.OR(|)ã§è¤‡æ•°æŒ‡å®šå¯èƒ½.
      *
      * @retval true  pass
      * @retval false failure
@@ -64,12 +64,12 @@ extern "C" {
     void log_end();
 
     /**
-     * @brief •W€“I‚ÈƒƒOo—ÍŠÖ”
+     * @brief æ¨™æº–çš„ãªãƒ­ã‚°å‡ºåŠ›é–¢æ•°
      *
-     * @param[in] src_file –{ŠÖ”‚ğƒR[ƒ‹‚µ‚½ƒ\[ƒXƒtƒ@ƒCƒ‹–¼
-     * @param[in] line_no  –{ŠÖ”‚ğƒR[ƒ‹‚µ‚½s”Ô†
-     * @param[in] level    LogLevel‚Å’è‹`‚³‚ê‚½ƒŒƒxƒ‹
-     * @param[in] msg      •\¦‚·‚é•¶š—ñ
+     * @param[in] src_file æœ¬é–¢æ•°ã‚’ã‚³ãƒ¼ãƒ«ã—ãŸã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«å
+     * @param[in] line_no  æœ¬é–¢æ•°ã‚’ã‚³ãƒ¼ãƒ«ã—ãŸè¡Œç•ªå·
+     * @param[in] level    LogLevelã§å®šç¾©ã•ã‚ŒãŸãƒ¬ãƒ™ãƒ«
+     * @param[in] msg      è¡¨ç¤ºã™ã‚‹æ–‡å­—åˆ—
      */
     void logger( const char* src_file,
                  const int   line_no,
@@ -81,27 +81,27 @@ extern "C" {
 #endif
 
 /**
- * @brief log4info‚ğŠÈ—ª‚µ‚½ƒ}ƒNƒŠÖ”.
+ * @brief log4infoã‚’ç°¡ç•¥ã—ãŸãƒã‚¯ãƒ­é–¢æ•°.
  *
- * @param[in] msg ƒƒbƒZ[ƒW
+ * @param[in] msg ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
  */
 #define LOGGER_INFO(msg)  logger(__file__, __LINE__, LOG_LEVEL_INFO, msg)
 /**
- * @brief log4warn‚ğŠÈ—ª‚µ‚½ƒ}ƒNƒŠÖ”.
+ * @brief log4warnã‚’ç°¡ç•¥ã—ãŸãƒã‚¯ãƒ­é–¢æ•°.
  *
- * @param[in] msg ƒƒbƒZ[ƒW
+ * @param[in] msg ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
  */
 #define LOGGER_WARN(msg)  logger(__file__, __LINE__, LOG_LEVEL_WARN, msg)
 /**
- * @brief log4error‚ğŠÈ—ª‚µ‚½ƒ}ƒNƒŠÖ”.
+ * @brief log4errorã‚’ç°¡ç•¥ã—ãŸãƒã‚¯ãƒ­é–¢æ•°.
  *
- * @param[in] msg ƒƒbƒZ[ƒW
+ * @param[in] msg ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
  */
 #define LOGGER_ERROR(msg) logger(__file__, __LINE__, LOG_LEVEL_ERROR, msg)
 /**
- * @brief log4error‚ğŠÈ—ª‚µ‚½ƒ}ƒNƒŠÖ”.
+ * @brief log4errorã‚’ç°¡ç•¥ã—ãŸãƒã‚¯ãƒ­é–¢æ•°.
  *
- * @param[in] msg ƒƒbƒZ[ƒW
+ * @param[in] msg ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
  */
 #define LOGGER_FATAL(msg) logger(__file__, __LINE__, LOG_LEVEL_FATAL, msg)
 

@@ -11,11 +11,11 @@
  * static values
  */
 /**
- * ƒƒO‚Ìo—ÍƒXƒgƒŠ[ƒ€
+ * ãƒ­ã‚°ã®å‡ºåŠ›ã‚¹ãƒˆãƒªãƒ¼ãƒ 
  */
 static FILE*        log_stream = NULL;
 /**
- * ƒƒOo—Íƒtƒ‰ƒO (default)
+ * ãƒ­ã‚°å‡ºåŠ›ãƒ•ãƒ©ã‚° (default)
  */
 static unsigned int log_flag   = LOG_NONE;
 /**
@@ -29,12 +29,12 @@ log_getflag(void)
 
 
 /**
- * @brief ƒƒK[‚Ì‰Šú‰».
- *        –{ŠÖ”‚ğƒR[ƒ‹‚µ‚È‚¯‚ê‚Î(ƒfƒtƒHƒ‹ƒg)A
- *        stream = stdoutAlevel=LOG_NONE‚Å‰Šú‰»‚³‚ê‚é.
+ * @brief ãƒ­ã‚¬ãƒ¼ã®åˆæœŸåŒ–.
+ *        æœ¬é–¢æ•°ã‚’ã‚³ãƒ¼ãƒ«ã—ãªã‘ã‚Œã°(ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ)ã€
+ *        stream = stdoutã€level=LOG_NONEã§åˆæœŸåŒ–ã•ã‚Œã‚‹.
  *
- * @param[in] stream o—ÍƒXƒgƒŠ[ƒ€
- * @param[in] flag   ƒƒOƒtƒ‰ƒO.OR(|)‚Å•¡”w’è‰Â”\.
+ * @param[in] stream å‡ºåŠ›ã‚¹ãƒˆãƒªãƒ¼ãƒ 
+ * @param[in] flag   ãƒ­ã‚°ãƒ•ãƒ©ã‚°.OR(|)ã§è¤‡æ•°æŒ‡å®šå¯èƒ½.
  *
  * @retval true  pass
  * @retval false failure
@@ -65,13 +65,13 @@ log_end()
 }
 
 /**
- * @brief •W€“I‚ÈƒƒOo—ÍŠÖ”
+ * @brief æ¨™æº–çš„ãªãƒ­ã‚°å‡ºåŠ›é–¢æ•°
  *
- * @param[in] src_file –{ŠÖ”‚ğƒR[ƒ‹‚µ‚½ƒ\[ƒXƒtƒ@ƒCƒ‹–¼
- * @param[in] line_no  –{ŠÖ”‚ğƒR[ƒ‹‚µ‚½s”Ô†
- * @param[in] level    LogLevel‚Å’è‹`‚³‚ê‚½ƒŒƒxƒ‹
- * @param[in] fmt      ‘®
- * @param[in] ...      ‰Â•Ïˆø”ƒŠƒXƒg
+ * @param[in] src_file æœ¬é–¢æ•°ã‚’ã‚³ãƒ¼ãƒ«ã—ãŸã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«å
+ * @param[in] line_no  æœ¬é–¢æ•°ã‚’ã‚³ãƒ¼ãƒ«ã—ãŸè¡Œç•ªå·
+ * @param[in] level    LogLevelã§å®šç¾©ã•ã‚ŒãŸãƒ¬ãƒ™ãƒ«
+ * @param[in] fmt      æ›¸å¼
+ * @param[in] ...      å¯å¤‰å¼•æ•°ãƒªã‚¹ãƒˆ
  */
 void logger( const char* src_file,
              const int   line_no,
@@ -111,7 +111,7 @@ void logger( const char* src_file,
     }
     if(log_flag & level_flag)
     {
-        fprintf(log_stream, "[%s] %s#%d - %s\n", level_string, src_file, line_no ,msg );
+        fprintf(log_stream, "[%s] %s#%d - %sÂ¥n", level_string, src_file, line_no ,msg );
     }
 }
 
