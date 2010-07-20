@@ -8,56 +8,56 @@ extern "C" {
 
     typedef void*     RingBuffer_Handle;
     /**
-     * @brief ƒŠƒ“ƒOƒoƒbƒtƒ@[ƒIƒuƒWƒFƒNƒg‚Ì\’z
+     * @brief ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹ç¯‰
      */
     RingBuffer_Handle RingBuffer_create(uint32_t n_buffer);
     /**
-     * @brief ƒŠƒ“ƒOƒoƒbƒtƒ@[ƒIƒuƒWƒFƒNƒg‚ÌÁ–Å
+     * @brief ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ¶ˆæ»…
      *
-     * @param[in] h_obj RingBufferƒIƒuƒWƒFƒNƒgƒnƒ“ƒhƒ‹
+     * @param[in] h_obj RingBufferã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒãƒ³ãƒ‰ãƒ«
      *
      */
     void              RingBuffer_delete(RingBuffer_Handle h_obj);
     /**
-     * @brief ƒŠƒ“ƒOƒoƒbƒtƒ@[‚Ì’†g‚ğÌ‚Ä‚é
+     * @brief ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ãƒ¼ã®ä¸­èº«ã‚’æ¨ã¦ã‚‹
      *
-     * @param[in] h_obj RingBufferƒIƒuƒWƒFƒNƒgƒnƒ“ƒhƒ‹
+     * @param[in] h_obj RingBufferã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒãƒ³ãƒ‰ãƒ«
      *
      */
     void              RingBuffer_initialize(RingBuffer_Handle h_obj);
     /**
-     * @brief ƒŠƒ“ƒOƒoƒbƒtƒ@[“à‚Ìƒf[ƒ^ƒTƒCƒY‚ğæ“¾‚·‚éƒƒ\ƒbƒh
-     * @param[in] h_obj RingBufferƒIƒuƒWƒFƒNƒgƒnƒ“ƒhƒ‹
+     * @brief ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ãƒ¼å†…ã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
+     * @param[in] h_obj RingBufferã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒãƒ³ãƒ‰ãƒ«
      *
-     * @retval ƒf[ƒ^ƒTƒCƒY
+     * @retval ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
      */
     int32_t           RingBuffer_getDataSize(RingBuffer_Handle h_obj);
     /**
-     * @brief ƒŠƒ“ƒOƒoƒbƒtƒ@[‚ÌƒTƒCƒY‚ğæ“¾‚·‚éƒƒ\ƒbƒh
-     * @param[in] h_obj RingBufferƒIƒuƒWƒFƒNƒgƒnƒ“ƒhƒ‹
+     * @brief ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ãƒ¼ã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
+     * @param[in] h_obj RingBufferã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒãƒ³ãƒ‰ãƒ«
      *
-     * @retval ƒoƒbƒtƒ@[ƒTƒCƒY
+     * @retval ãƒãƒƒãƒ•ã‚¡ãƒ¼ã‚µã‚¤ã‚º
      */
     int32_t           RingBuffer_getBufferSize(RingBuffer_Handle h_obj);
     /**
-     * @brief ƒŠƒ“ƒOƒoƒbƒtƒ@[‚©‚çƒf[ƒ^‚ğæ“¾‚·‚éƒƒ\ƒbƒh
+     * @brief ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ãƒ¼ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
      *
-     * @param[in] h_obj RingBufferƒIƒuƒWƒFƒNƒgƒnƒ“ƒhƒ‹
-     * @param[in] p_buffer ƒf[ƒ^æ“¾—pƒoƒbƒtƒ@[‚Ìƒ|ƒCƒ“ƒ^
-     * @param[in] n_buffer ƒf[ƒ^æ“¾—pƒoƒbƒtƒ@[‚ÌƒTƒCƒY
+     * @param[in] h_obj RingBufferã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒãƒ³ãƒ‰ãƒ«
+     * @param[in] p_buffer ãƒ‡ãƒ¼ã‚¿å–å¾—ç”¨ãƒãƒƒãƒ•ã‚¡ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
+     * @param[in] n_buffer ãƒ‡ãƒ¼ã‚¿å–å¾—ç”¨ãƒãƒƒãƒ•ã‚¡ãƒ¼ã®ã‚µã‚¤ã‚º
      *
-     * @retval SUCCESS ¬Œ÷
-     * @retval FAILED  ¸”s
+     * @retval SUCCESS æˆåŠŸ
+     * @retval FAILED  å¤±æ•—
      */
     int32_t           RingBuffer_getData(RingBuffer_Handle h_obj,uint8_t* p_buffer, int32_t n_buffer);
     /**
-     * @brief ƒŠƒ“ƒOƒoƒbƒtƒ@[‚Öƒf[ƒ^‚ğƒZƒbƒg‚·‚éƒƒ\ƒbƒh
+     * @brief ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ãƒ¼ã¸ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
      *
-     * @param[in] p_data ƒf[ƒ^İ’è—pƒoƒbƒtƒ@[‚Ìƒ|ƒCƒ“ƒ^
-     * @param[in] n_data ƒf[ƒ^İ’è—pƒoƒbƒtƒ@[‚ÌƒTƒCƒY
+     * @param[in] p_data ãƒ‡ãƒ¼ã‚¿è¨­å®šç”¨ãƒãƒƒãƒ•ã‚¡ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
+     * @param[in] n_data ãƒ‡ãƒ¼ã‚¿è¨­å®šç”¨ãƒãƒƒãƒ•ã‚¡ãƒ¼ã®ã‚µã‚¤ã‚º
      *
-     * @retval SUCCESS ¬Œ÷
-     * @retval FAILED  ¸”s
+     * @retval SUCCESS æˆåŠŸ
+     * @retval FAILED  å¤±æ•—
      */
     int32_t           RingBuffer_setData(RingBuffer_Handle h_obj,uint8_t* p_data, int32_t n_data);
 
