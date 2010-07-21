@@ -1,7 +1,7 @@
 /**
  * @file   wave.h
  * @author Junsei Takahashi
- * @date   last update 2010-07-20 21:59:43
+ * @date   last update 2010-07-21 22:21:58
  *
  * @brief  WAVEファイルの処理用関数類
  */
@@ -13,42 +13,30 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-    typedef struct{
-        int32_t fmtsize;                 /*  */
-        int16_t ch;                      /*  */
-        int16_t type;                    /*  */
-        int32_t bitspersample;           /*  */
-        int32_t samplingrate;            /*  */
-        int32_t datasize;                /*  */
-    }wave_t;
     /**
-     * @brief ファイルからWAVEヘッダー情報を読み込みます
+     * @brief PCM形式のファイルをWAV形式のファイルに変換します
      *
-     * @param[in] file 入力ファイル
-     * @param[out] pWAVE wave_t型構造体のポインタ
+     * @param[in] pcm_file    PCM形式の入力ファイル
+     * @param[in] wav_file    WAV形式の出力ファイル
+     * @param[in] ch チャンネル数
+     * @param[in] bitspersample ビットレート
+     * @param[in] samplingrate サンプリング周波数
      *
      * @retval
      */
-    int32_t readFileWaveHdr(const char* file,wave_t* p_wave);
+    int32_t pcm2wav(const char* pcm_file,const char* wav_file,int16_t ch,int32_t bitspersample,int32_t samplingrate);
     /**
-     * @brief WAVEヘッダーのファイルポインタを進めます
+     * @brief WAV形式のファイルをPCM形式のファイルに変換します
      *
-     * @param[in] pfp FILEポインタのポインタ
-     * @param[out] pWAVE wave_t型構造体のポインタ
+     * @param[in] wav_file    WAV形式の入力ファイル
+     * @param[in] pcm_file    PCM形式の出力ファイル
+     * @param[in] ch チャンネル数
+     * @param[in] bitspersample ビットレート
+     * @param[in] samplingrate サンプリング周波数
      *
      * @retval
      */
-    int32_t skipWaveHdr(FILE** p_fp,wave_t* p_wave);
-    /**
-     * @brief WAVEヘッダーを書き込みます
-     *
-     * @param[in] pfp FILEポインタのポインタ
-     * @param[in] pWAVE wave_t型構造体のポインタ
-     *
-     * @retval
-     */
-    int32_t writeWaveHdr(FILE** p_fp,wave_t* p_wave);
+    int32_t wav2pcm(const char* wav_file,const char* pcm_file,int16_t* ch,int32_t* bitspersample,int32_t* samplingrate);
 
 #ifdef __cplusplus
 }
