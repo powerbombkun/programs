@@ -1,7 +1,6 @@
 #include "wave.h"
 #include <stdlib.h>
 #include <string.h>
-#include "macro.h"
 #include "util.h"
 
 typedef struct{

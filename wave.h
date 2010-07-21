@@ -1,7 +1,7 @@
 /**
  * @file   wave.h
  * @author Junsei Takahashi
- * @date   last update 2010-07-22 00:36:20
+ * @date   last update 2010-07-22 01:01:01
  *
  * @brief  WAVEファイルの処理用関数類
  */
@@ -9,6 +9,7 @@
 #define _WAVE_H
 #include <stdio.h>
 #include "type.h"
+#include "macro.h"
 
 #ifdef __cplusplus
 extern "C" {
