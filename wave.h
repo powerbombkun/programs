@@ -1,7 +1,7 @@
 /**
  * @file   wave.h
  * @author Junsei Takahashi
- * @date   last update 2010-07-21 22:21:58
+ * @date   last update 2010-07-22 00:36:20
  *
  * @brief  WAVEファイルの処理用関数類
  */
@@ -22,7 +22,8 @@ extern "C" {
      * @param[in] bitspersample ビットレート
      * @param[in] samplingrate サンプリング周波数
      *
-     * @retval
+     * @retval SUCCESS 成功
+     *         FAILED  失敗
      */
     int32_t pcm2wav(const char* pcm_file,const char* wav_file,int16_t ch,int32_t bitspersample,int32_t samplingrate);
     /**
@@ -34,7 +35,8 @@ extern "C" {
      * @param[in] bitspersample ビットレート
      * @param[in] samplingrate サンプリング周波数
      *
-     * @retval
+     * @retval SUCCESS 成功
+     *         FAILED  失敗
      */
     int32_t wav2pcm(const char* wav_file,const char* pcm_file,int16_t* ch,int32_t* bitspersample,int32_t* samplingrate);
 

@@ -2,7 +2,7 @@
  * @file   util.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-07-20 21:59:21
+ * @date   last update 2010-07-22 00:44:15
  *
  * @brief  汎用関数類
  *
@@ -10,6 +10,7 @@
 #ifndef _UTIL_H
 #define _UTIL_H
 #include "type.h"
+#include "macro.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -20,14 +21,14 @@ extern "C" {
      * @retval 0以上 ファイルサイズ
      * @retval -1 エラー
      */
-    uint32_t    getFileSize(const char* file);
+    uint32_t    get_file_size(const char* file);
     /**
      * @brief 最大振幅レベル取得関数
      * @param[in] pData 符号付き16bitデータ
      * @param[in] nData 16bitデータ個数
      * @retval 最大振幅レベル
      */
-    int16_t     getMaxAmp(const int16_t* p_data,int32_t n_data);
+    int16_t     get_max_amp(const int16_t* p_data,int32_t n_data);
     /**
      * @brief ファイル名の取得
      *
@@ -35,7 +36,7 @@ extern "C" {
      *
      * @retval ファイル名文字列
      */
-    const char* getFileName(const char* file);
+    const char* get_file_name(const char* file);
     /**
      * @brief 文字列をseparatorで指定した文字で分割します
      *
@@ -45,7 +46,7 @@ extern "C" {
      * @param[out] second ２つ目の文字列
      *
      */
-    void splitString(const char* str,const char* separator,char* first,char* second);
+    void split_string(const char* str,const char* separator,char* first,char* second);
 
 #ifdef __cplusplus
 }

@@ -2,9 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "macro.h"
 
-uint32_t getFileSize(const char* file)
+uint32_t get_file_size(const char* file)
 {
     FILE*   fp;
     uint32_t fsize = 0;
@@ -21,7 +20,7 @@ uint32_t getFileSize(const char* file)
     return fsize;
 }
 
-int16_t getMaxAmp(const int16_t* p_data,int32_t n_data)
+int16_t get_max_amp(const int16_t* p_data,int32_t n_data)
 {
     int i;
     int16_t level = 0;
@@ -35,7 +34,7 @@ int16_t getMaxAmp(const int16_t* p_data,int32_t n_data)
     return level;
 }
 
-const char* getFileName(const char* file)
+const char* get_file_name(const char* file)
 {
     const char* pName = NULL;
 #ifdef _WIN32
@@ -59,7 +58,7 @@ const char* getFileName(const char* file)
     return pName;
 }
 
-void splitString(const char* str,const char* separator,char* first,char* second)
+void split_string(const char* str,const char* separator,char* first,char* second)
 {
     const char* p_sep = strstr(str,separator);
     int n = p_sep - str;
