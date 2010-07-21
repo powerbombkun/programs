@@ -2,7 +2,6 @@
 #include <string.h>
 #include <stdarg.h>
 #include "logger.h"
-#include "macro.h"
 /*
  * define
  */
@@ -45,12 +44,12 @@ int32_t log_init(const char* file, uint32_t flag)
     {
         log_stream = fopen(file,"w");
         if(log_stream == NULL){
-            return 1;
+            return FAILED;
         }
     }
     log_flag = flag;
 
-    return 0;
+    return SUCCESS;
 }
 
 

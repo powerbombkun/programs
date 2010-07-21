@@ -1,7 +1,6 @@
 #include "ringbuffer.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "macro.h"
 
 typedef struct{
     uint8_t* p_buffer;

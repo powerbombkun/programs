@@ -2,7 +2,7 @@
  * @file   logger.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-07-20 22:40:36
+ * @date   last update 2010-07-22 01:00:04
  *
  * @brief  プログラム実行時にログを出力するための関数の宣言
  *
@@ -11,6 +11,7 @@
 #define _LOGGER_H
 #include <stdio.h>
 #include "type.h"
+#include "macro.h"
 
 #ifdef WIN32
 #include <string.h>
@@ -56,8 +57,8 @@ extern "C" {
      * @param[in] stream 出力ストリーム
      * @param[in] flag   ログフラグ.OR(|)で複数指定可能.
      *
-     * @retval true  pass
-     * @retval false failure
+     * @retval SUCCESS pass
+     * @retval FAILED  failure
      */
     int32_t  log_init(const char* file, uint32_t flag);
 
