@@ -1,0 +1,18 @@
+# Makefile
+#
+# author : Junsei Takahashi
+# last update 2010-07-23 01:46:10
+#
+root_dir := ..
+
+# optimize level
+CFLAGS  += -O0 -Wstrict-aliasing=2
+
+CPPFLAGS+=  -D_FORTIFY_SORCE=2
+# warning level
+CFLAGS  += -g -ffloat-store -Wall -Wextra -Wformat=2
+# ak
+LDLIBS += -lm -lcunit
+
+include $(root_dir)/common.mk
+
