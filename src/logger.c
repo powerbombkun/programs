@@ -44,7 +44,7 @@ int32_t log_init(const char* file, uint32_t flag)
     {
         log_stream = fopen(file,"w");
         if(log_stream == NULL){
-            return FAILED;
+            return FAILURE;
         }
     }
     log_flag = flag;

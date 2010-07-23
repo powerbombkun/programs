@@ -2,7 +2,7 @@
 /**
  * @file   test_ringbuffer.c
  * @author Junsei Takahashi
- * @date   last update 2010-07-23 22:29:45
+ * @date   last update 2010-07-23 23:00:33
  *
  * @brief test suite for test_ringbuffer.c
  */
@@ -52,7 +52,7 @@ teardown_test_ringbuffer()
 static void
 test_normal_initialize()
 {
-    uint8_t data_array[1023];
+    uint8_t data_array[RINGBUFFER_SIZE];
     int32_t size;
     RingBuffer_initialize(hRingBuffer);
     RingBuffer_setData(hRingBuffer,data_array,ARRAY_SIZE(data_array));

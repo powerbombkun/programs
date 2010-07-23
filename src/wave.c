@@ -43,7 +43,7 @@ static int32_t writeWaveHdr(FILE** p_fp,wave_t wave);
 static int32_t readFileWaveHdr(const char* file,wave_t* p_wave)
 {
     FILE*   fp  = NULL;
-    int32_t ret = FAILED;
+    int32_t ret = FAILURE;
 
     fp = fopen(file,"rb");
     if(fp != NULL)
@@ -56,7 +56,7 @@ static int32_t readFileWaveHdr(const char* file,wave_t* p_wave)
 
 static int32_t skipWaveHdr(FILE** p_fp,wave_t* p_wave)
 {
-    int32_t ret        = FAILED;
+    int32_t ret        = FAILURE;
     char       buff[5] = {0};
 
     if((*p_fp != NULL) && (p_wave != NULL))
@@ -97,7 +97,7 @@ static int32_t skipWaveHdr(FILE** p_fp,wave_t* p_wave)
 
 static int32_t writeWaveHdr(FILE** p_fp,wave_t wave)
 {
-    int32_t ret = FAILED;
+    int32_t ret = FAILURE;
     if(*p_fp != NULL)
     {
         int32_t i32_buff = 0;
@@ -130,7 +130,7 @@ int32_t pcm2wav(const char* pcm_file,
                 int32_t     bitspersample,
                 int32_t     samplingrate)
 {
-    int32_t ret        = FAILED;
+    int32_t ret        = FAILURE;
     FILE*   fp_in      = fopen(pcm_file,"rb");
     wave_t  wave;
     wave.fmtsize       = 16;
@@ -166,7 +166,7 @@ int32_t wav2pcm(const char* wav_file,
                 int32_t*    bitspersample,
                 int32_t*    samplingrate)
 {
-    int32_t ret   = FAILED;
+    int32_t ret   = FAILURE;
     FILE*   fp_in = fopen(wav_file,"rb");
     wave_t  wave;
     if(fp_in != NULL)

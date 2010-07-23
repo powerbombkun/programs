@@ -64,7 +64,7 @@ int32_t RingBuffer_getBufferSize(RingBuffer_Handle h_obj)
 int32_t RingBuffer_getData(RingBuffer_Handle h_obj,uint8_t* p_buffer, int32_t n_buffer)
 {
     ringbuffer_t* This = (ringbuffer_t*)h_obj;
-    int32_t       ret  = FAILED;
+    int32_t       ret  = FAILURE;
     int32_t       size = RingBuffer_getDataSize(h_obj);
 
     if(n_buffer <= size)
@@ -88,7 +88,7 @@ int32_t RingBuffer_getData(RingBuffer_Handle h_obj,uint8_t* p_buffer, int32_t n_
 int32_t RingBuffer_setData(RingBuffer_Handle h_obj,uint8_t* p_data, int32_t n_data)
 {
     ringbuffer_t* This = (ringbuffer_t*)h_obj;
-    int32_t       ret  = FAILED;
+    int32_t       ret  = FAILURE;
     int32_t       rest = This->n_buffer - RingBuffer_getDataSize(h_obj);
 
     if(rest >= n_data)
