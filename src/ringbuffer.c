@@ -99,7 +99,7 @@ int32_t RingBuffer_setData(RingBuffer_Handle h_obj,uint8_t* p_data, int32_t n_da
             *(This->p_buffer + This->writeCounter) = *(p_data + i);
             This->writeCounter++;
 
-            if ( This->writeCounter == This->n_buffer )
+            if ( This->writeCounter > This->n_buffer )
             {
                 This->writeCounter = 0;
             }
