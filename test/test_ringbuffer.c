@@ -2,7 +2,7 @@
 /**
  * @file   test_ringbuffer.c
  * @author Junsei Takahashi
- * @date   last update 2010-07-23 22:27:40
+ * @date   last update 2010-07-23 22:29:45
  *
  * @brief test suite for test_ringbuffer.c
  */
@@ -104,6 +104,9 @@ test_normal_getData()
     {
         CU_ASSERT_EQUAL(data_array[i],buf_array[i]);
     }
+
+    size = RingBuffer_getDataSize(hRingBuffer);
+    CU_ASSERT_EQUAL(size,0);
 }
 
 static void
