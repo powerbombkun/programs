@@ -22,6 +22,21 @@ typedef struct{
     int32_t     n_map;          /** p_map‚ÌŒÂ” */
 }parametertable_t;
 
+static data_map_t* getDataMap(parametertable_t* table,const char* key);
+
+static data_map_t* getDataMap(parametertable_t* table,const char* key)
+{
+    int i;
+    for(i = 0;i < table->n_map;i++)
+    {
+        if(strcmp(table->p_map[i].key,key) == 0)
+        {
+            return &table->p_map[i];
+        }
+    }
+    return NULL;
+}
+
 
 ParameterTable_Handle ParameterTable_create()
 {
@@ -52,56 +67,38 @@ void      ParameterTable_initialize(ParameterTable_Handle h_obj)
     This->n_map = 0;
 }
 
-int32_t    ParameterTable_entry(ParameterTable_Handle h_obj,
+void    ParameterTable_store(ParameterTable_Handle h_obj,
                                 const char*           key,
                                 int32_t               val)
 {
     parametertable_t* This = (parametertable_t*)h_obj;
-    int32_t           ret  = FAILURE;
 
-    This->p_map[This->n_map].key = (char*)malloc(strlen(key) + 1);
-    This->p_map[This->n_map].val = val;
-    This->n_map++;
-
-    return ret;
-}
-
-int32_t    ParameterTable_setData(ParameterTable_Handle h_obj,
-                                  const char*           key,
-                                  int32_t               val)
-{
-    parametertable_t* This = (parametertable_t*)h_obj;
-    int               i;
-    int32_t           ret  = FAILURE;
-
-    for(i = 0;i < This->n_map;i++)
+    if(ParameterTable_fetch(h_obj,key,&val) == SUCCESS)
     {
-        if(strcmp(This->p_map[i].key,key) == 0)
-        {
-            This->p_map[i].val = val;
-            ret                = SUCCESS;
-            break;
-        }
+        data_map_t* p_map = getDataMap(This,key);
+        p_map->val = val;
     }
-    return ret;
+    else
+    {
+        This->p_map[This->n_map].key = (char*)malloc(strlen(key) + 1);
+        This->p_map[This->n_map].val = val;
+        This->n_map++;
+    }
 }
 
-int32_t    ParameterTable_getData(ParameterTable_Handle h_obj,
+
+int32_t    ParameterTable_fetch(ParameterTable_Handle h_obj,
                                   const char*           key,
                                   int32_t*              val)
 {
-    parametertable_t* This = (parametertable_t*)h_obj;
-    int               i;
-    int32_t           ret  = FAILURE;
+    parametertable_t* This  = (parametertable_t*)h_obj;
+    int32_t           ret   = FAILURE;
+    data_map_t*       p_map = getDataMap(This,key);
 
-    for(i = 0;i < This->n_map;i++)
+    if(p_map != NULL)
     {
-        if(strcmp(This->p_map[i].key,key) == 0)
-        {
-            *val = This->p_map[i].val;
-            ret  = SUCCESS;
-            break;
-        }
+        *val = p_map->val;
+        ret  = SUCCESS;
     }
     return ret;
 }
