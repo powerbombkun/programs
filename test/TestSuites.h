@@ -1,7 +1,7 @@
 /**
  * @file   TestSuites.h
  * @author Junsei Takahashi
- * @date   last update 2010-07-23 22:32:57
+ * @date   last update 2010-07-25 21:50:11
  *
  * @brief 本ファイルで宣言したもののみを対象にテストを行う。
  */
@@ -24,6 +24,13 @@ extern CU_TestInfo test_ringbuffer_array[];
 int setup_test_ringbuffer();
 int teardown_test_ringbuffer();
 /**
+ * parametertable
+ */
+extern CU_TestInfo test_parametertable_array[];
+int setup_test_parametertable();
+int teardown_test_parametertable();
+
+/**
  * テストスイート配列
  *
  * @brief テスト実行対象となるテストスイート
@@ -31,6 +38,7 @@ int teardown_test_ringbuffer();
 static CU_SuiteInfo suites_array[] = {
    {"test_util", setup_test_util, teardown_test_util, test_util_array},
    {"test_ringbuffer", setup_test_ringbuffer, teardown_test_ringbuffer, test_ringbuffer_array},
+   {"test_parametertable", setup_test_parametertable, teardown_test_parametertable, test_parametertable_array},
    CU_SUITE_INFO_NULL
 };
 #endif /* _TESTSUITES_H */
