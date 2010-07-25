@@ -20,73 +20,73 @@ extern "C" {
 
     typedef void* ParameterTable_Handle;
     /**
-     * @brief ƒpƒ‰ƒ[ƒ^[ƒe[ƒuƒ‹ƒIƒuƒWƒFƒNƒg‚Ì\’z
+     * @brief ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹ç¯‰
      *
-     * @retval ƒIƒuƒWƒFƒNƒgƒnƒ“ƒhƒ‹
+     * @retval ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒãƒ³ãƒ‰ãƒ«
      */
     ParameterTable_Handle ParameterTable_create();
     /**
-     * @brief ƒpƒ‰ƒ[ƒ^[ƒe[ƒuƒ‹ƒIƒuƒWƒFƒNƒg‚ÌÁ–Å
+     * @brief ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ¶ˆæ»…
      *
-     * @param[in] h_obj ƒIƒuƒWƒFƒNƒgƒnƒ“ƒhƒ‹
+     * @param[in] h_obj ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒãƒ³ãƒ‰ãƒ«
      *
      */
     void ParameterTable_delete(ParameterTable_Handle h_obj);
     /**
-     * @brief ƒpƒ‰ƒ[ƒ^[ƒe[ƒuƒ‹ƒIƒuƒWƒFƒNƒg‚Ì‰Šú‰»
+     * @brief ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®åˆæœŸåŒ–
      *
-     * @param[in] h_obj ƒIƒuƒWƒFƒNƒgƒnƒ“ƒhƒ‹
+     * @param[in] h_obj ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒãƒ³ãƒ‰ãƒ«
      *
      */
     void ParameterTable_initialize(ParameterTable_Handle h_obj);
     /**
-     * @brief “à•”‚Ìƒpƒ‰ƒ[ƒ^[ƒe[ƒuƒ‹‚Öî•ñ‚ğ“o˜^‚µ‚Ü‚·
+     * @brief å†…éƒ¨ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«ã¸æƒ…å ±ã‚’ç™»éŒ²ã—ã¾ã™
      *
-     * @param[in] h_obj ƒIƒuƒWƒFƒNƒgƒnƒ“ƒhƒ‹
-     * @param[in] key   “o˜^‚·‚éƒL[
-     * @param[in] val   ‰Šú’l
+     * @param[in] h_obj ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒãƒ³ãƒ‰ãƒ«
+     * @param[in] key   ç™»éŒ²ã™ã‚‹ã‚­ãƒ¼
+     * @param[in] val   åˆæœŸå€¤
      *
-     * @retval SUCCESS  ¬Œ÷
-     *         FAILED   ¸”s
+     * @retval SUCCESS  æˆåŠŸ
+     *         FAILED   å¤±æ•—
      */
     void    ParameterTable_store(ParameterTable_Handle h_obj,
                                     const char*           key,
                                     int32_t               val);
 
     /**
-     * @brief “à•”‚Ìƒpƒ‰ƒ[ƒ^[ƒe[ƒuƒ‹‚©‚ç’l‚ğæ“¾‚·‚é
+     * @brief å†…éƒ¨ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰å€¤ã‚’å–å¾—ã™ã‚‹
      *
-     * @param[in] h_obj ƒIƒuƒWƒFƒNƒgƒnƒ“ƒhƒ‹
-     * @param[in] key   ƒL[
-     * @param[out] val   ’l
+     * @param[in] h_obj ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒãƒ³ãƒ‰ãƒ«
+     * @param[in] key   ã‚­ãƒ¼
+     * @param[out] val   å€¤
      *
-     * @retval SUCCESS  ¬Œ÷
-     *         FAILED   ¸”s
+     * @retval SUCCESS  æˆåŠŸ
+     *         FAILED   å¤±æ•—
      */
     int32_t    ParameterTable_fetch(ParameterTable_Handle h_obj,
                                       const char*         key,
                                       int32_t*            val);
 
     /**
-     * @brief “à•”‚Ìƒpƒ‰ƒ[ƒ^[‚ğƒtƒ@ƒCƒ‹‚Öo—Í‚µ‚Ü‚·
+     * @brief å†…éƒ¨ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã¸å‡ºåŠ›ã—ã¾ã™
      *
-     * @param[in] h_obj ƒIƒuƒWƒFƒNƒgƒnƒ“ƒhƒ‹
-     * @param[in] file  ƒtƒ@ƒCƒ‹ƒpƒX
+     * @param[in] h_obj ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒãƒ³ãƒ‰ãƒ«
+     * @param[in] file  ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
      *
-     * @retval SUCCESS  ¬Œ÷
-     *         FAILED   ¸”s
+     * @retval SUCCESS  æˆåŠŸ
+     *         FAILED   å¤±æ•—
      */
     int32_t    ParameterTable_writeFile(ParameterTable_Handle h_obj,
                                         const char*           file);
 
     /**
-     * @brief ƒpƒ‰ƒ[ƒ^[‚ğƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚İ‚Ü‚·
+     * @brief ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã¿ã¾ã™
      *
-     * @param[in] h_obj ƒIƒuƒWƒFƒNƒgƒnƒ“ƒhƒ‹
-     * @param[in] file  ƒtƒ@ƒCƒ‹ƒpƒX
+     * @param[in] h_obj ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒãƒ³ãƒ‰ãƒ«
+     * @param[in] file  ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
      *
-     * @retval SUCCESS  ¬Œ÷
-     *         FAILED   ¸”s
+     * @retval SUCCESS  æˆåŠŸ
+     *         FAILED   å¤±æ•—
      */
     int32_t    ParameterTable_readFile(ParameterTable_Handle h_obj,
                                        const char*           file);

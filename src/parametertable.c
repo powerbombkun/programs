@@ -8,19 +8,19 @@
 #define MAX_PARAM_FILE_LINE_LEN (MAX_KEY_SIZE + 256)
 /**
  * @struct data_map_t
- * @brief ƒL[‚Æ’l‚ÌƒyƒA‚Å‚Ìî•ñŠÇ—\‘¢‘Ì
+ * @brief ã‚­ãƒ¼ã¨å€¤ã®ãƒšã‚¢ã§ã®æƒ…å ±ç®¡ç†æ§‹é€ ä½“
  */
 typedef struct{
-    char*       key;            /** ƒL[ */
-    int32_t     val;            /** ’l */
+    char*       key;            /** ã‚­ãƒ¼ */
+    int32_t     val;            /** å€¤ */
 }data_map_t;
 /**
  * @struct parametertable_t
- * @brief ƒIƒuƒWƒFƒNƒg‚Ì“à•”ƒpƒ‰ƒ[ƒ^[
+ * @brief ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å†…éƒ¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
  */
 typedef struct{
-    data_map_t* p_map;          /** data_map_tŒ^ƒ|ƒCƒ“ƒ^ */
-    int32_t     n_map;          /** p_map‚ÌŒÂ” */
+    data_map_t* p_map;          /** data_map_tå‹ãƒã‚¤ãƒ³ã‚¿ */
+    int32_t     n_map;          /** p_mapã®å€‹æ•° */
 }parametertable_t;
 
 static data_map_t* getDataMap(parametertable_t* table,const char* key);
@@ -115,11 +115,11 @@ int32_t    ParameterTable_writeFile(ParameterTable_Handle h_obj,
     if(fp != NULL)
     {
         /**
-         * - YAMLƒtƒH[ƒ}ƒbƒgo—Í
+         * - YAMLãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆå‡ºåŠ›
          */
         for(i = 0;i < This->n_map;i++)
         {
-            printf("%s%s%d\n",This->p_map[i].key,DELIM,This->p_map[i].val);
+            printf("%s%s%dÂ¥n",This->p_map[i].key,DELIM,This->p_map[i].val);
         }
         fclose(fp);
         ret = SUCCESS;
