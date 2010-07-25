@@ -2,9 +2,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "util.h"
 
-#define DELIM           ": "
-#define MAX_BUFFER_SIZE 1024
+#define DELIM           ":"
+#define MAX_PARAM_FILE_LINE_LEN (MAX_KEY_SIZE + 256)
 /**
  * @struct data_map_t
  * @brief キーと値のペアでの情報管理構造体
@@ -129,31 +130,17 @@ int32_t    ParameterTable_writeFile(ParameterTable_Handle h_obj,
 int32_t    ParameterTable_readFile(ParameterTable_Handle h_obj,
                                    const char*           file)
 {
-    parametertable_t* This = (parametertable_t*)h_obj;
-    int               i;
-    int32_t           ret  = FAILURE;
-    FILE*             fp;
-    fp                     = fopen(file,"r");
+    int32_t ret = FAILURE;
+    FILE*   fp  = fopen(file,"r");
     if(fp != NULL)
     {
-        char buffer[MAX_BUFFER_SIZE];
+        char buffer[MAX_PARAM_FILE_LINE_LEN];
         while(fgets(buffer,sizeof(buffer),fp) != NULL)
         {
-            /**
-             * - キーに対応する値をサーチして値を設定する
-             */
-            for(i = 0;i < This->n_map;i++)
-            {
-                if(strstr(buffer,This->p_map[i].key) != NULL)
-                {
-                    const char* p = strstr(buffer,DELIM);
-                    if(p != NULL)
-                    {
-                        p                  += strlen(DELIM);
-                        This->p_map[i].val  = atoi(p);
-                    }
-                }
-            }
+            char first[MAX_KEY_SIZE];
+            char second[MAX_PARAM_FILE_LINE_LEN - MAX_KEY_SIZE];
+            splitString(buffer,DELIM,first,second);
+            ParameterTable_store(h_obj,first,atoi(second));
         }
         fclose(fp);
         ret = SUCCESS;
