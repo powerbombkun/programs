@@ -1,7 +1,7 @@
 # common.mk
 #
 # author : Junsei Takahashi
-# last update 2010-07-26 23:48:47
+# last update 2010-07-27 01:44:49
 #
 
 #
@@ -65,7 +65,9 @@ CC        := gcc
 root_dir  ?= .
 
 prgrams   :=
+# library module
 modules   := $(shell find $(root_dir) -name module.mk)
+# app module
 modules   += $(shell find $(root_dir) -name app.mk)
 module_dirs   := $(dir $(modules))
 libraries :=
