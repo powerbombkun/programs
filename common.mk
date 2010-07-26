@@ -1,7 +1,7 @@
 # common.mk
 #
 # author : Junsei Takahashi
-# last update 2010-07-26 23:30:10
+# last update 2010-07-26 23:48:47
 #
 
 #
@@ -11,10 +11,6 @@
 source-to-object = $(subst .c,.o,$(filter %.c,$1))
 
 # $(subdirectory)
-# subdirectory = $(patsubst %/module.mk,%,                              \
-#                     $(word                                            \
-#                         $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST)))
-
 subdirectory = $(dir $(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST)))
 
 
