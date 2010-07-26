@@ -1,7 +1,7 @@
 # common.mk
 #
 # author : Junsei Takahashi
-# last update 2010-07-26 23:02:53
+# last update 2010-07-26 23:16:20
 #
 
 #
@@ -11,9 +11,12 @@
 source-to-object = $(subst .c,.o,$(filter %.c,$1))
 
 # $(subdirectory)
-subdirectory = $(patsubst %/module.mk,%,                              \
-                    $(word                                            \
-                        $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST)))
+# subdirectory = $(patsubst %/module.mk,%,                              \
+#                     $(word                                            \
+#                         $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST)))
+
+subdirectory = $(dir $(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST)))
+
 
 # $(call make-library, library-name, source-file-list)
 define make-library
@@ -66,8 +69,7 @@ CC        := gcc
 root_dir  ?= .
 
 prgrams   :=
-modules   := $(shell find $(root_dir)/src -name module.mk)
-modules   += $(shell find $(root_dir)/test -name module.mk)
+modules   := $(shell find $(root_dir) -name module.mk)
 module_dirs   := $(subst /module.mk,,$(modules))
 libraries :=
 sources   :=
