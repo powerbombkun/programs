@@ -2,11 +2,11 @@
 /**
  * @file   test_parametertable.c
  * @author Junsei Takahashi
- * @date   last update 2010-07-28 23:06:51
+ * @date   last update 2010-07-28 23:47:16
  *
  * @brief test suite for test_parametertable.c
  */
-#include "CUnit/CUnit.h"
+#include "CUnit.h"
 #include "parametertable.h"
 #include <stdlib.h>
 #include "type.h"

@@ -3,7 +3,7 @@
  * @brief  Program main routine
  *
  * @author Junsei Takahashi
- * @date last update 2010-07-22 19:55:47
+ * @date last update 2010-07-28 23:47:16
  *
  */
 #include <stdio.h>
@@ -13,9 +13,9 @@
 /*
  * CUnit
  */
-#include "CUnit/CUnit.h"
-#include "CUnit/Basic.h"
-#include "CUnit/Automated.h"
+#include "CUnit.h"
+#include "Basic.h"
+#include "Automated.h"
 /*
  * test suites
  */

@@ -1,7 +1,7 @@
 # Makefile
 #
 # author : Junsei Takahashi
-# last update 2010-07-28 23:37:59
+# last update 2010-07-28 23:48:24
 #
 root_dir := ..
 
@@ -13,7 +13,6 @@ CPPFLAGS+=  -D_FORTIFY_SORCE=2
 CFLAGS  += -g -ffloat-store -Wall -Wextra -Wformat=2
 # ak
 LDLIBS += -lm
-#-lcunit
 
 include $(root_dir)/common.mk
 
