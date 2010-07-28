@@ -2,7 +2,7 @@
  * @file   parametertable.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-07-25 21:37:13
+ * @date   last update 2010-07-28 22:45:13
  *
  * @brief
  *
@@ -24,7 +24,7 @@ extern "C" {
      *
      * @retval オブジェクトハンドル
      */
-    ParameterTable_Handle ParameterTable_create();
+    ParameterTable_Handle ParameterTable_create(int n_key);
     /**
      * @brief パラメーターテーブルオブジェクトの消滅
      *
@@ -49,7 +49,7 @@ extern "C" {
      * @retval SUCCESS  成功
      *         FAILED   失敗
      */
-    void    ParameterTable_store(ParameterTable_Handle h_obj,
+    int32_t    ParameterTable_store(ParameterTable_Handle h_obj,
                                     const char*           key,
                                     int32_t               val);
 

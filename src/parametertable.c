@@ -21,6 +21,7 @@ typedef struct{
 typedef struct{
     data_map_t* p_map;          /** data_map_t型ポインタ */
     int32_t     n_map;          /** p_mapの個数 */
+    int32_t     n_store;
 }parametertable_t;
 
 static data_map_t* getDataMap(parametertable_t* table,const char* key);
@@ -28,7 +29,7 @@ static data_map_t* getDataMap(parametertable_t* table,const char* key);
 static data_map_t* getDataMap(parametertable_t* table,const char* key)
 {
     int i;
-    for(i = 0;i < table->n_map;i++)
+    for(i = 0;i < table->n_store;i++)
     {
         if(strcmp(table->p_map[i].key,key) == 0)
         {
@@ -39,20 +40,29 @@ static data_map_t* getDataMap(parametertable_t* table,const char* key)
 }
 
 
-ParameterTable_Handle ParameterTable_create()
+ParameterTable_Handle ParameterTable_create(int n_key)
 {
     parametertable_t* This;
     This = (parametertable_t*)malloc(sizeof(parametertable_t));
-    This->p_map = NULL;
-    This->n_map = 0;
-
-    return (ParameterTable_Handle)This;
+    if(This != NULL)
+    {
+        This->p_map = (data_map_t*)malloc(sizeof(data_map_t));
+        if(This->p_map != NULL)
+        {
+            This->n_map   = n_key;
+            This->n_store = 0;
+            return (ParameterTable_Handle)This;
+        }
+        free(This);
+    }
+    return NULL;
 }
 
 void      ParameterTable_delete(ParameterTable_Handle h_obj)
 {
     parametertable_t* This = (parametertable_t*)h_obj;
     ParameterTable_initialize(h_obj);
+    if(This->p_map != NULL) free(This->p_map);
     if(This     != NULL) free(This);
 }
 
@@ -61,32 +71,41 @@ void      ParameterTable_initialize(ParameterTable_Handle h_obj)
     parametertable_t* This = (parametertable_t*)h_obj;
     int               i;
 
-    for(i = 0;i < This->n_map;i++)
+    for(i = 0;i < This->n_store;i++)
     {
         free(This->p_map[i].key);
-        free(&This->p_map[i]);
     }
-    This->p_map = NULL;
-    This->n_map = 0;
+    This->n_store = 0;
 }
 
-void    ParameterTable_store(ParameterTable_Handle h_obj,
+int32_t    ParameterTable_store(ParameterTable_Handle h_obj,
                                 const char*           key,
                                 int32_t               val)
 {
     parametertable_t* This = (parametertable_t*)h_obj;
-
-    if(ParameterTable_fetch(h_obj,key,&val) == SUCCESS)
+    int32_t           ret  = FAILURE;
+    if(This->n_store < This->n_map)
     {
-        data_map_t* p_map = getDataMap(This,key);
-        p_map->val = val;
+        if(ParameterTable_fetch(h_obj,key,&val) == SUCCESS)
+        {
+            data_map_t* p_map = getDataMap(This,key);
+            p_map->val        = val;
+            ret               = SUCCESS;
+        }
+        else
+        {
+            data_map_t* p_map = &This->p_map[This->n_store];
+            p_map->key        = (char*)malloc(strlen(key) + 1);
+            if(p_map->key != NULL)
+            {
+                strcpy(p_map->key,key);
+                p_map->val = val;
+                This->n_store++;
+                ret        = SUCCESS;
+            }
+        }
     }
-    else
-    {
-        This->p_map[This->n_map].key = (char*)malloc(strlen(key) + 1);
-        This->p_map[This->n_map].val = val;
-        This->n_map++;
-    }
+    return ret;
 }
 
 
@@ -119,7 +138,7 @@ int32_t    ParameterTable_writeFile(ParameterTable_Handle h_obj,
         /**
          * - YAMLフォーマット出力
          */
-        for(i = 0;i < This->n_map;i++)
+        for(i = 0;i < This->n_store;i++)
         {
             printf("%s%s%d¥n",This->p_map[i].key,DELIM,This->p_map[i].val);
         }
