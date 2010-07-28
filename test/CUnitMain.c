@@ -3,7 +3,7 @@
  * @brief  Program main routine
  *
  * @author Junsei Takahashi
- * @date last update 2010-07-28 23:47:16
+ * @date last update 2010-07-29 00:48:18
  *
  */
 #include <stdio.h>
@@ -29,7 +29,7 @@ int
 MAIN(int argc, char* argv[])
 {
   CU_ErrorCode errorCode;
-  bool_t f_xml = FALSE;
+  int32_t f_xml = FALSE;
   int i;
   /**
    * - コマンドラインオプションの設定
