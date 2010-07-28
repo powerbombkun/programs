@@ -13,20 +13,26 @@ RingBuffer_Handle RingBuffer_create(uint32_t n_buffer)
 {
     ringbuffer_t* This;
     This = (ringbuffer_t*)malloc(sizeof(ringbuffer_t));
-
-    This->n_buffer   = n_buffer;
-    This->p_buffer     = (uint8_t*)malloc(This->n_buffer);
-    This->readCounter  = 0;
-    This->writeCounter = 0;
-
-    return (RingBuffer_Handle)This;
+    if(This != NULL)
+    {
+        This->n_buffer   = n_buffer;
+        This->p_buffer     = (uint8_t*)malloc(This->n_buffer);
+        if(This->p_buffer != NULL)
+        {
+            This->readCounter  = 0;
+            This->writeCounter = 0;
+            return (RingBuffer_Handle)This;
+        }
+        free(This);
+    }
+    return NULL;
 }
 
 void              RingBuffer_delete(RingBuffer_Handle h_obj)
 {
     ringbuffer_t* This = (ringbuffer_t*)h_obj;
-    free((void*)This->p_buffer);
-    free((void*)This);
+    free((void*)This->p_buffer); This->p_buffer == NULL;
+    free((void*)This); This = NULL;
 }
 
 void              RingBuffer_initialize(RingBuffer_Handle h_obj)

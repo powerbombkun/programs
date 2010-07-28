@@ -2,7 +2,7 @@
 /**
  * @file   test_parametertable.c
  * @author Junsei Takahashi
- * @date   last update 2010-07-25 21:50:41
+ * @date   last update 2010-07-28 21:50:25
  *
  * @brief test suite for test_parametertable.c
  */
@@ -30,7 +30,11 @@ int
 setup_test_parametertable()
 {
     hParameterTable = ParameterTable_create();
-    return 0;
+    if(hParameterTable == NULL)
+    {
+        CU_FAIL_FATAL("ParameterTable_create failed");
+    }
+   return 0;
 }
 
 int

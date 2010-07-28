@@ -2,7 +2,7 @@
 /**
  * @file   test_ringbuffer.c
  * @author Junsei Takahashi
- * @date   last update 2010-07-23 23:00:33
+ * @date   last update 2010-07-28 21:49:35
  *
  * @brief test suite for test_ringbuffer.c
  */
@@ -38,15 +38,20 @@ CU_TestInfo test_ringbuffer_array[] = {
 int
 setup_test_ringbuffer()
 {
-  hRingBuffer = RingBuffer_create(RINGBUFFER_SIZE);
-  return 0;
+    hRingBuffer = RingBuffer_create(RINGBUFFER_SIZE);
+    if(hRingBuffer == NULL)
+    {
+        CU_FAIL_FATAL("RingBuffer_create failed");
+    }
+
+    return 0;
 }
 
 int
 teardown_test_ringbuffer()
 {
-  RingBuffer_delete(hRingBuffer);
-  return 0;
+    RingBuffer_delete(hRingBuffer);
+    return 0;
 }
 
 static void

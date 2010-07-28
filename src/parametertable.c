@@ -43,6 +43,8 @@ ParameterTable_Handle ParameterTable_create()
 {
     parametertable_t* This;
     This = (parametertable_t*)malloc(sizeof(parametertable_t));
+    This->p_map = NULL;
+    This->n_map = 0;
 
     return (ParameterTable_Handle)This;
 }
