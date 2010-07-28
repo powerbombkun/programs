@@ -1,7 +1,7 @@
 # common.mk
 #
 # author : Junsei Takahashi
-# last update 2010-07-27 01:44:49
+# last update 2010-07-28 21:30:11
 #
 
 #
@@ -11,7 +11,7 @@
 source-to-object = $(subst .c,.o,$(filter %.c,$1))
 
 # $(subdirectory)
-subdirectory = $(dir $(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST)))
+subdirectory = $(patsubst %/,%,$(dir $(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST))))
 
 
 # $(call make-library, library-name, source-file-list)
@@ -69,7 +69,7 @@ prgrams   :=
 modules   := $(shell find $(root_dir) -name module.mk)
 # app module
 modules   += $(shell find $(root_dir) -name app.mk)
-module_dirs   := $(dir $(modules))
+module_dirs   := $(patsubst %/,%,$(dir $(modules)))
 libraries :=
 sources   :=
 tests     :=
