@@ -1,8 +1,8 @@
-#include "parametertable.h"
+#include "util/parametertable.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "util.h"
+#include "util/util.h"
 
 #define DELIM           ":"
 #define MAX_PARAM_FILE_LINE_LEN (MAX_KEY_SIZE + 256)

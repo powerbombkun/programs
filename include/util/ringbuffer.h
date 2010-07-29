@@ -1,7 +1,7 @@
 #ifndef _RINGBUFFER_H
 #define _RINGBUFFER_H
-#include "type.h"
-#include "macro.h"
+#include "util/type.h"
+#include "util/macro.h"
 
 #ifdef __cplusplus
 extern "C" {

@@ -2,15 +2,15 @@
  * @file   parametertable.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-07-28 22:45:13
+ * @date   last update 2010-07-29 23:50:15
  *
  * @brief
  *
  */
 #ifndef _PARAMETERTABLE_H
 #define _PARAMETERTABLE_H
-#include "type.h"
-#include "macro.h"
+#include "util/type.h"
+#include "util/macro.h"
 
 #define MAX_KEY_SIZE 256
 

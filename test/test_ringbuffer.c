@@ -2,15 +2,15 @@
 /**
  * @file   test_ringbuffer.c
  * @author Junsei Takahashi
- * @date   last update 2010-07-28 23:47:16
+ * @date   last update 2010-07-29 23:40:17
  *
  * @brief test suite for test_ringbuffer.c
  */
-#include "CUnit.h"
-#include "ringbuffer.h"
+#include "CUnit/CUnit.h"
+#include "util/ringbuffer.h"
 #include <stdlib.h>
-#include "type.h"
-#include "macro.h"
+#include "util/type.h"
+#include "util/macro.h"
 /* define */
 #define RINGBUFFER_SIZE (1024)
 /*  input file path */

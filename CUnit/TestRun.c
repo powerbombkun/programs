@@ -46,7 +46,7 @@
  *                requirement for registry to be initialized in order to run
  *                CU_run_suite() and CU_run_test(). (JDS)
  *
- *  30-Apr-2005   Added callback for suite cleanup function failure, 
+ *  30-Apr-2005   Added callback for suite cleanup function failure,
  *                updated unit tests. (JDS)
  */
 
@@ -63,10 +63,10 @@
 #include <stdio.h>
 #include <setjmp.h>
 
-#include "CUnit.h"
-#include "MyMem.h"
-#include "TestDB.h"
-#include "TestRun.h"
+#include "CUnit/CUnit.h"
+#include "CUnit/MyMem.h"
+#include "CUnit/TestDB.h"
+#include "CUnit/TestRun.h"
 
 static CU_BOOL   f_bTestIsRunning = CU_FALSE; /**< Flag for whether a test run is in progress */
 static CU_pSuite f_pCurSuite = NULL;          /**< Pointer to the suite currently being run. */
@@ -117,11 +117,11 @@ static CU_SuiteCleanupFailureMessageHandler f_pSuiteCleanupFailureMessageHandler
  *  @param bFatal        CU_TRUE to abort test (via longjmp()), CU_FALSE to continue test.
  *  @return As a convenience, returns the value of the assertion.
  */
-CU_BOOL CU_assertImplementation(CU_BOOL bValue, 
+CU_BOOL CU_assertImplementation(CU_BOOL bValue,
                                 unsigned int uiLine,
-                                char strCondition[], 
+                                char strCondition[],
                                 char strFile[],
-                                char strFunction[], 
+                                char strFunction[],
                                 CU_BOOL bFatal)
 {
   /* not used in current implementation - stop compiler warning */
@@ -815,7 +815,7 @@ CU_ErrorCode run_single_test(CU_pTest pTest, CU_pRunSummary pRunSummary)
   pTest->pJumpBuf = &buf;
   if (0 == setjmp(buf)) {
     if (NULL != pTest->pTestFunc) {
-      (*pTest->pTestFunc)();       
+      (*pTest->pTestFunc)();
     }
   }
 
@@ -2643,7 +2643,7 @@ static void test_add_failure(void)
       TEST(!strcmp("file2.c", pFailure2->strFileName));
       TEST(&test1 == pFailure2->pTest);
       TEST(NULL == pFailure2->pSuite);
-      TEST(NULL == pFailure2->pNext);                          
+      TEST(NULL == pFailure2->pNext);
       TEST(pFailure1 == pFailure2->pPrev);
       TEST(pFailure2 == f_last_failure);
       TEST(0 != test_cunit_get_n_memevents(pFailure2));

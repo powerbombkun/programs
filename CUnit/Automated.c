@@ -52,11 +52,11 @@
 #include <limits.h>
 #include <time.h>
 
-#include "CUnit.h"
-#include "TestDB.h"
-#include "Util.h"
-#include "TestRun.h"
-#include "Automated.h"
+#include "CUnit/CUnit.h"
+#include "CUnit/TestDB.h"
+#include "CUnit/Util.h"
+#include "CUnit/TestRun.h"
+#include "CUnit/Automated.h"
 
 static CU_pSuite f_pRunningSuite = NULL;                    /**< The running test suite. */
 static char      f_szDefaultFileRoot[] = "CUnitAutomated";  /**< Default filename root for automated output files. */
@@ -178,9 +178,9 @@ CU_ErrorCode CU_list_tests_to_file()
 
 /*------------------------------------------------------------------------*/
 /** Run the registered tests using the automated interface.
- *  If non-NULL. the specified registry is set as the active 
+ *  If non-NULL. the specified registry is set as the active
  *  registry for running the tests.  If NULL, then the default
- *  CUnit test registry is used.  The actual test running is 
+ *  CUnit test registry is used.  The actual test running is
  *  performed by CU_run_all_tests().
  *  @param pRegistry The test registry to run.
  */
@@ -418,7 +418,7 @@ static void automated_suite_init_failure_message_handler(const CU_pSuite pSuite)
           "        <FAILURE_REASON> %s </FAILURE_REASON> \n"
           "      </CUNIT_RUN_SUITE_FAILURE> \n"
           "    </CUNIT_RUN_SUITE>  \n",
-          (NULL != pSuite->pName) ? pSuite->pName : "", 
+          (NULL != pSuite->pName) ? pSuite->pName : "",
           "Suite Initialization Failed");
 }
 
@@ -445,7 +445,7 @@ static void automated_suite_cleanup_failure_message_handler(const CU_pSuite pSui
           "        <FAILURE_REASON> %s </FAILURE_REASON> \n"
           "      </CUNIT_RUN_SUITE_FAILURE> \n"
           "    </CUNIT_RUN_SUITE>  \n",
-          (NULL != pSuite->pName) ? pSuite->pName : "", 
+          (NULL != pSuite->pName) ? pSuite->pName : "",
           "Suite Cleanup Failed");
 }
 
@@ -554,7 +554,7 @@ static CU_ErrorCode automated_list_all_tests(CU_pTestRegistry pRegistry, const c
               "      <CUNIT_ALL_TEST_LISTING_SUITE_TESTS> \n");
       while (NULL != pTest) {
         fprintf(pTestListFile,
-                "        <TEST_CASE_NAME> %s </TEST_CASE_NAME> \n", 
+                "        <TEST_CASE_NAME> %s </TEST_CASE_NAME> \n",
                 (NULL != pTest->pName) ? pTest->pName : "");
         pTest = pTest->pNext;
       }

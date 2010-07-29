@@ -51,11 +51,11 @@
 #include <string.h>
 #include <stdarg.h>
 
-#include "CUnit.h"
-#include "MyMem.h"
-#include "TestDB.h"
-#include "TestRun.h"
-#include "Util.h"
+#include "CUnit/CUnit.h"
+#include "CUnit/MyMem.h"
+#include "CUnit/TestDB.h"
+#include "CUnit/TestRun.h"
+#include "CUnit/Util.h"
 
 /*
  *  Global/Static Definitions
@@ -595,9 +595,9 @@ static void cleanup_test(CU_pTest pTest)
  *  of tests in a suite is a double-linked list, which this
  *  function manages.   Insertion of duplicate tests (or NULL
  *  pTest) is not allowed (checked by assertion).  Further,
- *  pTest must be an independent test (i.e. both pTest->pNext 
- *  and pTest->pPrev == NULL), which is also checked by assertion.  
- *  Severe problems can occur if this function is called during 
+ *  pTest must be an independent test (i.e. both pTest->pNext
+ *  and pTest->pPrev == NULL), which is also checked by assertion.
+ *  Severe problems can occur if this function is called during
  *  a test run involving pSuite.
  *  @param pSuite CU_pSuite to insert into (non-NULL).
  *  @param pTest  CU_pTest to insert (non-NULL).
@@ -709,10 +709,10 @@ CU_pTestRegistry CU_create_new_registry(void)
  *  CU_cleanup_registry(), so only call this function on registries
  *  created or held independently of the internal CUnit system.<br /><br />
  *
- *  Once a registry is made the active test registry using 
- *  CU_set_registry(), its destruction will be handled by the 
- *  framework.  ppRegistry may not be NULL (checked by assertion), 
- *  but *ppRegistry can be NULL (in which case the function has no 
+ *  Once a registry is made the active test registry using
+ *  CU_set_registry(), its destruction will be handled by the
+ *  framework.  ppRegistry may not be NULL (checked by assertion),
+ *  but *ppRegistry can be NULL (in which case the function has no
  *  effect).  Note that *ppRegistry will be set to NULL on return.
  *  @param ppRegistry Address of a pointer to the registry to destroy (non-NULL).
  */
@@ -1662,7 +1662,7 @@ static void test_insert_test(void)
   TEST(pTest2->pNext == pTest3);
   TEST(pTest2->pPrev == pTest1);
   TEST(pTest3->pNext == NULL);
-  TEST(pTest3->pPrev == pTest2);        
+  TEST(pTest3->pPrev == pTest2);
   TEST(pTest4->pNext == NULL);
   TEST(pTest4->pPrev == NULL);
 

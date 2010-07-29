@@ -2,15 +2,15 @@
 /**
  * @file   test_ringbuffer.c
  * @author Junsei Takahashi
- * @date   last update 2010-07-28 23:45:55
+ * @date   last update 2010-07-29 23:40:49
  *
  * @brief test suite for test_ringbuffer.c
  */
-#include "CUnit.h"
-#include "util.h"
+#include "CUnit/CUnit.h"
+#include "util/util.h"
 #include <stdlib.h>
-#include "type.h"
-#include "macro.h"
+#include "util/type.h"
+#include "util/macro.h"
 
 /*  input file path */
 /* static values */

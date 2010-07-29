@@ -46,11 +46,11 @@
 #include <assert.h>
 #include <string.h>
 
-#include "CUnit.h"
-#include "TestDB.h"
-#include "Util.h"
-#include "TestRun.h"
-#include "Basic.h"
+#include "CUnit/CUnit.h"
+#include "CUnit/TestDB.h"
+#include "CUnit/Util.h"
+#include "CUnit/TestRun.h"
+#include "CUnit/Basic.h"
 
 /** Pointer to the currently running suite. */
 static CU_pSuite f_pRunningSuite = NULL;
@@ -285,8 +285,8 @@ static void basic_test_start_message_handler(const CU_pTest pTest, const CU_pSui
  *  @param pSuite  The suite containing the test.
  *  @param pFailure Pointer to the 1st failure record for this test.
  */
-static void basic_test_complete_message_handler(const CU_pTest pTest, 
-                                                const CU_pSuite pSuite, 
+static void basic_test_complete_message_handler(const CU_pTest pTest,
+                                                const CU_pSuite pSuite,
                                                 const CU_pFailureRecord pFailureList)
 {
   CU_pFailureRecord pFailure = pFailureList;
@@ -306,7 +306,7 @@ static void basic_test_complete_message_handler(const CU_pTest pTest,
         fprintf(stdout, "FAILED");
         break;
       case CU_BRM_NORMAL:
-        fprintf(stdout, "\nSuite %s, Test %s had failures:", 
+        fprintf(stdout, "\nSuite %s, Test %s had failures:",
                         (NULL != pSuite->pName) ? pSuite->pName : "",
                         (NULL != pTest->pName) ? pTest->pName : "");
         break;

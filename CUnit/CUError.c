@@ -21,7 +21,7 @@
 /*
  *  Error handling code used by CUnit
  *
- *  16-Jul-2004   Created access functions for error code, error action 
+ *  16-Jul-2004   Created access functions for error code, error action
  *                functions, messages for new error codes. (JDS)
  */
 
@@ -35,7 +35,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "CUError.h"
+#include "CUnit/CUError.h"
 
 /*
  *	Global/Static Definitions

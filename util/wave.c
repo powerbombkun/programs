@@ -1,7 +1,7 @@
-#include "wave.h"
+#include "util/wave.h"
 #include <stdlib.h>
 #include <string.h>
-#include "util.h"
+#include "util/util.h"
 
 typedef struct{
     int32_t fmtsize;                 /*  */

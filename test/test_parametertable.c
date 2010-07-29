@@ -2,15 +2,15 @@
 /**
  * @file   test_parametertable.c
  * @author Junsei Takahashi
- * @date   last update 2010-07-28 23:47:16
+ * @date   last update 2010-07-29 23:39:45
  *
  * @brief test suite for test_parametertable.c
  */
-#include "CUnit.h"
-#include "parametertable.h"
+#include "CUnit/CUnit.h"
+#include "util/parametertable.h"
 #include <stdlib.h>
-#include "type.h"
-#include "macro.h"
+#include "util/type.h"
+#include "util/macro.h"
 /* define */
 #define KEY_NUM 128
 /*  input file path */

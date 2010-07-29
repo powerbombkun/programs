@@ -3,19 +3,19 @@
  * @brief  Program main routine
  *
  * @author Junsei Takahashi
- * @date last update 2010-07-29 00:48:18
+ * @date last update 2010-07-29 23:39:15
  *
  */
 #include <stdio.h>
 #include <stdlib.h>
-#include "type.h"
-#include "macro.h"
+#include "util/type.h"
+#include "util/macro.h"
 /*
  * CUnit
  */
-#include "CUnit.h"
-#include "Basic.h"
-#include "Automated.h"
+#include "CUnit/CUnit.h"
+#include "CUnit/Basic.h"
+#include "CUnit/Automated.h"
 /*
  * test suites
  */

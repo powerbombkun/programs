@@ -47,11 +47,11 @@
 #include <assert.h>
 #include <string.h>
 
-#include "CUnit.h"
-#include "TestDB.h"
-#include "Util.h"
-#include "TestRun.h"
-#include "Console.h"
+#include "CUnit/CUnit.h"
+#include "CUnit/TestDB.h"
+#include "CUnit/Util.h"
+#include "CUnit/TestRun.h"
+#include "CUnit/Console.h"
 
 /** Console interface status flag. */
 typedef enum
@@ -347,7 +347,7 @@ static void list_suites(CU_pTestRegistry pRegistry)
   if (NULL == pRegistry) {
     pRegistry = CU_get_registry();
   }
-  
+
   assert(NULL != pRegistry);
   if (0 == pRegistry->uiNumberOfSuites) {
     fprintf(stdout, "\nNo suites registered.\n");
@@ -382,7 +382,7 @@ static void list_tests(CU_pSuite pSuite)
 
   assert(NULL != pSuite);
   if (0 == pSuite->uiNumberOfTests) {
-    fprintf(stdout, "\nSuite %s contains no tests.\n", 
+    fprintf(stdout, "\nSuite %s contains no tests.\n",
                     (NULL != pSuite->pName) ? pSuite->pName : "");
     return;
   }
@@ -455,8 +455,8 @@ static void console_test_start_message_handler(const CU_pTest pTest, const CU_pS
  *  @param pSuite  The suite containing the test.
  *  @param pFailure Pointer to the 1st failure record for this test.
  */
-static void console_test_complete_message_handler(const CU_pTest pTest, 
-                                                  const CU_pSuite pSuite, 
+static void console_test_complete_message_handler(const CU_pTest pTest,
+                                                  const CU_pSuite pSuite,
                                                   const CU_pFailureRecord pFailure)
 {
   /*
