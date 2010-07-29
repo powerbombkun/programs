@@ -2,15 +2,15 @@
  * @file   util.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-07-29 23:50:15
+ * @date   last update 2010-07-30 00:09:09
  *
  * @brief  汎用関数類
  *
  */
 #ifndef _UTIL_H
 #define _UTIL_H
-#include "util/type.h"
-#include "util/macro.h"
+#include "type.h"
+#include "macro.h"
 
 #ifdef __cplusplus
 extern "C" {

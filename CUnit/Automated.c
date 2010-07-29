@@ -52,11 +52,11 @@
 #include <limits.h>
 #include <time.h>
 
-#include "CUnit/CUnit.h"
-#include "CUnit/TestDB.h"
-#include "CUnit/Util.h"
-#include "CUnit/TestRun.h"
-#include "CUnit/Automated.h"
+#include "CUnit.h"
+#include "TestDB.h"
+#include "Util.h"
+#include "TestRun.h"
+#include "Automated.h"
 
 static CU_pSuite f_pRunningSuite = NULL;                    /**< The running test suite. */
 static char      f_szDefaultFileRoot[] = "CUnitAutomated";  /**< Default filename root for automated output files. */

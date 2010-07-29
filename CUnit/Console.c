@@ -47,11 +47,11 @@
 #include <assert.h>
 #include <string.h>
 
-#include "CUnit/CUnit.h"
-#include "CUnit/TestDB.h"
-#include "CUnit/Util.h"
-#include "CUnit/TestRun.h"
-#include "CUnit/Console.h"
+#include "CUnit.h"
+#include "TestDB.h"
+#include "Util.h"
+#include "TestRun.h"
+#include "Console.h"
 
 /** Console interface status flag. */
 typedef enum

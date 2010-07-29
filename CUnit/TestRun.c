@@ -63,10 +63,10 @@
 #include <stdio.h>
 #include <setjmp.h>
 
-#include "CUnit/CUnit.h"
-#include "CUnit/MyMem.h"
-#include "CUnit/TestDB.h"
-#include "CUnit/TestRun.h"
+#include "CUnit.h"
+#include "MyMem.h"
+#include "TestDB.h"
+#include "TestRun.h"
 
 static CU_BOOL   f_bTestIsRunning = CU_FALSE; /**< Flag for whether a test run is in progress */
 static CU_pSuite f_pCurSuite = NULL;          /**< Pointer to the suite currently being run. */

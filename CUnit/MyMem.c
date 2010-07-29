@@ -50,8 +50,8 @@
 #include <string.h>
 #include <time.h>
 
-#include "CUnit/CUnit.h"
-#include "CUnit/MyMem.h"
+#include "CUnit.h"
+#include "MyMem.h"
 
 #ifdef MEMTRACE
 

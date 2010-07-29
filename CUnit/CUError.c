@@ -35,7 +35,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "CUnit/CUError.h"
+#include "CUError.h"
 
 /*
  *	Global/Static Definitions

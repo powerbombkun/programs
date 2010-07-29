@@ -44,9 +44,9 @@
 #include <assert.h>
 #include <string.h>
 
-#include "CUnit/CUnit.h"
-#include "CUnit/TestDB.h"
-#include "CUnit/Util.h"
+#include "CUnit.h"
+#include "TestDB.h"
+#include "Util.h"
 
 /** Structure containing mappings of special characters to
  *  xml entity codes.
