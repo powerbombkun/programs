@@ -2,7 +2,7 @@
  * @file   type.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-07-29 00:47:16
+ * @date   last update 2010-07-30 01:16:59
  *
  * @brief  プログラムの標準型定義
  *
@@ -10,7 +10,6 @@
 #ifndef _TYPE_H
 #define _TYPE_H
 
-#include <stdint.h>
 #ifndef _STDINT_H
 typedef unsigned char  uint8_t;
 typedef signed char    int8_t;
