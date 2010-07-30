@@ -2,11 +2,11 @@
 /**
  * @file   test_ringbuffer.c
  * @author Junsei Takahashi
- * @date   last update 2010-07-30 00:09:09
+ * @date   last update 2010-07-30 20:57:33
  *
  * @brief test suite for test_ringbuffer.c
  */
-#include "CUnit.h"
+#include "CUnit/CUnit.h"
 #include "ringbuffer.h"
 #include <stdlib.h>
 #include "type.h"
