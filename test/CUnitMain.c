@@ -3,7 +3,7 @@
  * @brief  Program main routine
  *
  * @author Junsei Takahashi
- * @date last update 2010-07-30 20:56:54
+ * @date last update 2010-07-30 23:07:49
  *
  */
 #include <stdio.h>
@@ -20,6 +20,8 @@
  * test suites
  */
 #include "TestSuites.h"
+
+#include "platform.h"
 
 #define VERSION "1.0.0"
 /*
@@ -38,16 +40,16 @@ MAIN(int argc, char* argv[])
   {
     if((strcmp(argv[i],"-h") == 0) || (strcmp(argv[i],"--help") == 0))
     {
-      fprintf(stdout, "Usage : [option]¥n");
-      fprintf(stdout, "Option:¥n");
-      fprintf(stdout, "¥t--help             : display Usage.¥n");
-      fprintf(stdout, "¥t--version          : display version.¥n");
-      fprintf(stdout, "¥t--xml              : output to xml.¥n");
+      fprintf(stdout, "Usage : [option]\n");
+      fprintf(stdout, "Option:\n");
+      fprintf(stdout, "\t--help             : display Usage.\n");
+      fprintf(stdout, "\t--version          : display version.\n");
+      fprintf(stdout, "\t--xml              : output to xml.\n");
       exit(EXIT_SUCCESS);
     }
     else if((strcmp(argv[i],"-v") == 0) || (strcmp(argv[i],"--version") == 0))
     {
-      fprintf(stdout, "version:  %s¥n", VERSION);
+      fprintf(stdout, "version:  %s\n", VERSION);
       exit(EXIT_SUCCESS);
     }
     else if(strcmp(argv[i],"--xml") == 0)
@@ -56,7 +58,7 @@ MAIN(int argc, char* argv[])
     }
     else
     {
-      fprintf(stderr,"See '%s --help'¥n", argv[0]);
+      fprintf(stderr,"See '%s --help'\n", argv[0]);
       exit(EXIT_SUCCESS);
     }
   }

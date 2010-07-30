@@ -2,7 +2,7 @@
  * @file   platform.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-07-30 21:44:15
+ * @date   last update 2010-07-30 22:24:44
  *
  * @brief
  *
