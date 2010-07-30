@@ -2,7 +2,7 @@
  * @file   type.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-07-30 01:16:59
+ * @date   last update 2010-07-30 20:45:56
  *
  * @brief  プログラムの標準型定義
  *
@@ -17,6 +17,10 @@ typedef unsigned short uint16_t;
 typedef short          int16_t;
 typedef unsigned int   uint32_t;
 typedef int            int32_t;
+#endif
+
+#ifndef BOOL
+#define BOOL int
 #endif
 
 #define FALSE 0
