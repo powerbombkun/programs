@@ -3,7 +3,7 @@
  * @brief  Program main routine
  *
  * @author Junsei Takahashi
- * @date last update 2010-07-30 23:07:49
+ * @date last update 2010-07-30 23:26:25
  *
  */
 #include <stdio.h>
@@ -20,8 +20,6 @@
  * test suites
  */
 #include "TestSuites.h"
-
-#include "platform.h"
 
 #define VERSION "1.0.0"
 /*
