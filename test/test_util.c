@@ -2,7 +2,7 @@
 /**
  * @file   test_ringbuffer.c
  * @author Junsei Takahashi
- * @date   last update 2010-07-30 20:57:18
+ * @date   last update 2010-07-31 19:58:06
  *
  * @brief test suite for test_ringbuffer.c
  */
@@ -45,7 +45,7 @@ teardown_test_util()
 static void
 test_normal_getMaxAmp()
 {
-    int16_t val_array[] = {0,4096,16384,8192};
+    int16_t val_array[] = {0,512,16384,8192};
     int16_t max_val = getMaxAmp(val_array,ARRAY_SIZE(val_array));
     CU_ASSERT_EQUAL(16384,max_val);
 }
