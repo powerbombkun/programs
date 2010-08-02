@@ -2,7 +2,7 @@
  * @file   platform.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-07-30 23:25:26
+ * @date   last update 2010-08-02 22:05:27
  *
  * @brief
  *
@@ -15,19 +15,9 @@
 /* 指定した型のアライメントを返す */
 #define ALIGNMENT_OF(type)    OFFSET_OF(struct { char a; type b; }, b)
 
-#define NUM_BIT(type) (int count = 0;           \
-                        type a =~ 0;            \
-                        while(a & 1)            \
-                        {                       \
-                            count++;            \
-                            a>>=1;              \
-                        }                       \
-                       return count;)
-
 #ifdef __cplusplus
 extern "C" {
 #endif
-
     /**
      * @brief int型のbit数を取得する関数
      *
