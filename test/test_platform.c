@@ -2,7 +2,7 @@
 /**
  * @file   test_platform.c
  * @author Junsei Takahashi
- * @date   last update 2010-08-04 22:01:28
+ * @date   last update 2010-08-04 22:28:05
  *
  * @brief test suite for test_platform.c
  */
@@ -39,7 +39,7 @@ teardown_test_platform()
 
 static void test_normal_byte_reverse()
 {
-    int i;
+    size_t i;
     uint8_t ary[] = {0,1,2,3};
     uint8_t ref[] = {3,2,1,0};
     byte_reverse(ary,ARRAY_SIZE(ary));
