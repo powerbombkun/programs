@@ -91,15 +91,7 @@ void splitString(const char* str,const char* separator,char* first,char* second)
 
 char* trim(char* str)
 {
-    int i;
     /* 前スペースを除いた先頭を探す */
-    for(i = 0;i < (int)strlen(str)-1;i++)
-    {
-        if(str[i] != ' ')
-        {
-            break;
-        }
-    }
-
-    return &str[i];
+    while(*str == ' ') str++;
+    return str;
 }

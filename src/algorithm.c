@@ -32,30 +32,15 @@ void quick_sort(int32_t* array,int32_t left,int32_t right)
         {
             while(1)
             {
-                while(array[i] < pivot)
-                {
-                    i++;
-                }
-                while(array[j] > pivot)
-                {
-                    j--;
-                }
-                if(i >= j)
-                {
-                    break;
-                }
+                while(array[i] < pivot) i++;
+                while(array[j] > pivot) j--;
+                if(i >= j) break;
                 SWAP(int32_t,array[i],array[j]);
                 i++;
                 j--;
             }
         }
-        if(left < i - 1)
-        {
-            quick_sort(array,left,i -1);
-        }
-        if(j+1 < right)
-        {
-            quick_sort(array,j+1,right);
-        }
+        if(left < i - 1) quick_sort(array,left,i -1);
+        if(j+1 < right) quick_sort(array,j+1,right);
     }
 }
