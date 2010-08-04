@@ -2,7 +2,7 @@
  * @file   util.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-07-30 00:09:09
+ * @date   last update 2010-08-05 00:23:14
  *
  * @brief  汎用関数類
  *
@@ -22,6 +22,13 @@ extern "C" {
      * @retval -1 エラー
      */
     uint32_t    getFileSize(const char* file);
+    /**
+     * @brief ファイルの行数を取得します
+     * @param[in] file	ファイルパス
+     * @retval 0以上 行数
+     * @retval -1 エラー
+     */
+    uint32_t    getFileLineNum(const char* file);
     /**
      * @brief 最大振幅レベル取得関数
      * @param[in] pData 符号付き16bitデータ
