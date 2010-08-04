@@ -2,7 +2,7 @@
  * @file   platform.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-08-04 22:06:15
+ * @date   last update 2010-08-04 22:15:37
  *
  * @brief
  *
@@ -16,6 +16,7 @@
 #define OFFSET_OF(type, member)      ((size_t)&((type*)0)->member)
 /* 指定した型のアライメントを返す */
 #define ALIGNMENT_OF(type)    OFFSET_OF(struct { char a; type b; }, b)
+
 
 #ifdef __cplusplus
 extern "C" {

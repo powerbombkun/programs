@@ -20,11 +20,12 @@ int is_little_endian()
 
 void byte_reverse(void* data,int n_byte)
 {
-    uint8_t *low = (uint8_t*)data;
-    uint8_t *high = low + n_byte;
+    uint8_t* low = (uint8_t*)data;
+    uint8_t* high = low + n_byte;
     uint8_t temp;
 
-    while(--high > low) {
+    while(--high > low)
+    {
         temp = *low;
         *low++ = *high;
         *high = temp;
