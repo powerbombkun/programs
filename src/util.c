@@ -88,3 +88,28 @@ void splitString(const char* str,const char* separator,char* first,char* second)
     first[n] = '\0';
     strcpy(second,++p_sep);
 }
+
+char* trim(char* str)
+{
+    int i;
+    /* 後ろのスペースを削除 */
+    for (i = (int)strlen(str)-1; i >= 0; i--)
+    {
+        if (str[i] != ' ')
+        {
+            break;
+        }
+        str[i] = '\0';
+    }
+
+    /* 前スペースを除いた先頭を探す */
+    for(i = 0;i < (int)strlen(str)-1;i++)
+    {
+        if(str[i] != ' ')
+        {
+            break;
+        }
+    }
+
+    return &str[i];
+}
