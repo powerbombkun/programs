@@ -2,7 +2,7 @@
  * @file   platform.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-08-04 22:27:28
+ * @date   last update 2010-08-04 22:33:07
  *
  * @brief
  *
@@ -20,8 +20,6 @@ extern "C" {
 #define OFFSET_OF(type, member)      ((size_t)&((type*)0)->member)
 /* 指定した型のアライメントを返す */
 #define ALIGNMENT_OF(type)    OFFSET_OF(struct { char a; type b; }, b)
-
-#define SWAP(type,a,b) { type temp = a; a = b; b = temp; }
 
     /**
      * @brief int型のbit数を取得する関数
