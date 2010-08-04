@@ -14,15 +14,15 @@ int int_bits()
 
 int is_little_endian()
 {
-    int a = 1;
-    return *(char*)&a;
+    int32_t a = 1;
+    return *(uint8_t*)&a;
 }
 
 void byte_reverse(void* data,int n_byte)
 {
-    unsigned char *low = (unsigned char*)data;
-    unsigned char *high = low + n_byte;
-    unsigned char temp;
+    uint8_t *low = (uint8_t*)data;
+    uint8_t *high = low + n_byte;
+    uint8_t temp;
 
     while(--high > low) {
         temp = *low;

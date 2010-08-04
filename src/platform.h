@@ -2,13 +2,15 @@
  * @file   platform.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-08-02 22:05:27
+ * @date   last update 2010-08-04 22:06:15
  *
  * @brief
  *
  */
 #ifndef _PLATFORM_H
 #define _PLATFORM_H
+#include "type.h"
+#include "macro.h"
 
 /* 構造体メンバの位置までのオフセットを返す */
 #define OFFSET_OF(type, member)      ((size_t)&((type*)0)->member)
