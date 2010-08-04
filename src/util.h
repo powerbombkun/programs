@@ -2,7 +2,7 @@
  * @file   util.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-08-05 00:37:04
+ * @date   last update 2010-08-05 00:48:44
  *
  * @brief  汎用関数類
  *
@@ -55,7 +55,7 @@ extern "C" {
      */
     void splitString(const char* str,const char* separator,char* first,char* second);
     /**
-     * @brief 文字列の前後の空白を削除します
+     * @brief 文字列の頭の空白を削除した位置のポインタを返します
      *
      * @param[in] str 編集対象文字列
      *

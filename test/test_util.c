@@ -2,7 +2,7 @@
 /**
  * @file   test_ringbuffer.c
  * @author Junsei Takahashi
- * @date   last update 2010-07-31 19:58:06
+ * @date   last update 2010-08-05 00:47:29
  *
  * @brief test suite for test_ringbuffer.c
  */
@@ -21,11 +21,13 @@ int teardown_test_util();
 static void test_normal_getMaxAmp();
 static void test_normal_getFileName();
 static void test_normal_splitString();
+static void test_normal_trim();
 /* test cases */
 CU_TestInfo test_util_array[] = {
   {"normal_getMaxAmp",    test_normal_getMaxAmp},
   {"normal_getFileName",    test_normal_getFileName},
   {"normal_splitString",    test_normal_splitString},
+  {"normal_trim",    test_normal_trim},
   CU_TEST_INFO_NULL
 };
 
@@ -67,3 +69,9 @@ test_normal_splitString()
     CU_ASSERT_STRING_EQUAL("0",second);
 }
 
+static void
+test_normal_trim()
+{
+    char* str = "  TEST  ";
+    CU_ASSERT_STRING_EQUAL(trim(str),"TEST  ");
+}
