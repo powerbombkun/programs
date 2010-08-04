@@ -2,7 +2,7 @@
  * @file   macro.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-07-23 22:53:17
+ * @date   last update 2010-08-04 22:31:45
  *
  * @brief  汎用マクロ集
  *
@@ -39,5 +39,7 @@
 #endif
 
 #define MAX_FILE_PATH_LENGTH 1024
+
+#define SWAP(type,a,b) { type temp = a; a = b; b = temp; }
 
 #endif /* _MACRO_H */
