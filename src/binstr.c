@@ -1,4 +1,5 @@
 #include "binstr.h"
+#include <stdio.h>
 
 #define TOP 0
 #define BOTTOM TOP+1
@@ -11,12 +12,12 @@ int32_t bin2str(const uint8_t* p_bin,int32_t n_bin,char* p_buffer,int32_t n_buff
     {
         for(i = 0;i < n_bin;i++)
         {
-            unsigned char code[2];
+            uint8_t code[2];
             code[TOP] = *p_bin >> 4;
             code[BOTTOM] = 0x0F & *p_bin;
             for(j = 0;j < 2;j++)
             {
-                if(0x00 <= code[j] && code[j] <= 0x09)
+                if(code[j] <= 0x09)
                 {
                     *p_buffer = code[j] + '0';
                 }

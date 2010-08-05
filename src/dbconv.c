@@ -10,7 +10,7 @@ float linear2db(int16_t linear)
 
 int16_t db2linear(float db)
 {
-    float y = dB / (float)20;
+    float y = db / (float)20;
     return (int16_t)((float)MAX_LINEAR * pow(10,y));
 }
 
