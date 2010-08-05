@@ -30,7 +30,6 @@ int32_t bin2str(const uint8_t* p_bin,int32_t n_bin,char* p_buffer,int32_t n_buff
             }
             p_bin++;
         }
-        *p_buffer = NULL;
         ret = SUCCESS;
     }
     return ret;
