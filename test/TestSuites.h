@@ -1,7 +1,7 @@
 /**
  * @file   TestSuites.h
  * @author Junsei Takahashi
- * @date   last update 2010-08-05 23:50:24
+ * @date   last update 2010-08-06 00:07:38
  *
  * @brief 本ファイルで宣言したもののみを対象にテストを行う。
  */
@@ -47,6 +47,12 @@ int teardown_test_algorithm();
 extern CU_TestInfo test_dbconv_array[];
 int setup_test_dbconv();
 int teardown_test_dbconv();
+/**
+ * binstr
+ */
+extern CU_TestInfo test_binstr_array[];
+int setup_test_binstr();
+int teardown_test_binstr();
 
 /**
  * テストスイート配列
@@ -60,6 +66,7 @@ static CU_SuiteInfo suites_array[] = {
    {"test_platform", setup_test_platform, teardown_test_platform, test_platform_array},
    {"test_algorithm", setup_test_algorithm, teardown_test_algorithm, test_algorithm_array},
    {"test_dbconv", setup_test_dbconv, teardown_test_dbconv, test_dbconv_array},
+   {"test_binstr", setup_test_binstr, teardown_test_binstr, test_binstr_array},
    CU_SUITE_INFO_NULL
 };
 #endif /* _TESTSUITES_H */

@@ -1,5 +1,6 @@
 #include "binstr.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 #define TOP 0
 #define BOTTOM TOP+1
