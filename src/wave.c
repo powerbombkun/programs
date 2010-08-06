@@ -79,7 +79,7 @@ static int32_t skipWaveHdr(FILE** p_fp,wave_t* p_wave)
                     p_wave->ch            = *(int16_t*)&p_fmt[2];
                     p_wave->samplingrate  = *(int32_t*)&p_fmt[4];
                     p_wave->bitspersample = *(int16_t*)&p_fmt[14];
-                    free(p_fmt);
+                    SAFE_FREE(p_fmt);
 
                     fread(buff,sizeof(char),4,*p_fp);
                     if(strncmp(buff,"data",4) == 0)
@@ -151,7 +151,7 @@ int32_t pcm2wav(const char* pcm_file,
                 fread(p_buffer,wave.datasize,sizeof(unsigned char),fp_in);
                 ret = writeWaveHdr(&fp_out,wave);
                 fwrite(p_buffer,wave.datasize,sizeof(unsigned char),fp_out);
-                free(p_buffer);
+                SAFE_FREE(p_buffer);
                 fclose(fp_out);
             }
         }
@@ -180,7 +180,7 @@ int32_t wav2pcm(const char* wav_file,
             {
                 fread(p_buffer,wave.datasize,sizeof(unsigned char),fp_in);
                 fwrite(p_buffer,wave.datasize,sizeof(unsigned char),fp_out);
-                free(p_buffer);
+                SAFE_FREE(p_buffer);
                 fclose(fp_out);
                 *ch            = wave.ch;
                 *bitspersample = wave.bitspersample;
