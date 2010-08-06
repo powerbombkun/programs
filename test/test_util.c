@@ -2,7 +2,7 @@
 /**
  * @file   test_ringbuffer.c
  * @author Junsei Takahashi
- * @date   last update 2010-08-05 00:47:29
+ * @date   last update 2010-08-06 23:05:11
  *
  * @brief test suite for test_ringbuffer.c
  */
@@ -21,12 +21,14 @@ int teardown_test_util();
 static void test_normal_getMaxAmp();
 static void test_normal_getFileName();
 static void test_normal_splitString();
+static void test_err_splitString_non_sep();
 static void test_normal_trim();
 /* test cases */
 CU_TestInfo test_util_array[] = {
   {"normal_getMaxAmp",    test_normal_getMaxAmp},
   {"normal_getFileName",    test_normal_getFileName},
   {"normal_splitString",    test_normal_splitString},
+  {"err_splitString_non_sep",    test_err_splitString_non_sep},
   {"normal_trim",    test_normal_trim},
   CU_TEST_INFO_NULL
 };
@@ -61,12 +63,23 @@ test_normal_getFileName()
 static void
 test_normal_splitString()
 {
+    int32_t ret;
     char first[128] = {0};
     char second[128] = {0};
-    splitString("TEST:0",":",first,second);
-
+    ret = splitString("TEST:0",":",first,second);
+    CU_ASSERT_EQUAL(ret,SUCCESS);
     CU_ASSERT_STRING_EQUAL("TEST",first);
     CU_ASSERT_STRING_EQUAL("0",second);
+}
+
+static
+void test_err_splitString_non_sep()
+{
+    int32_t ret;
+    char first[128] = {0};
+    char second[128] = {0};
+    ret = splitString("TEST 0",":",first,second);
+    CU_ASSERT_EQUAL(ret,FAILURE);
 }
 
 static void

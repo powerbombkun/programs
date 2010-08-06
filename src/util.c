@@ -32,11 +32,7 @@ uint32_t    getFileLineNum(const char* file)
     {
         char buf[MAX_BUFFER_SIZE];
         n_line = 0;
-        while(1)
-        {
-            if(fgets(buf,sizeof(buf),fp) == NULL) break;
-            n_line++;
-        }
+        while(fgets(buf,sizeof(buf),fp)) n_line++;
         fclose(fp);
     }
     return n_line;
@@ -80,13 +76,19 @@ const char* getFileName(const char* file)
     return pName;
 }
 
-void splitString(const char* str,const char* separator,char* first,char* second)
+int32_t splitString(const char* str,const char* separator,char* first,char* second)
 {
+    int32_t ret = FAILURE;
     const char* p_sep = strstr(str,separator);
-    int n = p_sep - str;
-    strncpy(first,str,n);
-    first[n] = '\0';
-    strcpy(second,++p_sep);
+    if(p_sep != NULL)
+    {
+        int n = p_sep - str;
+        strncpy(first,str,n);
+        first[n] = '\0';
+        strcpy(second,++p_sep);
+        ret = SUCCESS;
+    }
+    return ret;
 }
 
 char* trim(char* str)
