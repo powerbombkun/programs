@@ -2,7 +2,7 @@
  * @file   util.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-08-06 23:03:36
+ * @date   last update 2010-08-07 00:54:26
  *
  * @brief  汎用関数類
  *
@@ -65,6 +65,7 @@ extern "C" {
      * @retval 編集後の文字列ポインタ
      */
     char* trim(char* str);
+
 
 #ifdef __cplusplus
 }

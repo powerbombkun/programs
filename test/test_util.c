@@ -2,7 +2,7 @@
 /**
  * @file   test_ringbuffer.c
  * @author Junsei Takahashi
- * @date   last update 2010-08-06 23:05:11
+ * @date   last update 2010-08-07 00:54:37
  *
  * @brief test suite for test_ringbuffer.c
  */
@@ -88,3 +88,4 @@ test_normal_trim()
     char* str = "  TEST  ";
     CU_ASSERT_STRING_EQUAL(trim(str),"TEST  ");
 }
+

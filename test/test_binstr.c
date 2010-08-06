@@ -1,7 +1,7 @@
 /**
  * @file   test_binstr.c
  * @author Junsei Takahashi
- * @date   last update 2010-08-06 00:21:58
+ * @date   last update 2010-08-06 23:44:46
  *
  * @brief test suite for test_binstr.c
  */
