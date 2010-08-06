@@ -31,8 +31,8 @@ RingBuffer_Handle RingBuffer_create(uint32_t n_buffer)
 void              RingBuffer_delete(RingBuffer_Handle h_obj)
 {
     ringbuffer_t* This = (ringbuffer_t*)h_obj;
-    free((void*)This->p_buffer); This->p_buffer = NULL;
-    free((void*)This); This = NULL;
+    SAFE_FREE(This->p_buffer);
+    SAFE_FREE(This);
 }
 
 void              RingBuffer_initialize(RingBuffer_Handle h_obj)

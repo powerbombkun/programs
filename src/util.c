@@ -97,3 +97,4 @@ char* trim(char* str)
     while(*str == ' ') str++;
     return str;
 }
+

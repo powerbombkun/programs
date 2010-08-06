@@ -53,7 +53,7 @@ ParameterTable_Handle ParameterTable_create(int n_key)
             This->n_store = 0;
             return (ParameterTable_Handle)This;
         }
-        free(This);
+        SAFE_FREE(This);
     }
     return NULL;
 }
@@ -62,8 +62,8 @@ void      ParameterTable_delete(ParameterTable_Handle h_obj)
 {
     parametertable_t* This = (parametertable_t*)h_obj;
     ParameterTable_initialize(h_obj);
-    if(This->p_map != NULL) free(This->p_map);
-    if(This     != NULL) free(This);
+    SAFE_FREE(This->p_map);
+    SAFE_FREE(This);
 }
 
 void      ParameterTable_initialize(ParameterTable_Handle h_obj)
@@ -73,7 +73,7 @@ void      ParameterTable_initialize(ParameterTable_Handle h_obj)
 
     for(i = 0;i < This->n_store;i++)
     {
-        free(This->p_map[i].key);
+        SAFE_FREE(This->p_map[i].key);
     }
     This->n_store = 0;
 }
