@@ -2,33 +2,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define TOP 0
-#define BOTTOM TOP+1
-
 int32_t bin2str(const uint8_t* p_bin,int32_t n_bin,char* p_buffer,int32_t n_buffer)
 {
-    int i,j;
+    int i;
     int32_t ret = FAILURE;
-    if(n_buffer >= (n_bin*2))
+    if(n_buffer > (n_bin*2))
     {
         for(i = 0;i < n_bin;i++)
         {
-            uint8_t code[2];
-            code[TOP] = *p_bin >> 4;
-            code[BOTTOM] = 0x0F & *p_bin;
-            for(j = 0;j < 2;j++)
-            {
-                if(code[j] <= 0x09)
-                {
-                    *p_buffer = code[j] + '0';
-                }
-                else
-                {
-                    *p_buffer = code[j] + 'A' - 0x0A;
-                }
-                p_buffer++;
-            }
-            p_bin++;
+            sprintf(p_buffer++,"%x",(p_bin[i] >> 4));
+            sprintf(p_buffer++,"%x",(0x0F & p_bin[i]));
         }
         ret = SUCCESS;
     }

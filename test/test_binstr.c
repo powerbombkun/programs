@@ -1,7 +1,7 @@
 /**
  * @file   test_binstr.c
  * @author Junsei Takahashi
- * @date   last update 2010-08-06 23:44:46
+ * @date   last update 2010-08-07 13:46:46
  *
  * @brief test suite for test_binstr.c
  */
@@ -41,7 +41,7 @@ static
 void test_normal_bin2str()
 {
     uint8_t b[] = {0x00,0x09,0x0A,0x0F};
-    char* s = "00090A0F";
+    char* s = "00090a0f";
     char buffer[MAX_BUFFER_SIZE];
     int32_t ret;
     memset(buffer,0,sizeof(buffer));
