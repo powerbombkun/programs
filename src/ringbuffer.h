@@ -1,3 +1,12 @@
+/**
+ * @file   ringbuffer.h
+ * @author Junsei Takahashi
+ *
+ * @date   last update 2010-08-07 13:04:52
+ *
+ * @brief
+ *
+ */
 #ifndef _RINGBUFFER_H
 #define _RINGBUFFER_H
 #include "type.h"

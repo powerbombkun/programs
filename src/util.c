@@ -98,15 +98,4 @@ char* trim(char* str)
     return str;
 }
 
-void    chomp(char* str)
-{
-    size_t i;
-    uint32_t    len = strlen(str);
-
-    for(i = 0;i < len;i++)
-    {
-        if((str[i] == '\r') || (str[i] == '\n')) str[i] = '\0';
-    }
-}
-
 
