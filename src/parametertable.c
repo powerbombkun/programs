@@ -4,6 +4,7 @@
 #include <string.h>
 #include "util.h"
 
+/** キーと値との間の分割文字 */
 #define DELIM           ":"
 #define MAX_PARAM_FILE_LINE_LEN (MAX_KEY_SIZE + 256)
 /**
@@ -24,6 +25,16 @@ typedef struct{
     int32_t     n_store;
 }parametertable_t;
 
+/**
+ * @brief parametertable_t型構造体のデータ内からkey文字列に該当する
+ *        data_map_t型構造体データを検索します。
+ *
+ * @param[in] table   parametertable_t型構造体データ
+ * @param[in] key     キー
+ *
+ * @retval NULL以外 data_map_t型構造体ポインタ
+ * @retval NULL キーに該当するものが見つからなかった
+ */
 static data_map_t* getDataMap(parametertable_t* table,const char* key);
 
 static data_map_t* getDataMap(parametertable_t* table,const char* key)
