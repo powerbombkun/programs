@@ -26,7 +26,8 @@ static int32_t readFileWaveHdr(const char* file,wave_t* p_wave);
  * @param[in] p_fp FILEポインタのポインタ
  * @param[out] p_wave wave_t型構造体のポインタ
  *
- * @retval
+ * @retval SUCCESS 成功
+ * @retval FAILED  失敗
  */
 static int32_t skipWaveHdr(FILE** p_fp,wave_t* p_wave);
 /**
