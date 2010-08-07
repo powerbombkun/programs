@@ -1,9 +1,10 @@
 /**
  * @file   CUnitMain.c
- * @brief  Program main routine
- *
  * @author Junsei Takahashi
- * @date last update 2010-07-30 23:26:25
+ *
+ * @date   last update 2010-08-07 13:07:38
+ *
+ * @brief
  *
  */
 #include <stdio.h>
