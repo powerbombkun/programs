@@ -153,7 +153,10 @@ int32_t pcm2wav(const char* pcm_file,
             {
                 fread(p_buffer,wave.datasize,sizeof(unsigned char),fp_in);
                 ret = writeWaveHdr(&fp_out,wave);
-                fwrite(p_buffer,wave.datasize,sizeof(unsigned char),fp_out);
+                if(ret == SUCCESS)
+                {
+                    fwrite(p_buffer,wave.datasize,sizeof(unsigned char),fp_out);
+                }
                 SAFE_FREE(p_buffer);
                 fclose(fp_out);
             }
