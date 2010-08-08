@@ -57,7 +57,7 @@ ParameterTable_Handle ParameterTable_create(int n_key)
     This = (parametertable_t*)malloc(sizeof(parametertable_t));
     if(This != NULL)
     {
-        This->p_map = (data_map_t*)malloc(sizeof(data_map_t));
+        This->p_map = (data_map_t*)malloc(sizeof(data_map_t) * n_key);
         if(This->p_map != NULL)
         {
             This->n_map   = n_key;
