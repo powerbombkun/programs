@@ -55,7 +55,9 @@ int32_t RingBuffer_getDataSize(RingBuffer_Handle h_obj)
     if ( This->readCounter <= This->writeCounter )
     {
         size = This->writeCounter - This->readCounter;
-    }else{
+    }
+    else
+    {
         size = This->n_buffer + This->writeCounter - This->readCounter;
     }
     return size;

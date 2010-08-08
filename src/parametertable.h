@@ -2,7 +2,7 @@
  * @file   parametertable.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-07-30 00:09:09
+ * @date   last update 2010-08-08 15:18:50
  *
  * @brief
  *
@@ -94,8 +94,5 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif
-
-
-
 
 #endif                                  /* _PARAMETERTABLE_H */

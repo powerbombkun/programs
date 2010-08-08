@@ -169,8 +169,10 @@ int32_t    ParameterTable_readFile(ParameterTable_Handle h_obj,
         {
             char first[MAX_KEY_SIZE];
             char second[MAX_PARAM_FILE_LINE_LEN - MAX_KEY_SIZE];
-            splitString(buffer,DELIM,first,second);
-            ParameterTable_store(h_obj,first,atoi(second));
+            if(splitString(buffer,DELIM,first,second) == SUCCESS)
+            {
+                ParameterTable_store(h_obj,first,atoi(second));
+            }
         }
         fclose(fp);
         ret = SUCCESS;
