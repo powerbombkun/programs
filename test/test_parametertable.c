@@ -2,7 +2,7 @@
 /**
  * @file   test_parametertable.c
  * @author Junsei Takahashi
- * @date   last update 2010-08-08 22:55:40
+ * @date   last update 2010-08-08 23:02:17
  *
  * @brief test suite for test_parametertable.c
  */
@@ -24,6 +24,7 @@ static void test_normal_re_store();
 static void test_normal_fetch();
 static void test_normal_re_sotre_fetch();
 static void test_normal_writeFile();
+static void test_normal_readFile();
 /* test cases */
 CU_TestInfo test_parametertable_array[] = {
     {"normal_initialize",    test_normal_initialize},
@@ -33,6 +34,7 @@ CU_TestInfo test_parametertable_array[] = {
     {"normal_fetch",    test_normal_fetch},
     {"normal_re_sotre_fetch",    test_normal_re_sotre_fetch},
     {"normal_writeFile",    test_normal_writeFile},
+    {"normal_readFile",    test_normal_readFile},
     CU_TEST_INFO_NULL
 };
 
@@ -132,11 +134,33 @@ static void
 test_normal_writeFile()
 {
     int32_t ret;
-    char file[MAX_FILE_PATH_LENGTH];
+    char    file[MAX_FILE_PATH_LENGTH];
     sprintf(file,"%s/test_parametertable.txt",TEST_DIR);
     ParameterTable_initialize(hParameterTable);
     ParameterTable_store(hParameterTable,"TEST",128);
     ParameterTable_store(hParameterTable,"HOGE",256);
     ret = ParameterTable_writeFile(hParameterTable,file);
     CU_ASSERT_EQUAL(ret,SUCCESS);
+}
+
+static void
+test_normal_readFile()
+{
+    int32_t ret;
+    int32_t val;
+    char    file[MAX_FILE_PATH_LENGTH];
+    sprintf(file,"%s/test_parametertable.txt",TEST_DIR);
+    ParameterTable_initialize(hParameterTable);
+    ParameterTable_store(hParameterTable,"TEST",128);
+    ParameterTable_store(hParameterTable,"HOGE",256);
+    ParameterTable_writeFile(hParameterTable,file);
+    ParameterTable_initialize(hParameterTable);
+    ret = ParameterTable_readFile(hParameterTable,file);
+    CU_ASSERT_EQUAL(ret,SUCCESS);
+    ret = ParameterTable_fetch(hParameterTable,"TEST",&val);
+    CU_ASSERT_EQUAL(ret,SUCCESS);
+    CU_ASSERT_EQUAL(128,val);
+    ret = ParameterTable_fetch(hParameterTable,"HOGE",&val);
+    CU_ASSERT_EQUAL(ret,SUCCESS);
+    CU_ASSERT_EQUAL(256,val);
 }
