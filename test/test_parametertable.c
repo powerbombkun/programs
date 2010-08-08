@@ -2,7 +2,7 @@
 /**
  * @file   test_parametertable.c
  * @author Junsei Takahashi
- * @date   last update 2010-08-08 14:51:19
+ * @date   last update 2010-08-08 14:58:39
  *
  * @brief test suite for test_parametertable.c
  */
@@ -24,12 +24,14 @@ static void test_normal_initialize();
 static void test_normal_store();
 static void test_normal_re_store();
 static void test_normal_fetch();
+static void test_normal_re_sotre_fetch();
 /* test cases */
 CU_TestInfo test_parametertable_array[] = {
     {"normal_initialize",    test_normal_initialize},
     {"normal_store",    test_normal_store},
     {"normal_re_store",    test_normal_re_store},
     {"normal_fetch",    test_normal_fetch},
+    {"normal_re_sotre_fetch",    test_normal_re_sotre_fetch},
     CU_TEST_INFO_NULL
 };
 
@@ -96,6 +98,20 @@ test_normal_fetch()
     int32_t val;
     ParameterTable_initialize(hParameterTable);
     ParameterTable_store(hParameterTable,"TEST",ref);
+    ret = ParameterTable_fetch(hParameterTable,"TEST",&val);
+    CU_ASSERT_EQUAL(ret,SUCCESS);
+    CU_ASSERT_EQUAL(ref,val);
+}
+
+static void
+test_normal_re_sotre_fetch()
+{
+    int32_t ret;
+    int32_t ref = 256;
+    int32_t val;
+    ParameterTable_initialize(hParameterTable);
+    ParameterTable_store(hParameterTable,"TEST",128);
+    ParameterTable_store(hParameterTable,"TEST",256);
     ret = ParameterTable_fetch(hParameterTable,"TEST",&val);
     CU_ASSERT_EQUAL(ret,SUCCESS);
     CU_ASSERT_EQUAL(ref,val);

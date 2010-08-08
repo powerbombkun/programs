@@ -97,7 +97,8 @@ int32_t    ParameterTable_store(ParameterTable_Handle h_obj,
     int32_t           ret  = FAILURE;
     if(This->n_store < This->n_map)
     {
-        if(ParameterTable_fetch(h_obj,key,&val) == SUCCESS)
+        int32_t ref;
+        if(ParameterTable_fetch(h_obj,key,&ref) == SUCCESS)
         {
             data_map_t* p_map = getDataMap(This,key);
             p_map->val        = val;
