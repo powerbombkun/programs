@@ -2,7 +2,7 @@
  * @file   test_common.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-08-08 22:47:21
+ * @date   last update 2010-08-08 23:23:08
  *
  * @brief
  *
@@ -18,5 +18,7 @@
 #include "type.h"
 #include "macro.h"
 #include "config.h"
+
+#define TEMP_FILE (TEST_DIR "/temp.txt")
 
 #endif /* _TEST_COMMON_H */

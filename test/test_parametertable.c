@@ -1,7 +1,7 @@
 /**
  * @file   test_parametertable.c
  * @author Junsei Takahashi
- * @date   last update 2010-08-08 23:06:18
+ * @date   last update 2010-08-08 23:25:26
  *
  * @brief test suite for test_parametertable.c
  */
@@ -133,12 +133,10 @@ static void
 test_normal_writeFile()
 {
     int32_t ret;
-    char    file[MAX_FILE_PATH_LENGTH];
-    sprintf(file,"%s/test_parametertable.txt",TEST_DIR);
     ParameterTable_initialize(hParameterTable);
     ParameterTable_store(hParameterTable,"TEST",128);
     ParameterTable_store(hParameterTable,"HOGE",256);
-    ret = ParameterTable_writeFile(hParameterTable,file);
+    ret = ParameterTable_writeFile(hParameterTable,TEMP_FILE);
     CU_ASSERT_EQUAL(ret,SUCCESS);
 }
 
@@ -147,14 +145,12 @@ test_normal_readFile()
 {
     int32_t ret;
     int32_t val;
-    char    file[MAX_FILE_PATH_LENGTH];
-    sprintf(file,"%s/test_parametertable.txt",TEST_DIR);
     ParameterTable_initialize(hParameterTable);
     ParameterTable_store(hParameterTable,"TEST",128);
     ParameterTable_store(hParameterTable,"HOGE",256);
-    ParameterTable_writeFile(hParameterTable,file);
+    ParameterTable_writeFile(hParameterTable,TEMP_FILE);
     ParameterTable_initialize(hParameterTable);
-    ret = ParameterTable_readFile(hParameterTable,file);
+    ret = ParameterTable_readFile(hParameterTable,TEMP_FILE);
     CU_ASSERT_EQUAL(ret,SUCCESS);
     ret = ParameterTable_fetch(hParameterTable,"TEST",&val);
     CU_ASSERT_EQUAL(ret,SUCCESS);
