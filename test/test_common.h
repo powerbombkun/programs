@@ -2,7 +2,7 @@
  * @file   test_common.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-08-08 15:57:43
+ * @date   last update 2010-08-08 22:47:21
  *
  * @brief
  *
@@ -17,5 +17,6 @@
 #include <stdlib.h>
 #include "type.h"
 #include "macro.h"
+#include "config.h"
 
 #endif /* _TEST_COMMON_H */
