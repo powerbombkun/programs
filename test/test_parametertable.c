@@ -2,15 +2,12 @@
 /**
  * @file   test_parametertable.c
  * @author Junsei Takahashi
- * @date   last update 2010-08-08 15:10:55
+ * @date   last update 2010-08-08 15:41:43
  *
  * @brief test suite for test_parametertable.c
  */
-#include "CUnit/CUnit.h"
+#include "test_common.h"
 #include "parametertable.h"
-#include <stdlib.h>
-#include "type.h"
-#include "macro.h"
 /* define */
 #define KEY_NUM 128
 /*  input file path */
@@ -26,6 +23,7 @@ static void test_normal_w_store();
 static void test_normal_re_store();
 static void test_normal_fetch();
 static void test_normal_re_sotre_fetch();
+static void test_normal_writeFile();
 /* test cases */
 CU_TestInfo test_parametertable_array[] = {
     {"normal_initialize",    test_normal_initialize},
@@ -34,6 +32,7 @@ CU_TestInfo test_parametertable_array[] = {
     {"normal_re_store",    test_normal_re_store},
     {"normal_fetch",    test_normal_fetch},
     {"normal_re_sotre_fetch",    test_normal_re_sotre_fetch},
+    {"normal_writeFile",    test_normal_writeFile},
     CU_TEST_INFO_NULL
 };
 
@@ -127,4 +126,9 @@ test_normal_re_sotre_fetch()
     ret = ParameterTable_fetch(hParameterTable,"TEST",&val);
     CU_ASSERT_EQUAL(ret,SUCCESS);
     CU_ASSERT_EQUAL(ref,val);
+}
+
+static void
+test_normal_writeFile()
+{
 }
