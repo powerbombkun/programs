@@ -2,7 +2,7 @@
 /**
  * @file   test_parametertable.c
  * @author Junsei Takahashi
- * @date   last update 2010-08-06 00:51:26
+ * @date   last update 2010-08-08 14:51:19
  *
  * @brief test suite for test_parametertable.c
  */
@@ -22,11 +22,13 @@ int teardown_test_parametertable();
 static ParameterTable_Handle hParameterTable;
 static void test_normal_initialize();
 static void test_normal_store();
+static void test_normal_re_store();
 static void test_normal_fetch();
 /* test cases */
 CU_TestInfo test_parametertable_array[] = {
     {"normal_initialize",    test_normal_initialize},
     {"normal_store",    test_normal_store},
+    {"normal_re_store",    test_normal_re_store},
     {"normal_fetch",    test_normal_fetch},
     CU_TEST_INFO_NULL
 };
@@ -74,6 +76,17 @@ test_normal_store()
     ret = ParameterTable_store(hParameterTable,"TEST",128);
     CU_ASSERT_EQUAL(ret,SUCCESS);
 }
+
+static void
+test_normal_re_store()
+{
+    int32_t ret;
+    ParameterTable_initialize(hParameterTable);
+    ParameterTable_store(hParameterTable,"TEST",128);
+    ret = ParameterTable_store(hParameterTable,"TEST",256);
+    CU_ASSERT_EQUAL(ret,SUCCESS);
+}
+
 
 static void
 test_normal_fetch()
