@@ -2,15 +2,12 @@
 /**
  * @file   test_platform.c
  * @author Junsei Takahashi
- * @date   last update 2010-08-04 22:28:05
+ * @date   last update 2010-08-08 15:49:44
  *
  * @brief test suite for test_platform.c
  */
-#include "CUnit/CUnit.h"
+#include "test_common.h"
 #include "platform.h"
-#include <stdlib.h>
-#include "type.h"
-#include "macro.h"
 /*  input file path */
 /* static values */
 /* global func */
