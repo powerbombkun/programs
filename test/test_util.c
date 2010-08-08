@@ -2,7 +2,7 @@
 /**
  * @file   test_ringbuffer.c
  * @author Junsei Takahashi
- * @date   last update 2010-08-07 00:54:37
+ * @date   last update 2010-08-08 15:25:18
  *
  * @brief test suite for test_ringbuffer.c
  */
@@ -20,6 +20,7 @@ int teardown_test_util();
 /* static func */
 static void test_normal_getMaxAmp();
 static void test_normal_getFileName();
+static void test_err_getFileName();
 static void test_normal_splitString();
 static void test_err_splitString_non_sep();
 static void test_normal_trim();
@@ -27,6 +28,7 @@ static void test_normal_trim();
 CU_TestInfo test_util_array[] = {
   {"normal_getMaxAmp",    test_normal_getMaxAmp},
   {"normal_getFileName",    test_normal_getFileName},
+  {"err_getFileName",    test_err_getFileName},
   {"normal_splitString",    test_normal_splitString},
   {"err_splitString_non_sep",    test_err_splitString_non_sep},
   {"normal_trim",    test_normal_trim},
@@ -58,6 +60,12 @@ static void
 test_normal_getFileName()
 {
     CU_ASSERT_STRING_EQUAL("util.h",getFileName("../src/util.h"));
+}
+
+static void
+test_err_getFileName()
+{
+    CU_ASSERT_PTR_EQUAL(NULL,getFileName(" "));
 }
 
 static void
