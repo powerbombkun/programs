@@ -2,7 +2,7 @@
  * @file   logger.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-07-30 00:09:09
+ * @date   last update 2010-08-08 16:03:50
  *
  * @brief  プログラム実行時にログを出力するための関数の宣言
  *
@@ -15,7 +15,7 @@
 
 #ifdef WIN32
 #include <string.h>
-#define __file__ (strrchr(__FILE__,'¥¥' ) + 1 )
+#define __file__ (strrchr(__FILE__,'\\' ) + 1 )
 #else
 #define __file__ (__FILE__)
 #endif
