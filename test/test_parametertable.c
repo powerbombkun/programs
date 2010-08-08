@@ -2,7 +2,7 @@
 /**
  * @file   test_parametertable.c
  * @author Junsei Takahashi
- * @date   last update 2010-08-08 22:51:10
+ * @date   last update 2010-08-08 22:55:40
  *
  * @brief test suite for test_parametertable.c
  */
@@ -131,4 +131,12 @@ test_normal_re_sotre_fetch()
 static void
 test_normal_writeFile()
 {
+    int32_t ret;
+    char file[MAX_FILE_PATH_LENGTH];
+    sprintf(file,"%s/test_parametertable.txt",TEST_DIR);
+    ParameterTable_initialize(hParameterTable);
+    ParameterTable_store(hParameterTable,"TEST",128);
+    ParameterTable_store(hParameterTable,"HOGE",256);
+    ret = ParameterTable_writeFile(hParameterTable,file);
+    CU_ASSERT_EQUAL(ret,SUCCESS);
 }
