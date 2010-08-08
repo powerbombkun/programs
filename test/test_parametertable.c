@@ -1,8 +1,7 @@
-
 /**
  * @file   test_parametertable.c
  * @author Junsei Takahashi
- * @date   last update 2010-08-08 23:02:17
+ * @date   last update 2010-08-08 23:06:18
  *
  * @brief test suite for test_parametertable.c
  */

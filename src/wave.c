@@ -171,23 +171,26 @@ int32_t wav2pcm(const char* wav_file,
 {
     int32_t ret   = FAILURE;
     FILE*   fp_in = fopen(wav_file,"rb");
-    wave_t  wave;
     if(fp_in != NULL)
     {
         FILE* fp_out = fopen(pcm_file,"wb");
         if(fp_out != NULL)
         {
-            ret                     = skipWaveHdr(&fp_in,&wave);
-            unsigned char* p_buffer = (unsigned char*)malloc(wave.datasize);
-            if(p_buffer != NULL)
+            wave_t  wave;
+            if(skipWaveHdr(&fp_in,&wave) == SUCCESS)
             {
-                fread(p_buffer,wave.datasize,sizeof(unsigned char),fp_in);
-                fwrite(p_buffer,wave.datasize,sizeof(unsigned char),fp_out);
-                SAFE_FREE(p_buffer);
-                fclose(fp_out);
-                *ch            = wave.ch;
-                *bitspersample = wave.bitspersample;
-                *samplingrate  = wave.samplingrate;
+                unsigned char* p_buffer = (unsigned char*)malloc(wave.datasize);
+                if(p_buffer != NULL)
+                {
+                    fread(p_buffer,wave.datasize,sizeof(unsigned char),fp_in);
+                    fwrite(p_buffer,wave.datasize,sizeof(unsigned char),fp_out);
+                    SAFE_FREE(p_buffer);
+                    fclose(fp_out);
+                    *ch            = wave.ch;
+                    *bitspersample = wave.bitspersample;
+                    *samplingrate  = wave.samplingrate;
+                    ret = SUCCESS;
+                }
             }
         }
         fclose(fp_in);
