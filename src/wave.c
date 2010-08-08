@@ -13,6 +13,8 @@ typedef struct{
 }wave_t;
 /**
  * @brief ファイルからWAVEヘッダー情報を読み込みます
+
+
  *
  * @param[in] file 入力ファイル
  * @param[out] p_wave wave_t型構造体のポインタ

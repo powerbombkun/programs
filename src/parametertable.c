@@ -146,9 +146,6 @@ int32_t    ParameterTable_writeFile(ParameterTable_Handle h_obj,
     fp                     = fopen(file,"w");
     if(fp != NULL)
     {
-        /**
-         * - YAMLフォーマット出力
-         */
         for(i = 0;i < This->n_store;i++)
         {
             fprintf(fp,"%s%s%d¥n",This->p_map[i].key,DELIM,This->p_map[i].val);
