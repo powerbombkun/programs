@@ -1,13 +1,12 @@
 /**
  * @file   test_dbconv.c
  * @author Junsei Takahashi
- * @date   last update 2010-08-06 00:04:03
+ * @date   last update 2010-08-08 15:46:35
  *
  * @brief test suite for test_dbconv.c
  */
-#include "CUnit/CUnit.h"
+#include "test_common.h"
 #include "dbconv.h"
-#include <stdlib.h>
 /*  input file path */
 /* static values */
 /* global func */

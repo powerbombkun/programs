@@ -1,15 +1,12 @@
 /**
  * @file   test_algorithm.c
  * @author Junsei Takahashi
- * @date   last update 2010-08-05 00:12:26
+ * @date   last update 2010-08-08 15:45:58
  *
  * @brief test suite for test_algorithm.c
  */
-#include "CUnit/CUnit.h"
+#include "test_common.h"
 #include "algorithm.h"
-#include <stdlib.h>
-#include "type.h"
-#include "macro.h"
 /*  input file path */
 /* static values */
 /* global func */

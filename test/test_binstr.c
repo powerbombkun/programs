@@ -1,13 +1,12 @@
 /**
  * @file   test_binstr.c
  * @author Junsei Takahashi
- * @date   last update 2010-08-07 13:46:46
+ * @date   last update 2010-08-08 15:46:14
  *
  * @brief test suite for test_binstr.c
  */
-#include "CUnit/CUnit.h"
+#include "test_common.h"
 #include "binstr.h"
-#include <stdlib.h>
 
 #define MAX_BUFFER_SIZE 1024
 /*  input file path */
