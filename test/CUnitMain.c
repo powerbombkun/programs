@@ -2,21 +2,12 @@
  * @file   CUnitMain.c
  * @author Junsei Takahashi
  *
- * @date   last update 2010-08-07 13:07:38
+ * @date   last update 2010-08-08 15:58:04
  *
  * @brief
  *
  */
-#include <stdio.h>
-#include <stdlib.h>
-#include "type.h"
-#include "macro.h"
-/*
- * CUnit
- */
-#include "CUnit/CUnit.h"
-#include "CUnit/Basic.h"
-#include "CUnit/Automated.h"
+#include "test_common.h"
 /*
  * test suites
  */
