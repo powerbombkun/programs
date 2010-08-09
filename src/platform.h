@@ -2,7 +2,7 @@
  * @file   platform.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-08-04 22:33:07
+ * @date   last update 2010-08-09 20:24:47
  *
  * @brief
  *
@@ -26,14 +26,14 @@ extern "C" {
      *
      * @retval bit数
      */
-    int int_bits();
+    int int_bits(void);
     /**
      * @brief リトルエンディアン環境か判定する関数
      *
      * @retval 1 リトルエンディアン
      *         0 ビッグエンディアン
      */
-    int is_little_endian();
+    int is_little_endian(void);
     /**
      * @brief ビット反転を行う関数
      *
