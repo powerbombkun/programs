@@ -8,7 +8,7 @@
 uint32_t getFileSize(const char* file)
 {
     FILE*   fp;
-    uint32_t fsize = -1;
+    uint32_t fsize = -1U;
 
     fp = fopen(file,"rb");
     if(fp != NULL)
@@ -25,7 +25,7 @@ uint32_t getFileSize(const char* file)
 uint32_t    getFileLineNum(const char* file)
 {
     FILE*   fp;
-    uint32_t n_line = -1;
+    uint32_t n_line = -1U;
 
     fp = fopen(file,"r");
     if(fp != NULL)
