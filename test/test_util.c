@@ -2,7 +2,7 @@
 /**
  * @file   test_ringbuffer.c
  * @author Junsei Takahashi
- * @date   last update 2010-08-08 15:49:21
+ * @date   last update 2010-08-09 20:17:17
  *
  * @brief test suite for test_ringbuffer.c
  */
@@ -55,7 +55,7 @@ test_normal_getMaxAmp()
 static void
 test_normal_getFileName()
 {
-    CU_ASSERT_STRING_EQUAL("util.h",getFileName("../src/util.h"));
+    CU_ASSERT_STRING_EQUAL("test_util.c",getFileName(__FILE__));
 }
 
 static void
