@@ -30,7 +30,7 @@ int32_t str2bin(const char* p_str,int32_t len,uint8_t* p_buffer,int32_t n_buffer
         for(i = 0;i < (len/2);i++)
         {
             char s[] = {p_str[2*i],p_str[2*i+1]};
-            *p_buffer++ = (uint8_t)strtol(s,NULL,16);
+            *p_buffer++ = (uint8_t)strtoul(s,NULL,16);
         }
         ret = SUCCESS;
     }
