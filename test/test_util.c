@@ -2,7 +2,7 @@
 /**
  * @file   test_ringbuffer.c
  * @author Junsei Takahashi
- * @date   last update 2010-08-09 20:25:20
+ * @date   last update 2010-08-10 00:10:33
  *
  * @brief test suite for test_ringbuffer.c
  */
@@ -56,7 +56,7 @@ static void
 test_normal_getFileName()
 {
     const char* p = getFileName(__FILE__);
-    CU_ASSERT_PTR_NOT_EQUALCU_ASSERT_PTR_NOT_EQUAL(p,NULL);
+    CU_ASSERT_PTR_NOT_NULL(p)
     CU_ASSERT_STRING_EQUAL(p,"test_util.c");
 }
 
