@@ -2,7 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct{
+typedef struct
+{
     uint8_t* p_buffer;
     int32_t  n_buffer;
     int32_t  readCounter;

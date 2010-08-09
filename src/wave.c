@@ -3,7 +3,8 @@
 #include <string.h>
 #include "util.h"
 
-typedef struct{
+typedef struct
+{
     int32_t fmtsize;                 /*  */
     int16_t ch;                      /*  */
     int16_t type;                    /*  */

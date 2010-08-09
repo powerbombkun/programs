@@ -11,7 +11,8 @@
  * @struct data_map_t
  * @brief キーと値のペアでの情報管理構造体
  */
-typedef struct{
+typedef struct
+{
     char*       key;            /** キー */
     int32_t     val;            /** 値 */
 }data_map_t;
@@ -19,7 +20,8 @@ typedef struct{
  * @struct parametertable_t
  * @brief オブジェクトの内部パラメーター
  */
-typedef struct{
+typedef struct
+{
     data_map_t* p_map;          /** data_map_t型ポインタ */
     int32_t     n_map;          /** p_mapの個数 */
     int32_t     n_store;

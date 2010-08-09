@@ -2,7 +2,7 @@
  * @file   logger.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-08-08 16:03:50
+ * @date   last update 2010-08-09 20:10:45
  *
  * @brief  プログラム実行時にログを出力するための関数の宣言
  *
@@ -38,12 +38,13 @@ extern "C" {
     /**
      * ログ・レベル
      */
-    typedef enum {
+    typedef enum
+    {
         LOG_LEVEL_FATAL,
         LOG_LEVEL_ERROR,
         LOG_LEVEL_WARN,
         LOG_LEVEL_INFO,
-    } log_level_t;
+    }log_level_t;
 
     /**
      * @brief getter of log_flag
