@@ -75,3 +75,12 @@ void fft(double* re,double* im,int32_t     bitsize)
         }
     }
 }
+
+void spectrum(double* re,double* im,int n,double* power)
+{
+    int i;
+    for(i = 0;i < n;i++)
+    {
+        power[i] = sqrt((re[i]*re[i])+(im[i]*im[i]));
+    }
+}
