@@ -1,7 +1,7 @@
 /**
  * @file   wave.h
  * @author Junsei Takahashi
- * @date   last update 2010-07-30 00:09:09
+ * @date   last update 2010-08-10 20:50:37
  *
  * @brief  WAVEファイルの処理用関数類
  */
@@ -29,7 +29,7 @@ extern "C" {
     int32_t pcm2wav(const char* pcm_file,
                     const char* wav_file,
                     int16_t     ch,
-                    int32_t     bitspersample,
+                    int16_t     bitspersample,
                     int32_t     samplingrate);
     /**
      * @brief WAV形式のファイルをPCM形式のファイルに変換します
@@ -46,7 +46,7 @@ extern "C" {
     int32_t wav2pcm(const char* wav_file,
                     const char* pcm_file,
                     int16_t*    ch,
-                    int32_t*    bitspersample,
+                    int16_t*    bitspersample,
                     int32_t*    samplingrate);
 
 #ifdef __cplusplus

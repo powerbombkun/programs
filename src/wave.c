@@ -3,19 +3,19 @@
 #include <string.h>
 #include "util.h"
 
+#define DEF_WAVE_HDR_SIZE  44
+#define DEF_FMT_CHUNK_SIZE 16
+#define FMT_ID_PCM         0x01
+
 typedef struct
 {
-    int32_t fmtsize;                 /*  */
     int16_t ch;                      /*  */
-    int16_t type;                    /*  */
-    int32_t bitspersample;           /*  */
+    int16_t bitspersample;           /*  */
     int32_t samplingrate;            /*  */
     int32_t datasize;                /*  */
 }wave_t;
 /**
  * @brief ファイルからWAVEヘッダー情報を読み込みます
-
-
  *
  * @param[in] file 入力ファイル
  * @param[out] p_wave wave_t型構造体のポインタ
@@ -43,6 +43,7 @@ static int32_t skipWaveHdr(FILE** p_fp,wave_t* p_wave);
  */
 static int32_t writeWaveHdr(FILE** p_fp,wave_t wave);
 
+static int32_t setWaveHdr(uint8_t* p_buffer,int32_t n_buffer,wave_t wave);
 
 static int32_t readFileWaveHdr(const char* file,wave_t* p_wave)
 {
@@ -66,27 +67,28 @@ static int32_t skipWaveHdr(FILE** p_fp,wave_t* p_wave)
     if((*p_fp != NULL) && (p_wave != NULL))
     {
         fread(buff,sizeof(char),4,*p_fp);
-        if(strncmp(buff,"RIFF",4) == 0)
+        if(strncmp(buff,"RIFF",sizeof("RIFF")) == 0)
         {
             fread(buff,sizeof(char),4,*p_fp);
             fread(buff,sizeof(char),4,*p_fp);
-            if(strncmp(buff,"WAVE",4) == 0)
+            if(strncmp(buff,"WAVE",sizeof("WAVE")) == 0)
             {
                 fread(buff,sizeof(char),4,*p_fp);
-                if(strncmp(buff,"fmt ",4) == 0)
+                if(strncmp(buff,"fmt ",sizeof("fmt ")) == 0)
                 {
+                    int32_t fmtsize;
                     char* p_fmt;
-                    fread(&p_wave->fmtsize,sizeof(int32_t),1,*p_fp);
+                    fread(&fmtsize,sizeof(int32_t),1,*p_fp);
 
-                    p_fmt                 = (char*)malloc(p_wave->fmtsize);
-                    fread(p_fmt,sizeof(char),p_wave->fmtsize,*p_fp);
+                    p_fmt                 = (char*)malloc(fmtsize);
+                    fread(p_fmt,sizeof(char),fmtsize,*p_fp);
                     p_wave->ch            = *(int16_t*)&p_fmt[2];
                     p_wave->samplingrate  = *(int32_t*)&p_fmt[4];
                     p_wave->bitspersample = *(int16_t*)&p_fmt[14];
                     SAFE_FREE(p_fmt);
 
                     fread(buff,sizeof(char),4,*p_fp);
-                    if(strncmp(buff,"data",4) == 0)
+                    if(strncmp(buff,"data",sizeof("data")) == 0)
                     {
                         fread(&p_wave->datasize,sizeof(int32_t),1,*p_fp);
                         ret = SUCCESS;
@@ -104,26 +106,32 @@ static int32_t writeWaveHdr(FILE** p_fp,wave_t wave)
     int32_t ret = FAILURE;
     if(*p_fp != NULL)
     {
-        int32_t i32_buff = 0;
-        int16_t i16_buff = 0;
+        uint8_t hdr[DEF_WAVE_HDR_SIZE];
+        ret = setWaveHdr(hdr,sizeof(hdr),wave);
+        fwrite(hdr,sizeof(hdr),1,*p_fp);
+    }
+    return ret;
+}
 
-        fwrite("RIFF",sizeof(char),sizeof("RIFF"),*p_fp);
-        i32_buff = wave.datasize + 44 - 8;
-        fwrite("WAVE",sizeof(char),sizeof("WAVE"),*p_fp);
-        fwrite("fmt ",sizeof(char),sizeof("fmt "),*p_fp);
-        fwrite(&wave.fmtsize,sizeof(int32_t),1,*p_fp);
-        fwrite(&wave.type,sizeof(int16_t),1,*p_fp);
-        fwrite(&wave.ch,sizeof(int16_t),1,*p_fp);
-        fwrite(&wave.samplingrate,sizeof(int32_t),1,*p_fp);
-        i32_buff = wave.samplingrate * wave.ch;
-        fwrite(&i32_buff,sizeof(int32_t),1,*p_fp);
-        i16_buff = sizeof(int16_t);
-        fwrite(&i16_buff,sizeof(int16_t),1,*p_fp);
-        fwrite(&wave.bitspersample,sizeof(int16_t),1,*p_fp);
-        fwrite("data",sizeof(char),sizeof("data"),*p_fp);
-        fwrite(&wave.datasize,sizeof(int32_t),1,*p_fp);
-
-        ret = SUCCESS;
+static int32_t setWaveHdr(uint8_t* p_buffer,int32_t n_buffer,wave_t wave)
+{
+    int32_t ret = FAILURE;
+    if(DEF_WAVE_HDR_SIZE <= n_buffer)
+    {
+        memcpy(p_buffer,"RIFF",sizeof("RIFF"));
+        *(int32_t*)&p_buffer[4]  = wave.datasize + DEF_WAVE_HDR_SIZE - 8;
+        memcpy(&p_buffer[8],"WAVE",sizeof("WAVE"));
+        memcpy(&p_buffer[12],"fmt ",sizeof("fmt "));
+        *(int32_t*)&p_buffer[16] = DEF_FMT_CHUNK_SIZE;
+        *(int16_t*)&p_buffer[20] = FMT_ID_PCM;
+        *(int16_t*)&p_buffer[22] = wave.ch;
+        *(int32_t*)&p_buffer[24] = wave.samplingrate;
+        *(int32_t*)&p_buffer[28] = wave.samplingrate * wave.ch;
+        *(int16_t*)&p_buffer[32] = sizeof(int16_t);
+        *(int16_t*)&p_buffer[34] = wave.bitspersample;
+        memcpy(&p_buffer[36],"data",sizeof("data"));
+        *(int32_t*)&p_buffer[40] = wave.datasize;
+        ret                      = SUCCESS;
     }
     return ret;
 }
@@ -131,15 +139,13 @@ static int32_t writeWaveHdr(FILE** p_fp,wave_t wave)
 int32_t pcm2wav(const char* pcm_file,
                 const char* wav_file,
                 int16_t     ch,
-                int32_t     bitspersample,
+                int16_t     bitspersample,
                 int32_t     samplingrate)
 {
     int32_t ret        = FAILURE;
     FILE*   fp_in      = fopen(pcm_file,"rb");
     wave_t  wave;
-    wave.fmtsize       = 16;
     wave.ch            = ch;
-    wave.type          = 1;
     wave.bitspersample = bitspersample;
     wave.samplingrate  = samplingrate;
     wave.datasize      = getFileSize(pcm_file);
@@ -170,7 +176,7 @@ int32_t pcm2wav(const char* pcm_file,
 int32_t wav2pcm(const char* wav_file,
                 const char* pcm_file,
                 int16_t*    ch,
-                int32_t*    bitspersample,
+                int16_t*    bitspersample,
                 int32_t*    samplingrate)
 {
     int32_t ret   = FAILURE;
