@@ -1,7 +1,7 @@
 /**
  * @file   test_fft.c
  * @author Junsei Takahashi
- * @date   last update 2010-08-11 00:15:57
+ * @date   last update 2010-08-11 01:02:21
  *
  * @brief test suite for test_fft.c
  */
@@ -51,4 +51,8 @@ test_normal_fft()
     }
 
     fft(re,im,8);
+
+    ifft(re,im,8);
+
+    i = 0;
 }

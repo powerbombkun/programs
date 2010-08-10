@@ -2,7 +2,7 @@
  * @file   fft.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-08-11 00:26:20
+ * @date   last update 2010-08-11 00:55:34
  *
  * @brief
  *
@@ -24,6 +24,25 @@ extern "C" {
      *
      */
     void fft(double* re,double* im,int32_t     bitsize);
+    /**
+     * @brief 逆FFT処理を行う関数
+     *
+     * @param[in][out] re realパートデータ
+     * @param[in][out] im imagパートデータ
+     * @param[in] bitsize ビットサイズ
+     *
+     */
+    void ifft(double* re,double* im,int32_t     bitsize);
+    /**
+     * @brief パワースペクトルを計算する関数
+     *
+     * @param[in] re  realパートデータ
+     * @param[in] im  imagパートデータ
+     * @param[in] n データ個数
+     * @param[out] power   パワースペクトル
+     *
+     */
+    void spectrum(double* re,double* im,int n,double* power);
 
 #ifdef __cplusplus
 }
