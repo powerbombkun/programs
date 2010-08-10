@@ -11,11 +11,11 @@
  * @param[in] a ビット反転対象配列
  *
  */
-static void bit_reverse(int n, double* a);
+static void bit_reverse(int32_t n, double* a);
 
-static void bit_reverse(int n, double* a)
+static void bit_reverse(int32_t n, double* a)
 {
-    int i, j, k;
+    int32_t i, j, k;
     i = 0;
     for (j = 1; j < n - 1; j++)
     {
@@ -33,20 +33,24 @@ static void bit_reverse(int n, double* a)
     }
 }
 
-void fft(double* re,double* im,int     bitsize)
+void fft(double* re,double* im,int32_t     bitsize)
 {
-    int    i,j,stage,type;
-    double wRe, wIm, uRe, uIm, tempRe, tempIm;
-    int    datasize = 1 << bitsize;
-    int    jp;
+    int32_t i,j;
+    int32_t stage;
+    int32_t datasize = 1 << bitsize;
+
     bit_reverse(datasize,re);
     bit_reverse(datasize,im);
 
     for (stage = 1; stage <= bitsize; stage++)
     {
-        int butterflydist = 1 << stage;
-        int numType       = butterflydist >> 1;
-        int butterflysize = butterflydist >> 1;
+        int32_t type;
+        double  wRe, wIm;
+        double  uRe, uIm;
+        double  tempRe, tempIm;
+        int32_t butterflydist = 1 << stage;
+        int32_t numType       = butterflydist >> 1;
+        int32_t butterflysize = butterflydist >> 1;
 
         wRe = 1.0;
         wIm = 0.0;
@@ -57,6 +61,7 @@ void fft(double* re,double* im,int     bitsize)
         {
             for (j = type; j < datasize; j += butterflydist)
             {
+                int32_t jp;
                 jp      = j + butterflysize;
                 tempRe  = re[jp] * wRe - im[jp] * wIm;
                 tempIm  = re[jp] * wIm + im[jp] * wRe;

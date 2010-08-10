@@ -2,7 +2,7 @@
  * @file   fft.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-08-10 23:11:38
+ * @date   last update 2010-08-11 00:26:20
  *
  * @brief
  *
@@ -23,7 +23,7 @@ extern "C" {
      * @param[in] bitsize ビットサイズ
      *
      */
-    void fft(double* re,double* im,int     bitsize);
+    void fft(double* re,double* im,int32_t     bitsize);
 
 #ifdef __cplusplus
 }
