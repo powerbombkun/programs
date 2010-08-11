@@ -47,6 +47,7 @@ void fft(double* re,double* im,int32_t     bitsize)
         int32_t type;
         double  wRe, wIm;
         double  uRe, uIm;
+        double  tempwRe,tempwIm;
         double  tempRe, tempIm;
         int32_t butterflydist = 1 << stage;
         int32_t numType       = butterflydist >> 1;
@@ -70,25 +71,31 @@ void fft(double* re,double* im,int32_t     bitsize)
                 re[j]  += tempRe;
                 im[j]  += tempIm;
             }
-            wRe = wRe * uRe - wIm * uIm;
-            wIm = wRe * uIm + wIm * uRe;
+            tempwRe = wRe * uRe - wIm * uIm;
+            tempwIm = wRe * uIm + wIm * uRe;
+            wRe = tempwRe;
+            wIm = tempwIm;
         }
     }
 }
 
 void ifft(double* re,double* im,int32_t     bitsize)
 {
-    int i, size;
-    double fac;
+    int i;
+    int size = 1 << bitsize;
+    double fac = 1.0 / size;
+
+    for (i = 0; i < size; i++)
+    {
+        im[i] = -im[i];
+    }
 
     fft(re,im,bitsize);
 
-    size = 1 << bitsize;
-    fac = 1.0 / size;
     for (i = 0; i < size; i++)
     {
         re[i] = re[i] * fac;
-        im[i] = im[i] * fac;
+        im[i] = -(im[i] * fac);
     }
 }
 
