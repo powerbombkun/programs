@@ -1,7 +1,7 @@
 /**
  * @file   test_fft.c
  * @author Junsei Takahashi
- * @date   last update 2010-08-11 01:02:21
+ * @date   last update 2010-08-11 22:28:26
  *
  * @brief test suite for test_fft.c
  */
@@ -43,7 +43,6 @@ test_normal_fft()
     double re[FFT_SIZE] = {0};
     double im[FFT_SIZE] = {0};
 
-    // 初期化
     for(i = 0; i < ARRAY_SIZE(re); i++)
     {
         re[i] = sin(((double)i/(double)256)* (double)2.0 * (double)3.14);
