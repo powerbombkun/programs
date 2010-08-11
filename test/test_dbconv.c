@@ -1,12 +1,14 @@
 /**
  * @file   test_dbconv.c
  * @author Junsei Takahashi
- * @date   last update 2010-08-08 15:46:35
+ * @date   last update 2010-08-11 23:35:32
  *
  * @brief test suite for test_dbconv.c
  */
 #include "test_common.h"
 #include "dbconv.h"
+
+#define MAX_LINEAR 32767
 /*  input file path */
 /* static values */
 /* global func */
@@ -38,12 +40,12 @@ static
 void test_normal_linear2db()
 {
     size_t i;
-    int16_t linear_array[] = {32767,16384,8192,4096};
-    int16_t ref_db_array[] = {0,-6,-12,-18};
+    int32_t linear_array[] = {32767,16384,8192,4096};
+    int32_t ref_db_array[] = {0,-6,-12,-18};
     for(i = 0;i < ARRAY_SIZE(linear_array);i++)
     {
-        float db = linear2db(linear_array[i]);
-        CU_ASSERT_EQUAL(ref_db_array[i],(int16_t)db);
+        double db = linear2db(linear_array[i],MAX_LINEAR);
+        CU_ASSERT_EQUAL(ref_db_array[i],(int32_t)db);
     }
 }
 
@@ -51,12 +53,12 @@ static
 void test_normal_db2linear()
 {
     size_t i;
-    float db_array[] = {0,-6,-12,-18};
-    int16_t ref_linear_array[] = {32767,16422,8230,4125};
+    double db_array[] = {0,-6,-12,-18};
+    int32_t ref_linear_array[] = {32767,16422,8230,4125};
 
     for(i = 0;i < ARRAY_SIZE(db_array);i++)
     {
-        int16_t linear = db2linear(db_array[i]);
+        int32_t linear = db2linear(db_array[i],MAX_LINEAR);
         CU_ASSERT_EQUAL(ref_linear_array[i],linear);
     }
 }

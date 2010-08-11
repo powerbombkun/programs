@@ -2,7 +2,7 @@
  * @file   dbconv.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-08-05 23:21:33
+ * @date   last update 2010-08-11 23:33:33
  *
  * @brief
  *
@@ -16,22 +16,23 @@
 extern "C" {
 #endif
     /**
-     * @brief 符号付き16bitのリニアデータをデシベル値に変換します。
-     *        デシベル値に関しては符号付き16bitリニアデータの最大値を0dBとして計算。
+     * @brief リニアデータをデシベル値に変換します。
      *
-     * @param[in] linear  リニアデータ
+     * @param[in] pow_a  リニアデータA
+     * @param[in] pow_b  リニアデータB
      *
      * @retval デシベル値
      */
-    float linear2db(int16_t linear);
+    double linear2db(int32_t pow_a,int32_t pow_b);
     /**
-     * @brief デシベル値を符号付き16bitリニアデータに変換します。
+     * @brief デシベル値をリニアデータに変換します。
      *
      * @param[in] db  デシベル値
+     * @param[in] max_linear リニアデータの最大値(この値を0dBとして換算)
      *
      * @retval リニアデータ
      */
-    int16_t db2linear(float db);
+    int32_t db2linear(double db,int32_t max_linear);
 #ifdef __cplusplus
 }
 #endif

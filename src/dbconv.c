@@ -1,16 +1,14 @@
 #include "dbconv.h"
 #include <math.h>
 
-#define MAX_LINEAR 0x7FFF
-
-float linear2db(int16_t linear)
+double linear2db(int32_t pow_a,int32_t pow_b)
 {
-    return 20*log10((float)linear/(float)MAX_LINEAR);
+    return 20*log10((double)pow_a/(double)pow_b);
 }
 
-int16_t db2linear(float db)
+int32_t db2linear(double db,int32_t max_linear)
 {
-    float y = db / (float)20;
-    return (int16_t)((float)MAX_LINEAR * pow(10,y));
+    double y = db / (double)20;
+    return (int32_t)((double)max_linear * pow(10,y));
 }
 
