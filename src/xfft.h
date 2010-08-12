@@ -2,7 +2,7 @@
  * @file   xfft.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-08-11 23:47:46
+ * @date   last update 2010-08-12 20:58:57
  *
  * @brief
  *
@@ -27,7 +27,7 @@ extern "C" {
      * @param[in] bitsize ビットサイズ
      *
      */
-    void fft_frame(short* p_data,int n_data,double* re,double* im,int bitsize);
+    void fftFrame(short* p_data,int n_data,double* re,double* im,int bitsize);
     /**
      * @brief IFFT処理を指定したデータ個数で行う関数
      *
@@ -38,7 +38,7 @@ extern "C" {
      * @param[in] bitsize ビットサイズ
      *
      */
-    void ifft_frame(double* re,double* im,short* p_buffer,int n_buffer,int bitsize);
+    void ifftFrame(double* re,double* im,short* p_buffer,int n_buffer,int bitsize);
 
 #ifdef __cplusplus
 }

@@ -8,42 +8,37 @@
 
 typedef enum
 {
-    HAMMING,
-    BLACKMAN,
-    HANNING,
+    HAMMING,                    /** ハミング窓 */
+    BLACKMAN,                   /** ブラックマン窓 */
+    HANNING,                    /** ハニング窓 */
 } fft_window_t;
 
 static void fftWindow(fft_window_t type,double* p_s,int bitsize)
 {
-    switch(type)
-    {
-    case HAMMING:
-    {
+    int    i        = 0;
+    int    datasize = 1 << bitsize;
+    double a        = 2.0 * PI / datasize;
 
-    }
-    break;
-    case BLACKMAN:
+    for(i = 0;i < datasize;i++)
     {
-
-    }
-    break;
-    case HANNING:
-    {
-        int    i        = 0;
-        int    datasize = 1 << bitsize;
-        double a        = 2.0 * PI / datasize;
-        for(i = 0;i < datasize;i++)
+        double rate;
+        if(type == HAMMING)
         {
-            double rate  = 0.5 - (0.5 * (double)cos(a*i));
-            p_s[i]      *= rate;
+            rate = 0.54 - (0.46 * (double)cos(a*i));
         }
-    }
-    break;
-    default:
-    {
-
-    }
-    break;
+        else if(type == BLACKMAN)
+        {
+            rate  = 0.42 - (0.5 * (double)cos(a*i)) + (0.08 * (double)cos(2a*i));
+        }
+        else if(type == HANNING)
+        {
+            rate  = 0.5 - (0.5 * (double)cos(a*i));
+        }
+        else
+        {
+            rate = 1.0
+        }
+        p_s[i]      *= rate;
     }
 }
 
@@ -71,11 +66,11 @@ static void fft_obj_frame(short* p_data,double* re,double* im,short* p_ovl,int b
 
 void fftFrame(short* p_data,int n_data,double* re,double* im,int bitsize)
 {
-    int     i;
-    int     datasize  = 1 << bitsize;
-    int     framerate = datasize >> 1;
-    int     n_loop    = n_data / framerate;
-    short*  p_ovl = (short*)malloc(datasize*sizeof(short));
+    int    i;
+    int    datasize  = 1 << bitsize;
+    int    framerate = datasize >> 1;
+    int    n_loop    = n_data / framerate;
+    short* p_ovl     = (short*)malloc(datasize*sizeof(short));
     memset(p_ovl,0,datasize*sizeof(short));
     for(i = 0;i < n_loop;i++)
     {
@@ -89,10 +84,10 @@ void fftFrame(short* p_data,int n_data,double* re,double* im,int bitsize)
 
 void ifftFrame(double* re,double* im,short* p_buffer,int n_buffer,int bitsize)
 {
-    int     i,j;
-    int     datasize  = 1 << bitsize;
-    int     framerate = datasize >> 1;
-    int     n_loop    = n_buffer / framerate;
+    int i,j;
+    int datasize  = 1 << bitsize;
+    int framerate = datasize >> 1;
+    int n_loop    = n_buffer / framerate;
     for(i = 0;i < n_loop;i++)
     {
         ifft(re,im,bitsize);
@@ -100,8 +95,10 @@ void ifftFrame(double* re,double* im,short* p_buffer,int n_buffer,int bitsize)
         {
             *p_buffer++ = (short)re[j];
         }
-        re     += framerate;
-        im     += framerate;
+        re += framerate;
+        im += framerate;
     }
 }
+
+
 
