@@ -2,8 +2,6 @@
 #include <malloc.h>
 #include <math.h>
 
-#define PI 3.14159265
-
 /**
  * @brief ビット反転した配列を返します
  *

@@ -4,8 +4,11 @@
 #include <string.h>
 #include <math.h>
 
-#define PI 3.14159265
-
+/**
+ * @typedef fft_window_t型enum
+ *
+ * @brief 窓掛け用の窓のID
+ */
 typedef enum
 {
     HAMMING,                    /** ハミング窓 */
@@ -14,12 +17,21 @@ typedef enum
 } fft_window_t;
 
 /**
- * @brief 回転子を取得します
+ * @brief 回転子を取得する関数
  *
  * @param[in] bitsize   処理ビットサイズ
  *
  */
 static double getW(int datasize);
+/**
+ * @brief 窓関数の係数を取得する関数
+ *
+ * @param[in] type 窓掛けを行う窓の種類
+ * @param[in] w 回転子
+ * @param[in] i インデックス
+ *
+ */
+static double getSyntesisWindowRate(fft_window_t type,double w,int i);
 /**
  * @brief FFTの前処理用の窓掛けを行う関数
  *
@@ -28,59 +40,76 @@ static double getW(int datasize);
  * @param[in] bitsize   処理ビットサイズ
  *
  */
-static void fftWindow(fft_window_t type,double* p_s,int datasize);
+static void syntesisWindow(fft_window_t type,double* re,double* im,int datasize,int f_inverse);
 
-static void fftProcess(short* p_data,double* re,double* im,int32_t     bitsize);
+static void fftProcess(double* re,double* im,int32_t     bitsize,int f_inverse);
 
 static double getW(int datasize)
 {
     return (2.0 * PI / (double)datasize);
 }
 
-static void fftWindow(fft_window_t type,double* p_s,int datasize)
+static double getSyntesisWindowRate(fft_window_t type,double w,int i)
+{
+    double rate;
+    if(type == HAMMING)
+    {
+        rate = 0.54 - (0.46 * (double)cos(w*i));
+    }
+    else if(type == BLACKMAN)
+    {
+        rate = 0.42 - (0.5 * (double)cos(w*i)) + (0.08 * (double)cos(2.0*w*i));
+    }
+    else if(type == HANNING)
+    {
+        rate = 0.5 - (0.5 * (double)cos(w*i));
+    }
+    else
+    {
+        rate = 1.0;
+    }
+    return rate;
+}
+
+static void syntesisWindow(fft_window_t type,double* re,double* im,int datasize,int f_inverse)
 {
     int    i = 0;
     double w = getW(datasize);
     for(i = 0;i < datasize;i++)
     {
-        double rate;
-        if(type == HAMMING)
+        double rate = getSyntesisWindowRate(type,w,i);
+        if(f_inverse)
         {
-            rate = 0.54 - (0.46 * (double)cos(w*i));
-        }
-        else if(type == BLACKMAN)
-        {
-            rate = 0.42 - (0.5 * (double)cos(w*i)) + (0.08 * (double)cos(2.0*w*i));
-        }
-        else if(type == HANNING)
-        {
-            rate = 0.5 - (0.5 * (double)cos(w*i));
+            re[i] /= rate;
+            im[i] /= rate;
         }
         else
         {
-            rate = 1.0;
+            re[i] *= rate;
+            im[i] *= rate;
         }
-        p_s[i] *= rate;
     }
 }
 
-static void fftProcess(short* p_data,double* re,double* im,int32_t     bitsize)
+static void fftProcess(double* re,double* im,int32_t     bitsize,int f_inverse)
 {
-    int i;
     int datasize = 1 << bitsize;
-    for(i = 0;i < datasize;i++)
+    if(f_inverse)
     {
-        re[i] = (double)p_data[i];
-        im[i] = 0;
+        syntesisWindow(HANNING,re,im,datasize,f_inverse);
+        fft(re,im,bitsize);
     }
-    fftWindow(HANNING,re,datasize);
-    fft(re,im,bitsize);
+    else
+    {
+        fft(re,im,bitsize);
+        syntesisWindow(HANNING,re,im,datasize,f_inverse);
+    }
 }
 
 
 void fftFrame(short* p_data,int n_data,double* re,double* im,int bitsize)
 {
-    int    i;
+    int    i,j;
     int    datasize  = 1 << bitsize;
     int    framerate = datasize >> 1;
     int    n_loop    = n_data / framerate;
@@ -91,7 +120,13 @@ void fftFrame(short* p_data,int n_data,double* re,double* im,int bitsize)
         memcpy(&p_ovl[0],&p_ovl[framerate],framerate);
         memcpy(&p_ovl[framerate],p_data,framerate);
 
-        fftProcess(p_ovl,re,im,bitsize);
+        for(j = 0;j < datasize;j++)
+        {
+            re[j] = (double)p_ovl[j];
+            im[j] = 0;
+        }
+
+        fftProcess(re,im,bitsize,FALSE);
 
         p_data += framerate;
         re     += framerate;
@@ -108,7 +143,7 @@ void ifftFrame(double* re,double* im,short* p_buffer,int n_buffer,int bitsize)
     int n_loop    = n_buffer / framerate;
     for(i = 0;i < n_loop;i++)
     {
-        ifft(re,im,bitsize);
+        fftProcess(re,im,bitsize,TRUE);
         for(j = 0;j < framerate;j++)
         {
             *p_buffer++ = (short)re[j];
