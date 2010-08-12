@@ -69,7 +69,7 @@ static void fft_obj_frame(short* p_data,double* re,double* im,short* p_ovl,int b
     fft(re,im,bitsize);
 }
 
-void fft_frame(short* p_data,int n_data,double* re,double* im,int bitsize)
+void fftFrame(short* p_data,int n_data,double* re,double* im,int bitsize)
 {
     int     i;
     int     datasize  = 1 << bitsize;
@@ -87,7 +87,7 @@ void fft_frame(short* p_data,int n_data,double* re,double* im,int bitsize)
     SAFE_FREE(p_ovl);
 }
 
-void ifft_frame(double* re,double* im,short* p_buffer,int n_buffer,int bitsize)
+void ifftFrame(double* re,double* im,short* p_buffer,int n_buffer,int bitsize)
 {
     int     i,j;
     int     datasize  = 1 << bitsize;
