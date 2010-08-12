@@ -79,9 +79,9 @@ void fft(double* re,double* im,int32_t     bitsize)
 
 void ifft(double* re,double* im,int32_t     bitsize)
 {
-    int i;
-    int size = 1 << bitsize;
-    double fac = 1.0 / size;
+    int    i;
+    int    size = 1 << bitsize;
+    double fac  = 1.0 / size;
 
     for (i = 0; i < size; i++)
     {

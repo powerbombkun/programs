@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-
 /**
  * @typedef fft_window_t型enum
  *
@@ -71,15 +70,16 @@ static double getSyntesisWindowRate(fft_window_t type,double w,int i)
 
 static void syntesisWindowFFT(double* re,double* im,int32_t     bitsize,int f_inverse)
 {
-    int    i = 0;
-    int datasize = 1 << bitsize;
-    double w = getW(datasize);
+    int    i        = 0;
+    int    datasize = 1 << bitsize;
+    double w        = getW(datasize);
+    double rate;
 
     if(!f_inverse)
     {
         for(i = 0;i < datasize;i++)
         {
-            double rate = getSyntesisWindowRate(HANNING,w,i);
+            rate   = getSyntesisWindowRate(HANNING,w,i);
             re[i] *= rate;
             im[i] *= rate;
         }
@@ -90,7 +90,7 @@ static void syntesisWindowFFT(double* re,double* im,int32_t     bitsize,int f_in
         ifft(re,im,bitsize);
         for(i = 0;i < datasize;i++)
         {
-            double rate = getSyntesisWindowRate(HANNING,w,i);
+            rate   = getSyntesisWindowRate(HANNING,w,i);
             re[i] /= rate;
             im[i] /= rate;
         }
