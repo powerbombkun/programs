@@ -6,22 +6,48 @@
 
 #define PI 3.14159265
 
-static void fft_window(double* p_s,int bitsize);
-
-static void fft_obj_frame(short* p_data,double* re,double* im,short* p_ovl,int bitsize);
-
-static void fft_window(double* p_s,int bitsize)
+typedef enum
 {
-    int    i        = 0;
-    int    datasize = 1 << bitsize;
-    double a        = 2.0 * PI / datasize;
-    for(i = 0;i < datasize;i++)
+    HAMMING,
+    BLACKMAN,
+    HANNING,
+} fft_window_t;
+
+static void fftWindow(fft_window_t type,double* p_s,int bitsize)
+{
+    switch(type)
     {
-        double rate  = 0.5 - (0.5 * (double)cos(a*i));
-        p_s[i]      *= rate;
+    case HAMMING:
+    {
+
+    }
+    break;
+    case BLACKMAN:
+    {
+
+    }
+    break;
+    case HANNING:
+    {
+        int    i        = 0;
+        int    datasize = 1 << bitsize;
+        double a        = 2.0 * PI / datasize;
+        for(i = 0;i < datasize;i++)
+        {
+            double rate  = 0.5 - (0.5 * (double)cos(a*i));
+            p_s[i]      *= rate;
+        }
+    }
+    break;
+    default:
+    {
+
+    }
+    break;
     }
 }
 
+static void fft_obj_frame(short* p_data,double* re,double* im,short* p_ovl,int bitsize);
 
 static void fft_obj_frame(short* p_data,double* re,double* im,short* p_ovl,int bitsize)
 {
@@ -39,7 +65,7 @@ static void fft_obj_frame(short* p_data,double* re,double* im,short* p_ovl,int b
         im[i] = 0;
     }
 
-    fft_window(re,bitsize);
+    fftWindow(HANNING,re,bitsize);
     fft(re,im,bitsize);
 }
 
