@@ -40,9 +40,7 @@ static double getSyntesisWindowRate(fft_window_t type,double w,int i);
  * @param[in] bitsize   処理ビットサイズ
  *
  */
-static void syntesisWindow(fft_window_t type,double* re,double* im,int datasize,int f_inverse);
-
-static void fftProcess(double* re,double* im,int32_t     bitsize,int f_inverse);
+static void syntesisWindowFFT(double* re,double* im,int32_t     bitsize,int f_inverse);
 
 static double getW(int datasize)
 {
@@ -71,38 +69,31 @@ static double getSyntesisWindowRate(fft_window_t type,double w,int i)
     return rate;
 }
 
-static void syntesisWindow(fft_window_t type,double* re,double* im,int datasize,int f_inverse)
+static void syntesisWindowFFT(double* re,double* im,int32_t     bitsize,int f_inverse)
 {
     int    i = 0;
+    int datasize = 1 << bitsize;
     double w = getW(datasize);
-    for(i = 0;i < datasize;i++)
+
+    if(!f_inverse)
     {
-        double rate = getSyntesisWindowRate(type,w,i);
-        if(f_inverse)
+        for(i = 0;i < datasize;i++)
         {
-            re[i] /= rate;
-            im[i] /= rate;
-        }
-        else
-        {
+            double rate = getSyntesisWindowRate(HANNING,w,i);
             re[i] *= rate;
             im[i] *= rate;
         }
-    }
-}
-
-static void fftProcess(double* re,double* im,int32_t     bitsize,int f_inverse)
-{
-    int datasize = 1 << bitsize;
-    if(f_inverse)
-    {
-        syntesisWindow(HANNING,re,im,datasize,f_inverse);
         fft(re,im,bitsize);
     }
     else
     {
-        fft(re,im,bitsize);
-        syntesisWindow(HANNING,re,im,datasize,f_inverse);
+        ifft(re,im,bitsize);
+        for(i = 0;i < datasize;i++)
+        {
+            double rate = getSyntesisWindowRate(HANNING,w,i);
+            re[i] /= rate;
+            im[i] /= rate;
+        }
     }
 }
 
@@ -126,7 +117,7 @@ void fftFrame(short* p_data,int n_data,double* re,double* im,int bitsize)
             im[j] = 0;
         }
 
-        fftProcess(re,im,bitsize,FALSE);
+        syntesisWindowFFT(re,im,bitsize,FALSE);
 
         p_data += framerate;
         re     += framerate;
@@ -143,7 +134,7 @@ void ifftFrame(double* re,double* im,short* p_buffer,int n_buffer,int bitsize)
     int n_loop    = n_buffer / framerate;
     for(i = 0;i < n_loop;i++)
     {
-        fftProcess(re,im,bitsize,TRUE);
+        syntesisWindowFFT(re,im,bitsize,TRUE);
         for(j = 0;j < framerate;j++)
         {
             *p_buffer++ = (short)re[j];
