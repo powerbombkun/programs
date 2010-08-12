@@ -49,7 +49,7 @@ void fft_frame(short* p_data,int n_data,double* re,double* im,int bitsize)
     int     datasize  = 1 << bitsize;
     int     framerate = datasize >> 1;
     int     n_loop    = n_data / framerate;
-    short*  p_ovl = (short*)malloc(datasize);
+    short*  p_ovl = (short*)malloc(datasize*sizeof(short));
     memset(p_ovl,0,datasize*sizeof(short));
     for(i = 0;i < n_loop;i++)
     {
@@ -66,7 +66,7 @@ void ifft_frame(double* re,double* im,short* p_buffer,int n_buffer,int bitsize)
     int     i,j;
     int     datasize  = 1 << bitsize;
     int     framerate = datasize >> 1;
-    int     n_loop    = n_data / framerate;
+    int     n_loop    = n_buffer / framerate;
     for(i = 0;i < n_loop;i++)
     {
         ifft(re,im,bitsize);
