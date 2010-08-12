@@ -14,6 +14,18 @@ typedef enum
 } fft_window_t;
 
 /**
+ * @brief 回転子を取得します
+ *
+ * @param[in] bitsize   処理ビットサイズ
+ *
+ */
+static double getW(int n,int bitsize);
+
+static double getW(int bitsize)
+{
+    return (2.0 * PI / (double)(1 << bitsize));
+}
+/**
  * @brief FFTの前処理用の窓掛けを行う関数
  *
  * @param[in] type    窓掛けを行う窓の種類
@@ -26,23 +38,21 @@ static void fftWindow(fft_window_t type,double* p_s,int bitsize);
 static void fftWindow(fft_window_t type,double* p_s,int bitsize)
 {
     int    i        = 0;
-    int    datasize = 1 << bitsize;
-    double a        = 2.0 * PI / datasize;
-
+    double w = getW(bitsize);
     for(i = 0;i < datasize;i++)
     {
         double rate;
         if(type == HAMMING)
         {
-            rate = 0.54 - (0.46 * (double)cos(a*i));
+            rate = 0.54 - (0.46 * (double)cos(w*i));
         }
         else if(type == BLACKMAN)
         {
-            rate  = 0.42 - (0.5 * (double)cos(a*i)) + (0.08 * (double)cos(2.0*a*i));
+            rate  = 0.42 - (0.5 * (double)cos(w*i)) + (0.08 * (double)cos(2.0*w*i));
         }
         else if(type == HANNING)
         {
-            rate  = 0.5 - (0.5 * (double)cos(a*i));
+            rate  = 0.5 - (0.5 * (double)cos(w*i));
         }
         else
         {
