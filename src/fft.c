@@ -35,7 +35,7 @@ static void bit_reverse(int32_t n, double* a)
 
 void fft(double* re,double* im,int32_t     bitsize)
 {
-    int32_t i,j;
+    int32_t i;
     int32_t stage;
     int32_t datasize = 1 << bitsize;
 
@@ -60,16 +60,16 @@ void fft(double* re,double* im,int32_t     bitsize)
 
         for (type = 0; type < numType; type++)
         {
-            for (j = type; j < datasize; j += butterflydist)
+            for (i = type; i < datasize; i += butterflydist)
             {
-                int32_t jp;
-                jp      = j + butterflysize;
-                tempRe  = re[jp] * wRe - im[jp] * wIm;
-                tempIm  = re[jp] * wIm + im[jp] * wRe;
-                re[jp]  = re[j] - tempRe;
-                im[jp]  = im[j] - tempIm;
-                re[j]  += tempRe;
-                im[j]  += tempIm;
+                int32_t ip;
+                ip      = i + butterflysize;
+                tempRe  = re[ip] * wRe - im[ip] * wIm;
+                tempIm  = re[ip] * wIm + im[ip] * wRe;
+                re[ip]  = re[i] - tempRe;
+                im[ip]  = im[i] - tempIm;
+                re[i]  += tempRe;
+                im[i]  += tempIm;
             }
             tempwRe = wRe * uRe - wIm * uIm;
             tempwIm = wRe * uIm + wIm * uRe;

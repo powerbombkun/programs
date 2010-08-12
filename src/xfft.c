@@ -19,12 +19,7 @@ typedef enum
  * @param[in] bitsize   処理ビットサイズ
  *
  */
-static double getW(int n,int bitsize);
-
-static double getW(int bitsize)
-{
-    return (2.0 * PI / (double)(1 << bitsize));
-}
+static double getW(int datasize);
 /**
  * @brief FFTの前処理用の窓掛けを行う関数
  *
@@ -33,12 +28,19 @@ static double getW(int bitsize)
  * @param[in] bitsize   処理ビットサイズ
  *
  */
-static void fftWindow(fft_window_t type,double* p_s,int bitsize);
+static void fftWindow(fft_window_t type,double* p_s,int datasize);
 
-static void fftWindow(fft_window_t type,double* p_s,int bitsize)
+static void fftProcess(short* p_data,double* re,double* im,int32_t     bitsize);
+
+static double getW(int datasize)
 {
-    int    i        = 0;
-    double w = getW(bitsize);
+    return (2.0 * PI / (double)datasize);
+}
+
+static void fftWindow(fft_window_t type,double* p_s,int datasize)
+{
+    int    i = 0;
+    double w = getW(datasize);
     for(i = 0;i < datasize;i++)
     {
         double rate;
@@ -48,19 +50,33 @@ static void fftWindow(fft_window_t type,double* p_s,int bitsize)
         }
         else if(type == BLACKMAN)
         {
-            rate  = 0.42 - (0.5 * (double)cos(w*i)) + (0.08 * (double)cos(2.0*w*i));
+            rate = 0.42 - (0.5 * (double)cos(w*i)) + (0.08 * (double)cos(2.0*w*i));
         }
         else if(type == HANNING)
         {
-            rate  = 0.5 - (0.5 * (double)cos(w*i));
+            rate = 0.5 - (0.5 * (double)cos(w*i));
         }
         else
         {
             rate = 1.0;
         }
-        p_s[i]      *= rate;
+        p_s[i] *= rate;
     }
 }
+
+static void fftProcess(short* p_data,double* re,double* im,int32_t     bitsize)
+{
+    int i;
+    int datasize = 1 << bitsize;
+    for(i = 0;i < datasize;i++)
+    {
+        re[i] = (double)p_data[i];
+        im[i] = 0;
+    }
+    fftWindow(HANNING,re,datasize);
+    fft(re,im,bitsize);
+}
+
 
 void fftFrame(short* p_data,int n_data,double* re,double* im,int bitsize)
 {
@@ -72,19 +88,10 @@ void fftFrame(short* p_data,int n_data,double* re,double* im,int bitsize)
     memset(p_ovl,0,datasize*sizeof(short));
     for(i = 0;i < n_loop;i++)
     {
-        /** 後ろ半分を前半分へコピー */
         memcpy(&p_ovl[0],&p_ovl[framerate],framerate);
-        /** 入力データを後半半分へコピー */
         memcpy(&p_ovl[framerate],p_data,framerate);
 
-        for(i = 0;i < datasize;i++)
-        {
-            re[i] = (double)p_ovl[i];
-            im[i] = 0;
-        }
-
-        fftWindow(HANNING,re,bitsize);
-        fft(re,im,bitsize);
+        fftProcess(p_ovl,re,im,bitsize);
 
         p_data += framerate;
         re     += framerate;
