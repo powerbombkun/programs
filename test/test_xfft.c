@@ -1,7 +1,7 @@
 /**
  * @file   test_xfft.c
  * @author Junsei Takahashi
- * @date   last update 2010-08-14 02:06:47
+ * @date   last update 2010-08-14 02:34:53
  *
  * @brief test suite for test_xfft.c
  */
@@ -41,6 +41,7 @@ test_normal_xfft()
 {
     size_t i;
     short data[FFT_SIZE] = {0};
+    short ref[FFT_SIZE] = {0};
     double re[FFT_SIZE]  = {0};
     double im[FFT_SIZE]  = {0};
 
@@ -53,8 +54,7 @@ test_normal_xfft()
 
     for(i = 256; i < 512; i++)
     {
-        printf("%d\n",data[i]);
-        /* CU_ASSERT_EQUAL((int)data[i],(int)i); */
+        CU_ASSERT_EQUAL((int)data[i],(int)i);
     }
 }
 
