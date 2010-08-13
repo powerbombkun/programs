@@ -1,7 +1,7 @@
 # Makefile
 #
 # author : Junsei Takahashi
-# last update 2010-07-30 21:01:04
+# last update 2010-08-14 02:46:02
 #
 root_dir := ..
 
@@ -10,7 +10,7 @@ CFLAGS  += -O0 -Wstrict-aliasing=2
 
 CPPFLAGS+=  -D_FORTIFY_SORCE=2
 # warning level
-CFLAGS  += -g -ffloat-store -Wall -Wextra -Wformat=2
+CFLAGS  += -g -ffloat-store -fstack-protector -Wall -Wextra -Wformat=2
 # ak
 LDLIBS += -lm
 
