@@ -1,7 +1,7 @@
 /**
  * @file   TestSuites.h
  * @author Junsei Takahashi
- * @date   last update 2010-08-10 22:04:17
+ * @date   last update 2010-08-13 21:56:52
  *
  * @brief 本ファイルで宣言したもののみを対象にテストを行う。
  */
@@ -59,6 +59,12 @@ int teardown_test_binstr();
 extern CU_TestInfo test_fft_array[];
 int setup_test_fft();
 int teardown_test_fft();
+/**
+ * xfft
+ */
+extern CU_TestInfo test_xfft_array[];
+int setup_test_xfft();
+int teardown_test_xfft();
 
 /**
  * テストスイート配列
@@ -74,6 +80,7 @@ static CU_SuiteInfo suites_array[] = {
    {"test_dbconv", setup_test_dbconv, teardown_test_dbconv, test_dbconv_array},
    {"test_binstr", setup_test_binstr, teardown_test_binstr, test_binstr_array},
    {"test_fft", setup_test_fft, teardown_test_fft, test_fft_array},
+   {"test_xfft", setup_test_xfft, teardown_test_xfft, test_xfft_array},
    CU_SUITE_INFO_NULL
 };
 #endif /* _TESTSUITES_H */
