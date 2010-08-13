@@ -75,9 +75,9 @@ static void windowFFT(double* re,double* im,int32_t     bitsize,BOOL f_inverse)
     double  w        = getW(datasize);
     double  rate;
 
-    if(!f_inverse)
+    if(f_inverse)
     {
-        fft(re,im,bitsize);
+        ifft(re,im,bitsize);
     }
     for(i = 0;i < datasize;i++)
     {
@@ -85,9 +85,9 @@ static void windowFFT(double* re,double* im,int32_t     bitsize,BOOL f_inverse)
         re[i] *= rate;
         im[i] *= rate;
     }
-    if(f_inverse)
+    if(!f_inverse)
     {
-        ifft(re,im,bitsize);
+        fft(re,im,bitsize);
     }
 }
 
