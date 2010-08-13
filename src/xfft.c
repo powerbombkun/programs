@@ -21,7 +21,7 @@ typedef enum
  * @param[in] bitsize   処理ビットサイズ
  *
  */
-static double getW(int datasize);
+static double getW(int32_t datasize);
 /**
  * @brief 窓関数の係数を取得する関数
  *
@@ -30,7 +30,7 @@ static double getW(int datasize);
  * @param[in] i インデックス
  *
  */
-static double getWindowRate(fft_window_t type,double w,int i);
+static double getWindowRate(fft_window_t type,double w,int32_t i);
 /**
  * @brief FFTの前処理用の窓掛けを行う関数
  *
@@ -39,14 +39,14 @@ static double getWindowRate(fft_window_t type,double w,int i);
  * @param[in] bitsize   処理ビットサイズ
  *
  */
-static void windowFFT(double* re,double* im,int32_t     bitsize,int f_inverse);
+static void windowFFT(double* re,double* im,int32_t     bitsize,BOOL f_inverse);
 
-static double getW(int datasize)
+static double getW(int32_t datasize)
 {
     return (2.0 * PI / (double)datasize);
 }
 
-static double getWindowRate(fft_window_t type,double w,int i)
+static double getWindowRate(fft_window_t type,double w,int32_t i)
 {
     double rate;
     if(type == HAMMING)
@@ -68,12 +68,12 @@ static double getWindowRate(fft_window_t type,double w,int i)
     return rate;
 }
 
-static void windowFFT(double* re,double* im,int32_t     bitsize,int f_inverse)
+static void windowFFT(double* re,double* im,int32_t     bitsize,BOOL f_inverse)
 {
-    int    i        = 0;
-    int    datasize = 1 << bitsize;
-    double w        = getW(datasize);
-    double rate;
+    int32_t i        = 0;
+    int32_t datasize = 1 << bitsize;
+    double  w        = getW(datasize);
+    double  rate;
 
     if(!f_inverse)
     {
@@ -92,21 +92,22 @@ static void windowFFT(double* re,double* im,int32_t     bitsize,int f_inverse)
 }
 
 
-void fftFrame(short* p_data,int n_data,double* re,double* im,int bitsize)
+void fftFrame(int16_t* p_data,int32_t n_data,double* re,double* im,int32_t bitsize)
 {
-    int     i,j;
-    int     datasize  = 1 << bitsize;
-    int     framerate = datasize >> 1;
-    int     n_loop    = n_data / framerate;
-    short*  p_ovl     = (short*)calloc(datasize,sizeof(short));
-    double* p_ovl_re  = (double*)calloc(datasize,sizeof(double));
-    double* p_ovl_im  = (double*)calloc(datasize,sizeof(double));
+    int32_t   i;
+    int32_t   j;
+    int32_t   datasize  = 1 << bitsize;
+    int32_t   framerate = datasize >> 1;
+    int32_t   n_loop    = n_data / framerate;
+    int16_t* p_ovl     = (int16_t*)calloc(datasize,sizeof(int16_t));
+    double*   p_ovl_re  = (double*)calloc(datasize,sizeof(double));
+    double*   p_ovl_im  = (double*)calloc(datasize,sizeof(double));
 
     for(i = 0;i < n_loop;i++)
     {
         /** 時間軸上でのオーバラップ処理 */
-        memcpy(&p_ovl[0],&p_ovl[framerate],framerate*sizeof(short)); /** 後ろ半分のデータを前へコピー */
-        memcpy(&p_ovl[framerate],p_data,framerate*sizeof(short));/** 新規のデータを後ろ半分へコピー */
+        memcpy(&p_ovl[0],&p_ovl[framerate],framerate*sizeof(int16_t)); /** 後ろ半分のデータを前へコピー */
+        memcpy(&p_ovl[framerate],p_data,framerate*sizeof(int16_t)); /** 新規のデータを後ろ半分へコピー */
         for(j = 0;j < datasize;j++)
         {
             re[j] = (double)p_ovl[j];
@@ -134,17 +135,17 @@ void fftFrame(short* p_data,int n_data,double* re,double* im,int bitsize)
     SAFE_FREE(p_ovl_im);
 }
 
-void ifftFrame(double* re,double* im,short* p_buffer,int n_buffer,int bitsize)
+void ifftFrame(double* re,double* im,int16_t* p_buffer,int32_t n_buffer,int32_t bitsize)
 {
-    int i;
-    int datasize  = 1 << bitsize;
-    int n_loop    = n_buffer / datasize;
+    int32_t i;
+    int32_t datasize  = 1 << bitsize;
+    int32_t n_loop    = n_buffer / datasize;
     for(i = 0;i < n_loop;i++)
     {
         windowFFT(re,im,bitsize,TRUE);
         for(i = 0;i < datasize;i++)
         {
-            *p_buffer++ = (short)re[i];
+            *p_buffer++ = (int16_t)re[i];
         }
         re += datasize;
         im += datasize;
