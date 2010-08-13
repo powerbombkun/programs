@@ -99,28 +99,29 @@ void fftFrame(short* p_data,int n_data,double* re,double* im,int bitsize)
     int     framerate = datasize >> 1;
     int     n_loop    = n_data / framerate;
     short*  p_ovl     = (short*)calloc(datasize,sizeof(short));
-    double* p_ovl_re  = (double*)calloc(framerate,sizeof(double));
-    double* p_ovl_im  = (double*)calloc(framerate,sizeof(double));
+    double* p_ovl_re  = (double*)calloc(datasize,sizeof(double));
+    double* p_ovl_im  = (double*)calloc(datasize,sizeof(double));
 
     for(i = 0;i < n_loop;i++)
     {
-        memcpy(&p_ovl[0],&p_ovl[framerate],framerate*sizeof(short));
-        memcpy(&p_ovl[framerate],p_data,framerate*sizeof(short));
-
+        /** 時間軸上でのオーバラップ処理 */
+        memcpy(&p_ovl[0],&p_ovl[framerate],framerate*sizeof(short)); /** 後ろ半分のデータを前へコピー */
+        memcpy(&p_ovl[framerate],p_data,framerate*sizeof(short));/** 新規のデータを後ろ半分へコピー */
         for(j = 0;j < datasize;j++)
         {
             re[j] = (double)p_ovl[j];
             im[j] = 0;
         }
-
+        /** 窓掛け & FFT処理 */
         windowFFT(re,im,bitsize,FALSE);
-
+        /** 周波数軸上でのオーバラップ処理 */
         for(j = 0;j < framerate;j++)
         {
+            /** 前半半分に前回処理時の後半半分を加算 */
             re[j] += p_ovl_re[j];
             im[j] += p_ovl_im[j];
         }
-
+        /** 後半半分をバッファへコピー */
         memcpy(p_ovl_re,&re[framerate],framerate*sizeof(double));
         memcpy(p_ovl_im,&im[framerate],framerate*sizeof(double));
 
