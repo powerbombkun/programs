@@ -1,7 +1,7 @@
 /**
  * @file   test_fft.c
  * @author Junsei Takahashi
- * @date   last update 2010-08-11 22:28:26
+ * @date   last update 2010-08-13 21:54:18
  *
  * @brief test suite for test_fft.c
  */
@@ -41,17 +41,22 @@ test_normal_fft()
     size_t i;
 
     double re[FFT_SIZE] = {0};
+    double ref[FFT_SIZE] = {0};
     double im[FFT_SIZE] = {0};
 
     for(i = 0; i < ARRAY_SIZE(re); i++)
     {
         re[i] = sin(((double)i/(double)256)* (double)2.0 * (double)3.14);
+        ref[i] = re[i];
         im[i] = 0;
     }
-
     fft(re,im,8);
-
     ifft(re,im,8);
-
-    i = 0;
+    for(i = 0; i < ARRAY_SIZE(re); i++)
+    {
+        if((ref[i] < (re[i] - 0.5)) && ((re[i] + 0.5) < ref[i]))
+        {
+            CU_FAIL("fft input output data not equal");
+        }
+    }
 }
