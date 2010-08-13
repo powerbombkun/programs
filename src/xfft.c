@@ -77,23 +77,17 @@ static void windowFFT(double* re,double* im,int32_t     bitsize,int f_inverse)
 
     if(!f_inverse)
     {
-        for(i = 0;i < datasize;i++)
-        {
-            rate   = getWindowRate(HANNING,w,i);
-            re[i] *= rate;
-            im[i] *= rate;
-        }
         fft(re,im,bitsize);
     }
-    else
+    for(i = 0;i < datasize;i++)
+    {
+        rate   = getWindowRate(HANNING,w,i);
+        re[i] *= rate;
+        im[i] *= rate;
+    }
+    if(f_inverse)
     {
         ifft(re,im,bitsize);
-        for(i = 0;i < datasize;i++)
-        {
-            rate   = getWindowRate(HANNING,w,i);
-            re[i] /= rate;
-            im[i] /= rate;
-        }
     }
 }
 
