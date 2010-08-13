@@ -102,8 +102,8 @@ void fftFrame(short* p_data,int n_data,double* re,double* im,int bitsize)
     memset(p_ovl,0,datasize*sizeof(short));
     for(i = 0;i < n_loop;i++)
     {
-        memcpy(&p_ovl[0],&p_ovl[framerate],framerate);
-        memcpy(&p_ovl[framerate],p_data,framerate);
+        memcpy(&p_ovl[0],&p_ovl[framerate],framerate*sizeof(short));
+        memcpy(&p_ovl[framerate],p_data,framerate*sizeof(short));
 
         for(j = 0;j < datasize;j++)
         {
@@ -127,7 +127,7 @@ void ifftFrame(double* re,double* im,short* p_buffer,int n_buffer,int bitsize)
     int n_loop    = n_buffer / datasize;
     for(i = 0;i < n_loop;i++)
     {
-        syntesisWindowFFT(re,im,bitsize,TRUE);
+        windowFFT(re,im,bitsize,TRUE);
         for(i = 0;i < datasize;i++)
         {
             *p_buffer++ = (short)re[i];
