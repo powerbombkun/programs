@@ -30,7 +30,7 @@ static double getW(int datasize);
  * @param[in] i インデックス
  *
  */
-static double getSyntesisWindowRate(fft_window_t type,double w,int i);
+static double getWindowRate(fft_window_t type,double w,int i);
 /**
  * @brief FFTの前処理用の窓掛けを行う関数
  *
@@ -39,14 +39,14 @@ static double getSyntesisWindowRate(fft_window_t type,double w,int i);
  * @param[in] bitsize   処理ビットサイズ
  *
  */
-static void syntesisWindowFFT(double* re,double* im,int32_t     bitsize,int f_inverse);
+static void windowFFT(double* re,double* im,int32_t     bitsize,int f_inverse);
 
 static double getW(int datasize)
 {
     return (2.0 * PI / (double)datasize);
 }
 
-static double getSyntesisWindowRate(fft_window_t type,double w,int i)
+static double getWindowRate(fft_window_t type,double w,int i)
 {
     double rate;
     if(type == HAMMING)
@@ -68,7 +68,7 @@ static double getSyntesisWindowRate(fft_window_t type,double w,int i)
     return rate;
 }
 
-static void syntesisWindowFFT(double* re,double* im,int32_t     bitsize,int f_inverse)
+static void windowFFT(double* re,double* im,int32_t     bitsize,int f_inverse)
 {
     int    i        = 0;
     int    datasize = 1 << bitsize;
@@ -79,7 +79,7 @@ static void syntesisWindowFFT(double* re,double* im,int32_t     bitsize,int f_in
     {
         for(i = 0;i < datasize;i++)
         {
-            rate   = getSyntesisWindowRate(HANNING,w,i);
+            rate   = getWindowRate(HANNING,w,i);
             re[i] *= rate;
             im[i] *= rate;
         }
@@ -90,7 +90,7 @@ static void syntesisWindowFFT(double* re,double* im,int32_t     bitsize,int f_in
         ifft(re,im,bitsize);
         for(i = 0;i < datasize;i++)
         {
-            rate   = getSyntesisWindowRate(HANNING,w,i);
+            rate   = getWindowRate(HANNING,w,i);
             re[i] /= rate;
             im[i] /= rate;
         }
@@ -117,7 +117,7 @@ void fftFrame(short* p_data,int n_data,double* re,double* im,int bitsize)
             im[j] = 0;
         }
 
-        syntesisWindowFFT(re,im,bitsize,FALSE);
+        windowFFT(re,im,bitsize,FALSE);
 
         p_data += framerate;
         re     += framerate;
