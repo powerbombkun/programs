@@ -2,7 +2,7 @@
  * @file   fft.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-08-11 00:55:34
+ * @date   last update 2010-08-13 22:53:14
  *
  * @brief
  *
@@ -42,7 +42,7 @@ extern "C" {
      * @param[out] power   パワースペクトル
      *
      */
-    void spectrum(double* re,double* im,int n,double* power);
+    void spectrum(double* re,double* im,int32_t n,double* power);
 
 #ifdef __cplusplus
 }

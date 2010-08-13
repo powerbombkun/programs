@@ -79,9 +79,9 @@ void fft(double* re,double* im,int32_t     bitsize)
 
 void ifft(double* re,double* im,int32_t     bitsize)
 {
-    int    i;
-    int    size = 1 << bitsize;
-    double fac  = 1.0 / size;
+    int32_t i;
+    int32_t size = 1 << bitsize;
+    double  fac  = 1.0 / size;
 
     for (i = 0; i < size; i++)
     {
@@ -98,9 +98,9 @@ void ifft(double* re,double* im,int32_t     bitsize)
 }
 
 
-void spectrum(double* re,double* im,int n,double* power)
+void spectrum(double* re,double* im,int32_t n,double* power)
 {
-    int i;
+    int32_t i;
     for(i = 0;i < n;i++)
     {
         power[i] = sqrt((re[i]*re[i])+(im[i]*im[i]));
