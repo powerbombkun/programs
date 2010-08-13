@@ -122,19 +122,18 @@ void fftFrame(short* p_data,int n_data,double* re,double* im,int bitsize)
 
 void ifftFrame(double* re,double* im,short* p_buffer,int n_buffer,int bitsize)
 {
-    int i,j;
+    int i;
     int datasize  = 1 << bitsize;
-    int framerate = datasize >> 1;
-    int n_loop    = n_buffer / framerate;
+    int n_loop    = n_buffer / datasize;
     for(i = 0;i < n_loop;i++)
     {
         syntesisWindowFFT(re,im,bitsize,TRUE);
-        for(j = 0;j < framerate;j++)
+        for(i = 0;i < datasize;i++)
         {
-            *p_buffer++ = (short)re[j];
+            *p_buffer++ = (short)re[i];
         }
-        re += framerate;
-        im += framerate;
+        re += datasize;
+        im += datasize;
     }
 }
 
