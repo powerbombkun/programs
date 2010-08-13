@@ -99,7 +99,12 @@ void fftFrame(short* p_data,int n_data,double* re,double* im,int bitsize)
     int    framerate = datasize >> 1;
     int    n_loop    = n_data / framerate;
     short* p_ovl     = (short*)malloc(datasize*sizeof(short));
+    double* p_ovl_re     = (double*)malloc(framerate*sizeof(double));
+    double* p_ovl_im     = (double*)malloc(framerate*sizeof(double));
     memset(p_ovl,0,datasize*sizeof(short));
+    memset(p_ovl_re,0,datasize*sizeof(double));
+    memset(p_ovl_im,0,datasize*sizeof(double));
+
     for(i = 0;i < n_loop;i++)
     {
         memcpy(&p_ovl[0],&p_ovl[framerate],framerate*sizeof(short));
@@ -113,11 +118,22 @@ void fftFrame(short* p_data,int n_data,double* re,double* im,int bitsize)
 
         windowFFT(re,im,bitsize,FALSE);
 
+        for(j = 0;j < framerate;j++)
+        {
+            re[j] += p_ovl_re[j];
+            im[j] += p_ovl_im[j];
+        }
+
+        memcpy(p_ovl_re,&re[framerate],framerate*sizeof(double));
+        memcpy(p_ovl_im,&im[framerate],framerate*sizeof(double));
+
         p_data += framerate;
         re     += framerate;
         im     += framerate;
     }
     SAFE_FREE(p_ovl);
+    SAFE_FREE(p_ovl_re);
+    SAFE_FREE(p_ovl_im);
 }
 
 void ifftFrame(double* re,double* im,short* p_buffer,int n_buffer,int bitsize)
