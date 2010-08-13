@@ -2,7 +2,7 @@
  * @file   fft.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-08-13 22:53:14
+ * @date   last update 2010-08-14 01:28:11
  *
  * @brief
  *
@@ -15,8 +15,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
     /**
      * @brief FFT処理を行う関数
+     *        1 << bitsize 分のデータがre,imそれぞれで必要
      *
      * @param[in][out] re realパートデータ
      * @param[in][out] im imagパートデータ
@@ -26,6 +28,7 @@ extern "C" {
     void fft(double* re,double* im,int32_t     bitsize);
     /**
      * @brief 逆FFT処理を行う関数
+     *        1 << bitsize 分のデータがre,imそれぞれで必要
      *
      * @param[in][out] re realパートデータ
      * @param[in][out] im imagパートデータ
