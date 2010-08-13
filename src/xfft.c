@@ -13,7 +13,6 @@ typedef enum
     HAMMING,                    /** ハミング窓 */
     BLACKMAN,                   /** ブラックマン窓 */
     HANNING,                    /** ハニング窓 */
-    NONE,
 } fft_window_t;
 
 /**
