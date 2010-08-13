@@ -94,16 +94,13 @@ static void windowFFT(double* re,double* im,int32_t     bitsize,int f_inverse)
 
 void fftFrame(short* p_data,int n_data,double* re,double* im,int bitsize)
 {
-    int    i,j;
-    int    datasize  = 1 << bitsize;
-    int    framerate = datasize >> 1;
-    int    n_loop    = n_data / framerate;
-    short* p_ovl     = (short*)malloc(datasize*sizeof(short));
-    double* p_ovl_re     = (double*)malloc(framerate*sizeof(double));
-    double* p_ovl_im     = (double*)malloc(framerate*sizeof(double));
-    memset(p_ovl,0,datasize*sizeof(short));
-    memset(p_ovl_re,0,datasize*sizeof(double));
-    memset(p_ovl_im,0,datasize*sizeof(double));
+    int     i,j;
+    int     datasize  = 1 << bitsize;
+    int     framerate = datasize >> 1;
+    int     n_loop    = n_data / framerate;
+    short*  p_ovl     = (short*)calloc(datasize,sizeof(short));
+    double* p_ovl_re  = (double*)calloc(framerate,sizeof(double));
+    double* p_ovl_im  = (double*)calloc(framerate,sizeof(double));
 
     for(i = 0;i < n_loop;i++)
     {
