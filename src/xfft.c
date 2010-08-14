@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+
 /**
  * @typedef fft_window_t型enum
  *
@@ -100,14 +101,17 @@ void xfft(int16_t* p_data,int32_t n,double* re,double* im,int32_t bitsize)
     int32_t  framerate = datasize >> 1;
     int32_t  n_loop    = n / framerate;
     int16_t* p_ovl     = (int16_t*)calloc(datasize,sizeof(int16_t));
-    double*  p_ovl_re  = (double*)calloc(datasize,sizeof(double));
-    double*  p_ovl_im  = (double*)calloc(datasize,sizeof(double));
+    double*  p_ovl_re  = (double*)calloc(framerate,sizeof(double));
+    double*  p_ovl_im  = (double*)calloc(framerate,sizeof(double));
 
     for(i = 0;i < n_loop;i++)
     {
         /** 時間軸上での50%overlap処理 */
-        memcpy(&p_ovl[0],&p_ovl[framerate],framerate*sizeof(int16_t));
-        memcpy(&p_ovl[framerate],p_data,framerate*sizeof(int16_t));
+        for(j = 0;j < framerate;j++)
+        {
+            p_ovl[j]             = p_ovl[j + framerate];
+            p_ovl[j + framerate] = p_data[j];
+        }
         for(j = 0;j < datasize;j++)
         {
             re[j] = (double)p_ovl[j];
@@ -118,12 +122,11 @@ void xfft(int16_t* p_data,int32_t n,double* re,double* im,int32_t bitsize)
         /** 周波数軸上での50%overlap処理 */
         for(j = 0;j < framerate;j++)
         {
-            re[j] += p_ovl_re[j];
-            im[j] += p_ovl_im[j];
+            re[j]       += p_ovl_re[j];
+            im[j]       += p_ovl_im[j];
+            p_ovl_re[j]  = re[j+framerate];
+            p_ovl_im[j]  = im[j+framerate];
         }
-        memcpy(p_ovl_re,&re[framerate],framerate*sizeof(double));
-        memcpy(p_ovl_im,&im[framerate],framerate*sizeof(double));
-
         p_data += framerate;
         re     += framerate;
         im     += framerate;

@@ -1,7 +1,7 @@
 /**
  * @file   test_xfft.c
  * @author Junsei Takahashi
- * @date   last update 2010-08-14 02:36:21
+ * @date   last update 2010-08-14 11:35:50
  *
  * @brief test suite for test_xfft.c
  */
@@ -9,7 +9,7 @@
 #include "xfft.h"
 #include <math.h>
 
-#define FFT_SIZE 1024
+#define FFT_SIZE 512
 /*  input file path */
 /* static values */
 /* global func */
@@ -39,13 +39,13 @@ teardown_test_xfft()
 static void
 test_normal_xfft()
 {
-    size_t i;
-    short data[FFT_SIZE] = {0};
-    short ref[FFT_SIZE] = {0};
+    int16_t i;
+    int16_t data[FFT_SIZE] = {0};
+    int16_t ref[FFT_SIZE] = {0};
     double re[FFT_SIZE]  = {0};
     double im[FFT_SIZE]  = {0};
 
-    for(i = 0; i < ARRAY_SIZE(re); i++)
+    for(i = 0; i < (int16_t)ARRAY_SIZE(data); i++)
     {
         data[i] = i;
     }
@@ -54,7 +54,7 @@ test_normal_xfft()
 
     for(i = 256; i < 512; i++)
     {
-        CU_ASSERT_EQUAL((int)data[i],(int)i);
+        CU_ASSERT_EQUAL(data[i],i);
     }
 }
 
