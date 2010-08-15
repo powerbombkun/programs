@@ -2,7 +2,7 @@
  * @file   xfft.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-08-14 01:44:57
+ * @date   last update 2010-08-14 12:58:47
  *
  * @brief
  *
@@ -16,6 +16,13 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+
+/**
+ * @info for debug
+ *
+ */
+    void windowFFT(double* re,double* im,int32_t     bitsize,BOOL f_inverse);
 
     /**
      * @brief FFT処理を指定したデータ個数で行う関数

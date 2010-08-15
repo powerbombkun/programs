@@ -14,6 +14,7 @@ typedef enum
     HAMMING,                    /** ハミング窓 */
     BLACKMAN,                   /** ブラックマン窓 */
     HANNING,                    /** ハニング窓 */
+    NONE,
 } fft_window_t;
 
 /**
@@ -40,7 +41,6 @@ static double getWindowRate(fft_window_t type,double w,int32_t i);
  * @param[in] bitsize   処理ビットサイズ
  *
  */
-static void windowFFT(double* re,double* im,int32_t     bitsize,BOOL f_inverse);
 
 static double getW(int32_t datasize)
 {
@@ -69,25 +69,31 @@ static double getWindowRate(fft_window_t type,double w,int32_t i)
     return rate;
 }
 
-static void windowFFT(double* re,double* im,int32_t     bitsize,BOOL f_inverse)
+void windowFFT(double* re,double* im,int32_t     bitsize,BOOL f_inverse)
 {
-    int32_t i        = 0;
+    int32_t i;
     int32_t datasize = 1 << bitsize;
     double  w        = getW(datasize);
-    double  rate;
 
     if(f_inverse)
     {
         ifft(re,im,bitsize);
-    }
-    for(i = 0;i < datasize;i++)
-    {
-        rate   = getWindowRate(HANNING,w,i);
-        re[i] *= rate;
-        im[i] *= rate;
+        for(i = 0;i < datasize;i++)
+        {
+            double rate   = getWindowRate(HANNING,w,i);
+            re[i] /= rate;
+            im[i] /= rate;
+        }
+
     }
     if(!f_inverse)
     {
+        for(i = 0;i < datasize;i++)
+        {
+            double rate   = getWindowRate(HANNING,w,i);
+            re[i] *= rate;
+            im[i] *= rate;
+        }
         fft(re,im,bitsize);
     }
 }
@@ -99,7 +105,8 @@ void xfft(int16_t* p_data,int32_t n,double* re,double* im,int32_t bitsize)
     int32_t  j;
     int32_t  datasize  = 1 << bitsize;
     int32_t  framerate = datasize >> 1;
-    int32_t  n_loop    = n / framerate;
+    /* int32_t  n_loop    = n / framerate; */
+    int32_t  n_loop    = n / datasize;
     int16_t* p_ovl     = (int16_t*)calloc(datasize,sizeof(int16_t));
     double*  p_ovl_re  = (double*)calloc(framerate,sizeof(double));
     double*  p_ovl_im  = (double*)calloc(framerate,sizeof(double));
@@ -107,29 +114,33 @@ void xfft(int16_t* p_data,int32_t n,double* re,double* im,int32_t bitsize)
     for(i = 0;i < n_loop;i++)
     {
         /** 時間軸上での50%overlap処理 */
-        for(j = 0;j < framerate;j++)
-        {
-            p_ovl[j]             = p_ovl[j + framerate];
-            p_ovl[j + framerate] = p_data[j];
-        }
+        /* for(j = 0;j < framerate;j++) */
+        /* { */
+        /*     p_ovl[j]             = p_ovl[j + framerate]; */
+        /*     p_ovl[j + framerate] = p_data[j]; */
+        /* } */
         for(j = 0;j < datasize;j++)
         {
-            re[j] = (double)p_ovl[j];
+            /* re[j] = (double)p_ovl[j]; */
+            re[j] = (double)p_data[j];
             im[j] = 0;
         }
         /** 窓掛け & FFT処理 */
         windowFFT(re,im,bitsize,FALSE);
         /** 周波数軸上での50%overlap処理 */
-        for(j = 0;j < framerate;j++)
-        {
-            re[j]       += p_ovl_re[j];
-            im[j]       += p_ovl_im[j];
-            p_ovl_re[j]  = re[j+framerate];
-            p_ovl_im[j]  = im[j+framerate];
-        }
-        p_data += framerate;
-        re     += framerate;
-        im     += framerate;
+        /* for(j = 0;j < framerate;j++) */
+        /* { */
+        /*     re[j]       += p_ovl_re[j]; */
+        /*     im[j]       += p_ovl_im[j]; */
+        /*     p_ovl_re[j]  = re[j+framerate]; */
+        /*     p_ovl_im[j]  = im[j+framerate]; */
+        /* } */
+        /* p_data += framerate; */
+        /* re     += framerate; */
+        /* im     += framerate; */
+        p_data += datasize;
+        re     += datasize;
+        im     += datasize;
     }
     SAFE_FREE(p_ovl);
     SAFE_FREE(p_ovl_re);
@@ -139,15 +150,22 @@ void xfft(int16_t* p_data,int32_t n,double* re,double* im,int32_t bitsize)
 void xifft(double* re,double* im,int16_t* p_buffer,int32_t n,int32_t bitsize)
 {
     int32_t i;
+    int32_t j;
     int32_t datasize  = 1 << bitsize;
+    int32_t  framerate = datasize >> 1;
     int32_t n_loop    = n / datasize;
+    /* int32_t n_loop    = n / framerate; */
     for(i = 0;i < n_loop;i++)
     {
         windowFFT(re,im,bitsize,TRUE);
-        for(i = 0;i < datasize;i++)
+        for(j = 0;j < datasize;j++)
+        /* for(j = 0;j < framerate;j++) */
         {
-            *p_buffer++ = (int16_t)re[i];
+            /* *p_buffer++ = (int16_t)re[j+framerate]; */
+            *p_buffer++ = (int16_t)re[j];
         }
+        /* re += framerate; */
+        /* im += framerate; */
         re += datasize;
         im += datasize;
     }
