@@ -2,7 +2,7 @@
  * @file   algorithm.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-08-05 00:01:23
+ * @date   last update 2010-08-16 23:46:25
  *
  * @brief
  *
@@ -21,11 +21,18 @@ extern "C" {
      *        データを昇順に整列します。
      *
      * @param[in] array   整列対象配列のポインタ
-     * @param[in] left    整列対象の左端のインデックス
-     * @param[in] right   整列対象の右端のインデックス
+     * @param[in] n       整列対象配列の長さ
      *
      */
-    void quick_sort(int32_t* array,int32_t left,int32_t right);
+    void q_sort(int32_t* array,int32_t n);
+    /**
+     * @brief バブルソートを行う関数
+     *
+     * @param[in] array   整列対象配列のポインタ
+     * @param[in] n       整列対象配列の長さ
+     *
+     */
+    void b_sort(int32_t* array,int32_t n);
 
 #ifdef __cplusplus
 }
