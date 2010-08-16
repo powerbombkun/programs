@@ -1,7 +1,7 @@
 /**
  * @file   test_algorithm.c
  * @author Junsei Takahashi
- * @date   last update 2010-08-16 23:54:08
+ * @date   last update 2010-08-17 00:10:04
  *
  * @brief test suite for test_algorithm.c
  */
@@ -83,5 +83,7 @@ void test_normal_b_sort()
 static
 void test_normal_binary_search()
 {
-        /* CU_ASSERT_EQUAL(0,2); */
+    int32_t ary[] = {0,1,2,3,4,5,6,7,8,9,10};
+    int32_t idx = binary_search(ary,ARRAY_SIZE(ary),7);
+    CU_ASSERT_EQUAL(idx,7);
 }

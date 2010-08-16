@@ -53,7 +53,8 @@ static void quick_sort(int32_t* array,int32_t left,int32_t right)
 
 void b_sort(int32_t* array,int32_t n)
 {
-    int i, j;
+    int i;
+    int j;
     for (i = (n - 1); i > 1; i--)
     {
         for (j = 0; j < i; j++)
@@ -68,5 +69,23 @@ void b_sort(int32_t* array,int32_t n)
 
 int32_t binary_search(int32_t* array,int32_t n,int32_t val)
 {
-
+    int32_t start = 0;
+    int32_t end   = n-1;
+    while (start <= end)
+    {
+        int32_t mid = (start + end)/2;
+        if (array[mid] < val)
+        {
+            start = mid + 1;
+        }
+        else if (array[mid] > val)
+        {
+            end = mid - 1;
+        }
+        else
+        {
+            return mid;
+        }
+    }
+    return -1;
 }
