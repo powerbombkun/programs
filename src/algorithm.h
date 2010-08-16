@@ -2,7 +2,7 @@
  * @file   algorithm.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-08-17 00:01:01
+ * @date   last update 2010-08-17 00:12:19
  *
  * @brief
  *
@@ -15,7 +15,6 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
     /**
      * @brief クイックソートを行う関数。
      *        データを昇順に整列します。
@@ -35,6 +34,7 @@ extern "C" {
     void b_sort(int32_t* array,int32_t n);
     /**
      * @brief ２分探索処理関数
+     *        事前に探索対象配列をソートする必要があります
      *
      * @param[in] array   探索対象配列のポインタ
      * @param[in] n       整列対象配列の長さ
