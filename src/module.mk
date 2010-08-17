@@ -1,10 +1,10 @@
 # module.mk
 #
 # author : Junsei Takahashi
-# last update 2010-07-23 01:48:33
+# last update 2010-08-17 20:51:20
 #
 
-local_lib      := libgeneral.a
+local_lib      := libutil.a
 local_src      := $(notdir $(wildcard $(subdirectory)/*.c))
 
 $(eval $(call make-library,$(local_lib),$(local_src)))
