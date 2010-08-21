@@ -161,6 +161,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\src\fft.c"
+				>
+			</File>
+			<File
 				RelativePath="..\src\logger.c"
 				>
 			</File>
@@ -204,6 +208,10 @@
 			</File>
 			<File
 				RelativePath="..\src\dbconv.h"
+				>
+			</File>
+			<File
+				RelativePath="..\src\fft.h"
 				>
 			</File>
 			<File
