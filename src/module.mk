@@ -4,7 +4,7 @@
 # last update 2010-07-23 01:48:33
 #
 
-local_lib      := libgeneral.a
+local_lib      := libutil.a
 local_src      := $(notdir $(wildcard $(subdirectory)/*.c))
 
 $(eval $(call make-library,$(local_lib),$(local_src)))
