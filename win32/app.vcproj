@@ -199,6 +199,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\test\test_fft.c"
+				>
+			</File>
+			<File
 				RelativePath="..\test\test_parametertable.c"
 				>
 			</File>

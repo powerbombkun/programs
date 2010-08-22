@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8.00"
-	Name="libgeneral"
+	Name="libutil"
 	ProjectGUID="{0AEC6490-EC0F-4EA7-A9E7-7C94A24EB37C}"
-	RootNamespace="libgeneral"
+	RootNamespace="libutil"
 	Keyword="Win32Proj"
 	>
 	<Platforms>
@@ -161,6 +161,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\src\fft.c"
+				>
+			</File>
+			<File
 				RelativePath="..\src\logger.c"
 				>
 			</File>
@@ -204,6 +208,10 @@
 			</File>
 			<File
 				RelativePath="..\src\dbconv.h"
+				>
+			</File>
+			<File
+				RelativePath="..\src\fft.h"
 				>
 			</File>
 			<File

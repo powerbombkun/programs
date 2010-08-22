@@ -6,7 +6,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "app", "app.vcproj", "{2AC53
 		{0AEC6490-EC0F-4EA7-A9E7-7C94A24EB37C} = {0AEC6490-EC0F-4EA7-A9E7-7C94A24EB37C}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libgeneral", "libgeneral.vcproj", "{0AEC6490-EC0F-4EA7-A9E7-7C94A24EB37C}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libgeneral", "libutil.vcproj", "{0AEC6490-EC0F-4EA7-A9E7-7C94A24EB37C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
