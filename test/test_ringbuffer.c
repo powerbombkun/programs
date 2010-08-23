@@ -2,14 +2,14 @@
 /**
  * @file   test_ringbuffer.c
  * @author Junsei Takahashi
- * @date   last update 2010-08-08 15:48:59
+ * @date   last update 2010-08-23 22:27:22
  *
  * @brief test suite for test_ringbuffer.c
  */
 #include "test_common.h"
 #include "ringbuffer.h"
 /* define */
-#define RINGBUFFER_SIZE (1024)
+#define RINGBUFFER_SIZE (64)
 /*  input file path */
 /* static values */
 /* global func */
@@ -91,24 +91,20 @@ test_normal_getData()
 {
     int i;
     int32_t ret;
-    uint8_t data_array[] = {0,1,2,3};
-    uint8_t buf_array[4];
-    int32_t size;
+    uint8_t data;
+    uint8_t buf;
 
     RingBuffer_initialize(hRingBuffer);
-    RingBuffer_setData(hRingBuffer,data_array,ARRAY_SIZE(data_array));
-    size = RingBuffer_getDataSize(hRingBuffer);
-    ret = RingBuffer_getData(hRingBuffer,buf_array,ARRAY_SIZE(buf_array));
-
-    CU_ASSERT_EQUAL(ret,SUCCESS);
-
-    for(i = 0;i < size;i++)
+    for(i = 0;i < RINGBUFFER_SIZE*2;i++)
     {
-        CU_ASSERT_EQUAL(data_array[i],buf_array[i]);
-    }
+        data = i;
 
-    size = RingBuffer_getDataSize(hRingBuffer);
-    CU_ASSERT_EQUAL(size,0);
+        RingBuffer_setData(hRingBuffer,&data,1);
+        ret = RingBuffer_getData(hRingBuffer,&buf,1);
+
+        CU_ASSERT_EQUAL(ret,SUCCESS);
+        CU_ASSERT_EQUAL(data,buf);
+    }
 }
 
 static void

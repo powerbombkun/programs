@@ -81,13 +81,12 @@ int32_t RingBuffer_getData(RingBuffer_Handle h_obj,uint8_t* p_buffer, int32_t n_
         int i;
         for(i = 0;i < n_buffer;i++)
         {
-            *(p_buffer+i) = *(This->p_buffer + This->readCounter);
-            This->readCounter++;
-
             if ( This->readCounter == This->n_buffer )
             {
                 This->readCounter = 0;
             }
+            *(p_buffer+i) = *(This->p_buffer + This->readCounter);
+            This->readCounter++;
         }
         ret = SUCCESS;
     }
@@ -105,13 +104,12 @@ int32_t RingBuffer_setData(RingBuffer_Handle h_obj,uint8_t* p_data, int32_t n_da
         int i;
         for (i = 0; i<n_data; i++ )
         {
-            *(This->p_buffer + This->writeCounter) = *(p_data + i);
-            This->writeCounter++;
-
-            if ( This->writeCounter > This->n_buffer )
+            if ( This->writeCounter >= This->n_buffer )
             {
                 This->writeCounter = 0;
             }
+            *(This->p_buffer + This->writeCounter) = *(p_data + i);
+            This->writeCounter++;
         }
         ret = SUCCESS;
     }
