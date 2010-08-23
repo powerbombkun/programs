@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "fft.h"
 
+
 void xfft(int16_t* p_data,int32_t n_data,double* re,double* im,int32_t     bitsize)
 {
     int i;
@@ -65,8 +66,6 @@ int32_t xspectrum(int16_t* p_data,int32_t n_data,double* p_spectrum,int32_t     
 
             p_spectrum += datasize;
             p_data     += datasize;
-            re         += datasize;
-            im         += datasize;
         }
         ret = SUCCESS;
     }
