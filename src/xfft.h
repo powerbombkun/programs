@@ -2,7 +2,7 @@
  * @file   xfft.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-08-22 14:30:54
+ * @date   last update 2010-08-23 23:25:20
  *
  * @brief
  *
@@ -25,8 +25,10 @@ extern "C" {
      * @param[out] im imagパートデータ
      * @param[in] bitsize ビットサイズ
      *
+     * @retval SUCCESS 成功
+     *         FAILURE 失敗
      */
-    void xfft(int16_t* p_data,int32_t n_data,double* re,double* im,int32_t     bitsize);
+    int32_t xfft(int16_t* p_data,int32_t n_data,double* re,double* im,int32_t     bitsize);
     /**
      * @brief 逆FFT処理を行う関数
      *        1 << bitsize 分のデータがre,imそれぞれで必要
@@ -46,6 +48,9 @@ extern "C" {
      * @param[in] n_data データの個数
      * @param[out] p_spectrum スペクトルデータ
      * @param[in] bitsize ビットサイズ
+     *
+     * @retval SUCCESS 成功
+     *         FAILURE 失敗
      *
      */
     int32_t xspectrum(int16_t* p_data,int32_t n_data,double* p_spectrum,int32_t     bitsize);
