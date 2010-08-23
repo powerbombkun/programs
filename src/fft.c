@@ -1,5 +1,5 @@
 #include "fft.h"
-#include <malloc.h>
+#include <stdlib.h>
 #include <math.h>
 
 /**
