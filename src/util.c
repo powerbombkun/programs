@@ -98,4 +98,29 @@ char* trim(char* str)
     return str;
 }
 
+uint32_t readFromFile(const char* file,void* p_buffer,int32_t size)
+{
+    uint32_t n = 0;
+    FILE* fp;
+    fp = fopen(file,"rb");
+    if(fp != NULL)
+    {
+        n = fread(p_buffer,sizeof(uint8_t),size,fp);
+        fclose(fp);
+    }
+    return n;
+}
+
+uint32_t writeToFile(const char* file,void* p_data,int32_t size)
+{
+    uint32_t n = 0;
+    FILE* fp;
+    fp = fopen(file,"wb");
+    if(fp != NULL)
+    {
+        n = fwrite(p_data,sizeof(uint8_t),size,fp);
+        fclose(fp);
+    }
+    return n;
+}
 

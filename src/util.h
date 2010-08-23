@@ -2,7 +2,7 @@
  * @file   util.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-08-07 00:54:26
+ * @date   last update 2010-08-23 22:49:18
  *
  * @brief  汎用関数類
  *
@@ -65,7 +65,26 @@ extern "C" {
      * @retval 編集後の文字列ポインタ
      */
     char* trim(char* str);
-
+    /**
+     * @brief ファイルからデータを取得します
+     *
+     * @param[in] file ファイル名
+     * @param[ou] p_buffer　データ取得用バッファ
+     * @param[in] size　バッファサイズ
+     *
+     * @retval　取得したデータサイズ
+     */
+    uint32_t readFromFile(const char* file,void* p_buffer,int32_t size);
+    /**
+     * @brief　ファイルへデータを書き込みます
+     *
+     * @param[in] file ファイル名
+     * @param[ou] p_buffer　書き込みデータ
+     * @param[in] size　データサイズ
+     *
+     * @retval　書き込んだデータサイズ
+     */
+    uint32_t writeToFile(const char* file,void* p_data,int32_t size);
 
 #ifdef __cplusplus
 }
