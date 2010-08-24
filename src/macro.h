@@ -2,7 +2,7 @@
  * @file   macro.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-08-12 23:06:56
+ * @date   last update 2010-08-25 01:07:37
  *
  * @brief  汎用マクロ集
  *
@@ -35,7 +35,7 @@
 #endif
 
 #ifndef MAIN
-#define MAIN                 main
+#define MAIN   main
 #endif
 
 #define MAX_FILE_PATH_LENGTH 1024
