@@ -2,7 +2,7 @@
  * @file   fft.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-08-14 01:51:38
+ * @date   last update 2010-08-25 01:02:08
  *
  * @brief
  *
@@ -15,7 +15,6 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
     /**
      * @brief FFT処理を行う関数
      *        1 << bitsize 分のデータがre,imそれぞれで必要
