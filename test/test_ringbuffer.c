@@ -2,7 +2,7 @@
 /**
  * @file   test_ringbuffer.c
  * @author Junsei Takahashi
- * @date   last update 2010-08-23 22:27:22
+ * @date   last update 2010-08-25 21:47:44
  *
  * @brief test suite for test_ringbuffer.c
  */
@@ -110,11 +110,19 @@ test_normal_getData()
 static void
 test_normal_setData()
 {
-    int32_t ret;
-    uint8_t data_array[] = {0,1,2,3};
-
+    size_t i;
+    int32_t ret = SUCCESS;
+    uint8_t data_array[RINGBUFFER_SIZE];
+    uint8_t buf_array[RINGBUFFER_SIZE/2];
+    for(i = 0;i < ARRAY_SIZE(data_array);i++)
+    {
+        data_array[i] = i;
+    }
     RingBuffer_initialize(hRingBuffer);
-    ret = RingBuffer_setData(hRingBuffer,data_array,ARRAY_SIZE(data_array));
-
+    ret |= RingBuffer_setData(hRingBuffer,data_array,ARRAY_SIZE(data_array));
+    ret |= RingBuffer_getData(hRingBuffer,buf_array,ARRAY_SIZE(buf_array));
+    ret |= RingBuffer_setData(hRingBuffer,buf_array,ARRAY_SIZE(buf_array));
+    ret |= RingBuffer_getData(hRingBuffer,buf_array,ARRAY_SIZE(buf_array));
+    ret |= RingBuffer_setData(hRingBuffer,buf_array,ARRAY_SIZE(buf_array));
     CU_ASSERT_EQUAL(ret,SUCCESS);
 }

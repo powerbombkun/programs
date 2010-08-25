@@ -8,6 +8,7 @@ typedef struct
     int32_t  n_buffer;
     int32_t  readCounter;
     int32_t  writeCounter;
+    int32_t  data_length;
 }ringbuffer_t;
 
 RingBuffer_Handle RingBuffer_create(uint32_t n_buffer)
@@ -16,12 +17,13 @@ RingBuffer_Handle RingBuffer_create(uint32_t n_buffer)
     This = (ringbuffer_t*)malloc(sizeof(ringbuffer_t));
     if(This != NULL)
     {
-        This->n_buffer   = n_buffer;
-        This->p_buffer     = (uint8_t*)malloc(This->n_buffer);
+        This->n_buffer = n_buffer;
+        This->p_buffer = (uint8_t*)malloc(This->n_buffer);
         if(This->p_buffer != NULL)
         {
             This->readCounter  = 0;
             This->writeCounter = 0;
+            This->data_length  = 0;
             return (RingBuffer_Handle)This;
         }
         free(This);
@@ -47,21 +49,13 @@ void              RingBuffer_initialize(RingBuffer_Handle h_obj)
     }
     This->readCounter  = 0;
     This->writeCounter = 0;
+    This->data_length  = 0;
 }
 
 int32_t RingBuffer_getDataSize(RingBuffer_Handle h_obj)
 {
-    int32_t       size;
     ringbuffer_t* This = (ringbuffer_t*)h_obj;
-    if ( This->readCounter <= This->writeCounter )
-    {
-        size = This->writeCounter - This->readCounter;
-    }
-    else
-    {
-        size = This->n_buffer + This->writeCounter - This->readCounter;
-    }
-    return size;
+    return This->data_length;
 }
 
 int32_t RingBuffer_getBufferSize(RingBuffer_Handle h_obj)
@@ -87,6 +81,7 @@ int32_t RingBuffer_getData(RingBuffer_Handle h_obj,uint8_t* p_buffer, int32_t n_
             }
             *(p_buffer+i) = *(This->p_buffer + This->readCounter);
             This->readCounter++;
+            This->data_length--;
         }
         ret = SUCCESS;
     }
@@ -110,6 +105,7 @@ int32_t RingBuffer_setData(RingBuffer_Handle h_obj,uint8_t* p_data, int32_t n_da
             }
             *(This->p_buffer + This->writeCounter) = *(p_data + i);
             This->writeCounter++;
+            This->data_length++;
         }
         ret = SUCCESS;
     }
