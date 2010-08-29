@@ -192,6 +192,10 @@
 				RelativePath="..\src\wave.c"
 				>
 			</File>
+			<File
+				RelativePath="..\src\xfft.c"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="ヘッダー ファイル"
@@ -248,6 +252,10 @@
 			</File>
 			<File
 				RelativePath="..\src\wave.h"
+				>
+			</File>
+			<File
+				RelativePath="..\src\xfft.h"
 				>
 			</File>
 		</Filter>

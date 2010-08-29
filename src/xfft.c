@@ -148,24 +148,12 @@ int32_t xspectrum(int16_t* p_data,int32_t n_data,double* p_spectrum,int32_t     
     int     j;
     int32_t ret      = FAILURE;
     int32_t datasize = 1 << bitsize;
-    double* re       = (double*)malloc(datasize * sizeof(double));
-    double* im       = (double*)malloc(datasize * sizeof(double));
+    double* re       = (double*)malloc(n_data * sizeof(double));
+    double* im       = (double*)malloc(n_data * sizeof(double));
     if((re != NULL) && (im != NULL))
     {
-        int     n_loop   = n_data / datasize;
-        for(i = 0;i < n_loop;i++)
-        {
-            for(j = 0;j < datasize;j++)
-            {
-                re[j] = (double)p_data[j];
-                im[j] = 0;
-            }
-            fft(re,im,bitsize);
-            spectrum(re,im,datasize,p_spectrum);
-
-            p_spectrum += datasize;
-            p_data     += datasize;
-        }
+        xfft(p_data,n_data,re,im,bitsize);
+        spectrum(re,im,n_data,p_spectrum);
         ret = SUCCESS;
     }
     SAFE_FREE(re);
