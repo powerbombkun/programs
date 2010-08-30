@@ -25,10 +25,8 @@ extern "C" {
      * @param[out] im imagパートデータ
      * @param[in] bitsize ビットサイズ
      *
-     * @retval SUCCESS 成功
-     *         FAILURE 失敗
      */
-    int32_t xfft(int16_t* p_data,int32_t n_data,double* re,double* im,int32_t     bitsize);
+    void xfft(int16_t* p_data,int32_t n_data,double* re,double* im,int32_t     bitsize);
     /**
      * @brief 逆FFT処理を行う関数
      *        1 << bitsize 分のデータがre,imそれぞれで必要

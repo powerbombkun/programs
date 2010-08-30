@@ -37,7 +37,7 @@ static double getWindowRate(fft_window_t type,double w,int32_t i);
  * @param[in] bitsize   処理ビットサイズ
  *
  */
-static void window(double* re,double* im,int32_t     bitsize);
+static void window(double* re,double* im,int32_t     bitsize,BOOL f_inverse);
 
 static double getW(int32_t datasize)
 {
@@ -66,61 +66,52 @@ static double getWindowRate(fft_window_t type,double w,int32_t i)
     return rate;
 }
 
-static void window(double* re,double* im,int32_t     bitsize)
+static void window(double* re,double* im,int32_t     bitsize,BOOL f_inverse)
 {
     int32_t i        = 0;
     int32_t datasize = 1 << bitsize;
     double  w        = getW(datasize);
 
-    for(i = 0;i < datasize;i++)
+    if(!f_inverse)
     {
-        double rate   = getWindowRate(HANNING,w,i);
-        re[i] *= rate;
-        im[i] *= rate;
+        for(i = 0;i < datasize;i++)
+        {
+            double rate   = getWindowRate(HANNING,w,i);
+            re[i] *= rate;
+            im[i] *= rate;
+        }
+    }
+    else
+    {
+        for(i = 0;i < datasize;i++)
+        {
+            double rate   = getWindowRate(HANNING,w,i);
+            re[i] /= rate;
+            im[i] /= rate;
+        }    
     }
 }
 
 
-int32_t xfft(int16_t* p_data,int32_t n_data,double* re,double* im,int32_t     bitsize)
+void xfft(int16_t* p_data,int32_t n_data,double* re,double* im,int32_t     bitsize)
 {
     int     i;
     int     j;
-    int32_t ret          = FAILURE;
-    double  overlap_rate = 0.5;
     int32_t datasize     = 1 << bitsize;
-    int32_t framesize    = datasize * overlap_rate;
-    int32_t n_loop       = (n_data / framesize) - 1;
-    double* re_buf       = (double*)calloc(framesize,sizeof(double));
-    double* im_buf       = (double*)calloc(framesize,sizeof(double));
-    if((re != NULL) && (im != NULL))
+    int32_t n_loop       = n_data / datasize;
+    for(i = 0;i < n_loop;i++)
     {
-        for(i = 0;i < n_loop;i++)
+        for(j = 0;j < datasize;j++)
         {
-            for(j = 0;j < datasize;j++)
-            {
-                re[j] = (double)p_data[j];
-                im[j] = 0;
-            }
-            window(re,im,bitsize);
-            fft(re,im,bitsize);
-
-            for(j = 0;j < framesize;j++)
-            {
-                re[j]     += re_buf[j];
-                im[j]     += im_buf[j];
-                re_buf[j]  = re[j+framesize];
-                im_buf[j]  = im[j+framesize];
-            }
-
-            p_data += framesize;
-            re     += framesize;
-            im     += framesize;
+            re[j] = (double)p_data[j];
+            im[j] = 0;
         }
-        ret = SUCCESS;
+        window(re,im,bitsize,FALSE);
+        fft(re,im,bitsize);
+        p_data += datasize;
+        re     += datasize;
+        im     += datasize;
     }
-    SAFE_FREE(re_buf);
-    SAFE_FREE(im_buf);
-    return ret;
 }
 
 void xifft(double* re,double* im,int16_t* p_buffer,int32_t n_buffer,int32_t     bitsize)
@@ -131,6 +122,7 @@ void xifft(double* re,double* im,int16_t* p_buffer,int32_t n_buffer,int32_t     
     int32_t n_loop   = n_buffer / datasize;
     for(i = 0;i < n_loop;i++)
     {
+        window(re,im,bitsize,TRUE);
         ifft(re,im,bitsize);
         for(j = 0;j < datasize;j++)
         {
