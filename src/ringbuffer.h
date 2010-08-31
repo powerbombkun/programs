@@ -2,7 +2,7 @@
  * @file   ringbuffer.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-08-17 00:18:28
+ * @date   last update 2010-08-31 22:48:07
  *
  * @brief
  *
@@ -75,7 +75,7 @@ extern "C" {
      * @retval SUCCESS 成功
      * @retval FAILURE 失敗
      */
-    int32_t           RingBuffer_setData(RingBuffer_Handle h_obj,uint8_t* p_data, int32_t n_data);
+    int32_t           RingBuffer_setData(RingBuffer_Handle h_obj,const uint8_t* p_data, int32_t n_data);
 
 #ifdef __cplusplus
 }

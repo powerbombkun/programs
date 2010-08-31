@@ -88,7 +88,7 @@ int32_t RingBuffer_getData(RingBuffer_Handle h_obj,uint8_t* p_buffer, int32_t n_
     return ret;
 }
 
-int32_t RingBuffer_setData(RingBuffer_Handle h_obj,uint8_t* p_data, int32_t n_data)
+int32_t RingBuffer_setData(RingBuffer_Handle h_obj,const uint8_t* p_data, int32_t n_data)
 {
     ringbuffer_t* This = (ringbuffer_t*)h_obj;
     int32_t       ret  = FAILURE;
