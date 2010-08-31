@@ -67,7 +67,7 @@ void b_sort(int32_t* array,int32_t n)
     }
 }
 
-int32_t binary_search(int32_t* array,int32_t n,int32_t val)
+int32_t binary_search(const int32_t* array,int32_t n,int32_t val)
 {
     int32_t start = 0;
     int32_t end   = n-1;

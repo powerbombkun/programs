@@ -2,7 +2,7 @@
  * @file   algorithm.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-08-17 00:12:19
+ * @date   last update 2010-08-31 22:44:16
  *
  * @brief
  *
@@ -43,7 +43,7 @@ extern "C" {
      * @retval 0以上 配列のインデックス
      * @retval -1    探索対象数値が見つからなかった
      */
-    int32_t binary_search(int32_t* array,int32_t n,int32_t val);
+    int32_t binary_search(const int32_t* array,int32_t n,int32_t val);
 
 #ifdef __cplusplus
 }
