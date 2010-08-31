@@ -88,7 +88,7 @@ static void window(double* re,double* im,int32_t     bitsize,BOOL f_inverse)
             double rate   = getWindowRate(HANNING,w,i);
             re[i] /= rate;
             im[i] /= rate;
-        }    
+        }
     }
 }
 
@@ -136,8 +136,6 @@ void xifft(double* re,double* im,int16_t* p_buffer,int32_t n_buffer,int32_t     
 
 int32_t xspectrum(int16_t* p_data,int32_t n_data,double* p_spectrum,int32_t     bitsize)
 {
-    int     i;
-    int     j;
     int32_t ret      = FAILURE;
     int32_t datasize = 1 << bitsize;
     double* re       = (double*)malloc(n_data * sizeof(double));
