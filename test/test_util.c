@@ -2,7 +2,7 @@
 /**
  * @file   test_ringbuffer.c
  * @author Junsei Takahashi
- * @date   last update 2010-09-09 23:22:26
+ * @date   last update 2010-09-09 23:26:55
  *
  * @brief test suite for test_ringbuffer.c
  */
@@ -23,14 +23,14 @@ static void test_normal_trim();
 static void test_normal_byte_reverse();
 /* test cases */
 CU_TestInfo test_util_array[] = {
-  {"normal_getMaxAmp",    test_normal_getMaxAmp},
-  {"normal_getFileName",    test_normal_getFileName},
-  {"err_getFileName",    test_err_getFileName},
-  {"normal_splitString",    test_normal_splitString},
-  {"err_splitString_non_sep",    test_err_splitString_non_sep},
-  {"normal_trim",    test_normal_trim},
+    {"normal_getMaxAmp",    test_normal_getMaxAmp},
+    {"normal_getFileName",    test_normal_getFileName},
+    {"err_getFileName",    test_err_getFileName},
+    {"normal_splitString",    test_normal_splitString},
+    {"err_splitString_non_sep",    test_err_splitString_non_sep},
+    {"normal_trim",    test_normal_trim},
     {"normal_byte_reverse",    test_normal_byte_reverse},
-  CU_TEST_INFO_NULL
+    CU_TEST_INFO_NULL
 };
 
 int
