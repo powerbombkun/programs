@@ -2,7 +2,7 @@
  * @file   platform.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-08-09 20:24:47
+ * @date   last update 2010-09-09 23:23:58
  *
  * @brief
  *
@@ -34,14 +34,6 @@ extern "C" {
      *         0 ビッグエンディアン
      */
     int is_little_endian(void);
-    /**
-     * @brief ビット反転を行う関数
-     *
-     * @param[in] data   データのポインタ
-     * @param[in] n_byte データ個数
-     *
-     */
-    void byte_reverse(void* data,int n_byte);
 
 
 

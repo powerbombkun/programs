@@ -2,7 +2,7 @@
 /**
  * @file   test_ringbuffer.c
  * @author Junsei Takahashi
- * @date   last update 2010-08-10 00:10:33
+ * @date   last update 2010-09-09 23:22:26
  *
  * @brief test suite for test_ringbuffer.c
  */
@@ -20,6 +20,7 @@ static void test_err_getFileName();
 static void test_normal_splitString();
 static void test_err_splitString_non_sep();
 static void test_normal_trim();
+static void test_normal_byte_reverse();
 /* test cases */
 CU_TestInfo test_util_array[] = {
   {"normal_getMaxAmp",    test_normal_getMaxAmp},
@@ -28,6 +29,7 @@ CU_TestInfo test_util_array[] = {
   {"normal_splitString",    test_normal_splitString},
   {"err_splitString_non_sep",    test_err_splitString_non_sep},
   {"normal_trim",    test_normal_trim},
+    {"normal_byte_reverse",    test_normal_byte_reverse},
   CU_TEST_INFO_NULL
 };
 
@@ -95,3 +97,16 @@ test_normal_trim()
     CU_ASSERT_STRING_EQUAL(trim(str),"TEST  ");
 }
 
+static void
+test_normal_byte_reverse()
+{
+    size_t i;
+    uint8_t ary[] = {0,1,2,3};
+    uint8_t ref[] = {3,2,1,0};
+    byte_reverse(ary,ARRAY_SIZE(ary));
+
+    for(i = 0;i < ARRAY_SIZE(ary);i++)
+    {
+        CU_ASSERT_EQUAL(ary[i],ref[i]);
+    }
+}

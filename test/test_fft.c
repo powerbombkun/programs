@@ -1,7 +1,7 @@
 /**
  * @file   test_fft.c
  * @author Junsei Takahashi
- * @date   last update 2010-08-14 12:32:06
+ * @date   last update 2010-08-31 22:56:32
  *
  * @brief test suite for test_fft.c
  */

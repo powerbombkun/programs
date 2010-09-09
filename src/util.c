@@ -124,3 +124,14 @@ uint32_t writeToFile(const char* file,void* p_data,int32_t size)
     return n;
 }
 
+void byte_reverse(void* data,int n_byte)
+{
+    uint8_t* low = (uint8_t*)data;
+    uint8_t* high = low + n_byte;
+
+    while(--high > low)
+    {
+        SWAP(uint8_t,*low,*high);
+        low++;
+    }
+}
