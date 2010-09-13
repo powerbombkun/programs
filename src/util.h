@@ -2,7 +2,7 @@
  * @file   util.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-09-09 23:22:08
+ * @date   last update 2010-09-13 23:04:26
  *
  * @brief  汎用関数類
  *
@@ -10,7 +10,6 @@
 #ifndef _UTIL_H
 #define _UTIL_H
 #include "type.h"
-#include "macro.h"
 
 #ifdef __cplusplus
 extern "C" {

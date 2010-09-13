@@ -2,7 +2,7 @@
  * @file   dbconv.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-08-11 23:33:33
+ * @date   last update 2010-09-13 23:02:21
  *
  * @brief
  *
@@ -10,7 +10,6 @@
 #ifndef _DBCONV_H
 #define _DBCONV_H
 #include "type.h"
-#include "macro.h"
 
 #ifdef __cplusplus
 extern "C" {

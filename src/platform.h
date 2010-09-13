@@ -2,7 +2,7 @@
  * @file   platform.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-09-09 23:23:58
+ * @date   last update 2010-09-13 23:03:53
  *
  * @brief
  *
@@ -10,7 +10,6 @@
 #ifndef _PLATFORM_H
 #define _PLATFORM_H
 #include "type.h"
-#include "macro.h"
 
 #ifdef __cplusplus
 extern "C" {

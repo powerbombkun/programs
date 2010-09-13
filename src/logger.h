@@ -2,7 +2,7 @@
  * @file   logger.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-08-09 20:10:45
+ * @date   last update 2010-09-13 23:03:08
  *
  * @brief  プログラム実行時にログを出力するための関数の宣言
  *
@@ -11,7 +11,6 @@
 #define _LOGGER_H
 #include <stdio.h>
 #include "type.h"
-#include "macro.h"
 
 #ifdef WIN32
 #include <string.h>

@@ -2,16 +2,14 @@
  * @file   binstr.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-09-13 22:52:01
+ * @date   last update 2010-09-13 23:02:00
  *
  * @brief
  *
  */
 #ifndef _BINSTR_H
 #define _BINSTR_H
-
 #include "type.h"
-#include "macro.h"
 
 #ifdef __cplusplus
 extern "C" {

@@ -2,7 +2,7 @@
  * @file   fft.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-08-25 01:07:24
+ * @date   last update 2010-09-13 23:02:43
  *
  * @brief
  *
@@ -10,7 +10,6 @@
 #ifndef _FFT_H
 #define _FFT_H
 #include "type.h"
-#include "macro.h"
 
 #ifdef __cplusplus
 extern "C" {

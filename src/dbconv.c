@@ -1,5 +1,6 @@
 #include "dbconv.h"
 #include <math.h>
+#include "macro.h"
 
 double linear2db(int32_t pow_a,int32_t pow_b)
 {

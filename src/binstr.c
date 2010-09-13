@@ -1,6 +1,7 @@
 #include "binstr.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "macro.h"
 
 #define HI_BYTE(x) ((x & 0xF0)>>4)
 #define LW_BYTE(x) (0x0F & x)

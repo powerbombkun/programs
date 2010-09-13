@@ -1,4 +1,5 @@
 #include "platform.h"
+#include "macro.h"
 
 int int_bits(void)
 {

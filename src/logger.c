@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdarg.h>
 #include "logger.h"
+#include "macro.h"
 /*
  * define
  */

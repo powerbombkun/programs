@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "macro.h"
 
 #define MAX_BUFFER_SIZE 128
 

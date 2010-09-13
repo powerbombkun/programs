@@ -1,6 +1,7 @@
 #include "fft.h"
 #include <stdlib.h>
 #include <math.h>
+#include "macro.h"
 
 /**
  * @brief ビット反転した配列を返します
