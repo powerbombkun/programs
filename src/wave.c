@@ -1,7 +1,10 @@
 #include "wave.h"
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "util.h"
+#include "common.h"
+#include "macro.h"
 
 #define DEF_WAVE_HDR_SIZE  44
 #define DEF_FMT_CHUNK_SIZE 16
@@ -80,7 +83,7 @@ static int32_t skipWaveHdr(FILE** p_fp,wave_t* p_wave)
                     char* p_fmt;
                     fread(&fmtsize,sizeof(int32_t),1,*p_fp);
 
-                    p_fmt                 = (char*)malloc(fmtsize);
+                    p_fmt                 = (char*)x_malloc(fmtsize);
                     fread(p_fmt,sizeof(char),fmtsize,*p_fp);
                     p_wave->ch            = *(int16_t*)&p_fmt[2];
                     p_wave->samplingrate  = *(int32_t*)&p_fmt[4];
@@ -155,7 +158,7 @@ int32_t pcm2wav(const char* pcm_file,
         FILE* fp_out = fopen(wav_file,"wb");
         if(fp_out != NULL)
         {
-            unsigned char* p_buffer = (unsigned char*)malloc(wave.datasize);
+            unsigned char* p_buffer = (unsigned char*)x_malloc(wave.datasize);
             if(p_buffer != NULL)
             {
                 fread(p_buffer,wave.datasize,sizeof(unsigned char),fp_in);
@@ -189,7 +192,7 @@ int32_t wav2pcm(const char* wav_file,
             wave_t  wave;
             if(skipWaveHdr(&fp_in,&wave) == SUCCESS)
             {
-                unsigned char* p_buffer = (unsigned char*)malloc(wave.datasize);
+                unsigned char* p_buffer = (unsigned char*)x_malloc(wave.datasize);
                 if(p_buffer != NULL)
                 {
                     fread(p_buffer,wave.datasize,sizeof(unsigned char),fp_in);

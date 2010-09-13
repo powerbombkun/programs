@@ -2,7 +2,7 @@
  * @file   algorithm.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-08-31 22:44:16
+ * @date   last update 2010-09-13 22:51:02
  *
  * @brief
  *
@@ -10,7 +10,6 @@
 #ifndef _ALGORITHM_H
 #define _ALGORITHM_H
 #include "type.h"
-#include "macro.h"
 
 #ifdef __cplusplus
 extern "C" {

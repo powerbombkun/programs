@@ -1,4 +1,5 @@
 #include "algorithm.h"
+#include "macro.h"
 
 static int32_t getPivot(int32_t* array,int32_t i,int32_t j);
 static void quick_sort(int32_t* array,int32_t left,int32_t right);

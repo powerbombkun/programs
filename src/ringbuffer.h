@@ -2,7 +2,7 @@
  * @file   ringbuffer.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-08-31 22:48:07
+ * @date   last update 2010-09-13 22:56:55
  *
  * @brief
  *
@@ -10,7 +10,6 @@
 #ifndef _RINGBUFFER_H
 #define _RINGBUFFER_H
 #include "type.h"
-#include "macro.h"
 
 #ifdef __cplusplus
 extern "C" {

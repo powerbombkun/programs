@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <math.h>
 #include "fft.h"
+#include "macro.h"
+#include "common.h"
 
 /**
  * @typedef fft_window_t型enum
@@ -137,8 +139,8 @@ void xifft(double* re,double* im,int16_t* p_buffer,int32_t n_buffer,int32_t     
 int32_t xspectrum(int16_t* p_data,int32_t n_data,double* p_spectrum,int32_t     bitsize)
 {
     int32_t ret      = FAILURE;
-    double* re       = (double*)malloc(n_data * sizeof(double));
-    double* im       = (double*)malloc(n_data * sizeof(double));
+    double* re       = (double*)x_malloc(n_data * sizeof(double));
+    double* im       = (double*)x_malloc(n_data * sizeof(double));
     if((re != NULL) && (im != NULL))
     {
         xfft(p_data,n_data,re,im,bitsize);

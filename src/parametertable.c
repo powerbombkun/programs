@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "util.h"
+#include "macro.h"
+#include "common.h"
 
 /** キーと値との間の分割文字 */
 #define DELIM           ":"
@@ -56,10 +58,10 @@ static data_map_t* getDataMap(parametertable_t* table,const char* key)
 ParameterTable_Handle ParameterTable_create(int n_key)
 {
     parametertable_t* This;
-    This = (parametertable_t*)malloc(sizeof(parametertable_t));
+    This = (parametertable_t*)x_malloc(sizeof(parametertable_t));
     if(This != NULL)
     {
-        This->p_map = (data_map_t*)malloc(sizeof(data_map_t) * n_key);
+        This->p_map = (data_map_t*)x_malloc(sizeof(data_map_t) * n_key);
         if(This->p_map != NULL)
         {
             This->n_map   = n_key;
@@ -109,7 +111,7 @@ int32_t    ParameterTable_store(ParameterTable_Handle h_obj,
         else
         {
             data_map_t* p_map = &This->p_map[This->n_store];
-            p_map->key        = (char*)malloc(strlen(key) + 1);
+            p_map->key        = (char*)x_malloc(strlen(key) + 1);
             if(p_map->key != NULL)
             {
                 strcpy(p_map->key,key);

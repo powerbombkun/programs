@@ -2,7 +2,7 @@
  * @file   binstr.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-08-05 23:39:19
+ * @date   last update 2010-09-13 22:52:01
  *
  * @brief
  *

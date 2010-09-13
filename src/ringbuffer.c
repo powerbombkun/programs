@@ -1,6 +1,6 @@
 #include "ringbuffer.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "macro.h"
+#include "common.h"
 
 typedef struct
 {
@@ -14,11 +14,11 @@ typedef struct
 RingBuffer_Handle RingBuffer_create(uint32_t n_buffer)
 {
     ringbuffer_t* This;
-    This = (ringbuffer_t*)malloc(sizeof(ringbuffer_t));
+    This = (ringbuffer_t*)x_malloc(sizeof(ringbuffer_t));
     if(This != NULL)
     {
         This->n_buffer = n_buffer;
-        This->p_buffer = (uint8_t*)malloc(This->n_buffer);
+        This->p_buffer = (uint8_t*)x_malloc(This->n_buffer);
         if(This->p_buffer != NULL)
         {
             This->readCounter  = 0;

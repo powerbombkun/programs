@@ -1,15 +1,13 @@
 /**
  * @file   wave.h
  * @author Junsei Takahashi
- * @date   last update 2010-08-10 20:50:37
+ * @date   last update 2010-09-13 22:56:58
  *
  * @brief  WAVEファイルの処理用関数類
  */
 #ifndef _WAVE_H
 #define _WAVE_H
-#include <stdio.h>
 #include "type.h"
-#include "macro.h"
 
 #ifdef __cplusplus
 extern "C" {

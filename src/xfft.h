@@ -2,7 +2,7 @@
  * @file   xfft.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-08-23 23:25:20
+ * @date   last update 2010-09-13 22:57:02
  *
  * @brief
  *
@@ -10,7 +10,6 @@
 #ifndef _XFFT_H
 #define _XFFT_H
 #include "type.h"
-#include "macro.h"
 
 #ifdef __cplusplus
 extern "C" {
