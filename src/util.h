@@ -2,7 +2,7 @@
  * @file   util.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-09-13 23:04:26
+ * @date   last update 2010-09-27 22:04:51
  *
  * @brief  汎用関数類
  *
@@ -68,7 +68,7 @@ extern "C" {
      * @brief ファイルからデータを取得します
      *
      * @param[in] file ファイル名
-     * @param[ou] p_buffer　データ取得用バッファ
+     * @param[out] p_buffer　データ取得用バッファ
      * @param[in] size　バッファサイズ
      *
      * @retval　取得したデータサイズ
@@ -78,7 +78,7 @@ extern "C" {
      * @brief　ファイルへデータを書き込みます
      *
      * @param[in] file ファイル名
-     * @param[ou] p_buffer　書き込みデータ
+     * @param[out] p_buffer　書き込みデータ
      * @param[in] size　データサイズ
      *
      * @retval　書き込んだデータサイズ

@@ -1,7 +1,10 @@
 #include "ringbuffer.h"
 #include "macro.h"
 #include "common.h"
-
+/**
+ * @struct ringbuffer_t
+ * @brief  リングバッファーの内部データ管理用構造体
+ */
 typedef struct
 {
     uint8_t* p_buffer;

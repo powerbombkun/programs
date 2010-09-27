@@ -11,7 +11,7 @@
 #define MAX_PARAM_FILE_LINE_LEN (MAX_KEY_SIZE + 256)
 /**
  * @struct data_map_t
- * @brief キーと値のペアでの情報管理構造体
+ * @brief キーと値のペアでの情報管理用構造体
  */
 typedef struct
 {

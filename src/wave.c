@@ -9,7 +9,10 @@
 #define DEF_WAVE_HDR_SIZE  44
 #define DEF_FMT_CHUNK_SIZE 16
 #define FMT_ID_PCM         0x01
-
+/**
+ * @struct wave_t
+ * @brief  WAVEデータ管理用構造体
+ */
 typedef struct
 {
     int16_t ch;                      /*  */
