@@ -2,7 +2,7 @@
  * @file   ringbuffer.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-09-13 22:56:55
+ * @date   last update 2010-09-27 21:52:05
  *
  * @brief
  *
@@ -20,7 +20,7 @@ extern "C" {
      * @brief リングバッファーオブジェクトの構築
      *
      * @retval NULL以外 オブジェクトハンドル
-     *         NULL     オブジェクの構築に失敗
+     * @retval NULL     オブジェクの構築に失敗
      */
     RingBuffer_Handle RingBuffer_create(uint32_t n_buffer);
     /**

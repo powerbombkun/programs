@@ -2,7 +2,7 @@
  * @file   platform.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-09-13 23:03:53
+ * @date   last update 2010-09-27 21:50:11
  *
  * @brief
  *
@@ -30,7 +30,7 @@ extern "C" {
      * @brief リトルエンディアン環境か判定する関数
      *
      * @retval 1 リトルエンディアン
-     *         0 ビッグエンディアン
+     * @retval 0 ビッグエンディアン
      */
     int is_little_endian(void);
 

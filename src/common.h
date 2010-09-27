@@ -2,7 +2,7 @@
  * @file   common.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-09-13 23:08:12
+ * @date   last update 2010-09-27 21:51:20
  *
  * @brief  標準関数のラッパー関数
  *
@@ -22,7 +22,7 @@ extern "C" {
      * @param[in] size    確保するメモリーサイズ
      *
      * @retval 成功 確保したメモリーのポインタ
-     *         失敗 NULL
+     * @retval 失敗 NULL
      */
     void* x_malloc(size_t size);
     /**

@@ -2,7 +2,7 @@
  * @file   xfft.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-09-13 22:57:02
+ * @date   last update 2010-09-27 21:53:20
  *
  * @brief
  *
@@ -47,7 +47,7 @@ extern "C" {
      * @param[in] bitsize ビットサイズ
      *
      * @retval SUCCESS 成功
-     *         FAILURE 失敗
+     * @retval FAILURE 失敗
      *
      */
     int32_t xspectrum(int16_t* p_data,int32_t n_data,double* p_spectrum,int32_t     bitsize);

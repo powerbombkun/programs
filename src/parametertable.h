@@ -2,7 +2,7 @@
  * @file   parametertable.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-09-13 22:56:51
+ * @date   last update 2010-09-27 21:52:54
  *
  * @brief
  *
@@ -22,7 +22,7 @@ extern "C" {
      * @brief パラメーターテーブルオブジェクトの構築
      *
      * @retval NULL以外 オブジェクトハンドル
-     *         NULL     オブジェクの構築に失敗
+     * @retval NULL     オブジェクの構築に失敗
      */
     ParameterTable_Handle ParameterTable_create(int n_key);
     /**
@@ -47,7 +47,7 @@ extern "C" {
      * @param[in] val   初期値
      *
      * @retval SUCCESS  成功
-     *         FAILURE  失敗
+     * @retval FAILURE  失敗
      */
     int32_t    ParameterTable_store(ParameterTable_Handle h_obj,
                                     const char*           key,
@@ -61,7 +61,7 @@ extern "C" {
      * @param[out] val   値
      *
      * @retval SUCCESS  成功
-     *         FAILURE   失敗
+     * @retval FAILURE   失敗
      */
     int32_t    ParameterTable_fetch(ParameterTable_Handle h_obj,
                                       const char*         key,
@@ -74,7 +74,7 @@ extern "C" {
      * @param[in] file  ファイルパス
      *
      * @retval SUCCESS  成功
-     *         FAILURE  失敗
+     * @retval FAILURE  失敗
      */
     int32_t    ParameterTable_writeFile(ParameterTable_Handle h_obj,
                                         const char*           file);
@@ -86,7 +86,7 @@ extern "C" {
      * @param[in] file  ファイルパス
      *
      * @retval SUCCESS  成功
-     *         FAILURE  失敗
+     * @retval FAILURE  失敗
      */
     int32_t    ParameterTable_readFile(ParameterTable_Handle h_obj,
                                        const char*           file);
