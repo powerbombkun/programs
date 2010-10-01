@@ -22,7 +22,7 @@ static unsigned int log_flag   = LOG_NONE;
  * @brief getter of log_flag
  */
 uint32_t
-log_getflag(void)
+log_get_flag(void)
 {
     return log_flag;
 }

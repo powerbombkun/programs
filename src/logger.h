@@ -2,7 +2,7 @@
  * @file   logger.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-09-13 23:03:08
+ * @date   last update 2010-10-01 23:20:19
  *
  * @brief  プログラム実行時にログを出力するための関数の宣言
  *
@@ -48,7 +48,7 @@ extern "C" {
     /**
      * @brief getter of log_flag
      */
-    uint32_t log_getflag(void);
+    uint32_t log_get_flag(void);
     /**
      * @brief ロガーの初期化.
      *        本関数をコールしなければ(デフォルト)、
