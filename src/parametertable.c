@@ -39,9 +39,9 @@ typedef struct
  * @retval NULL以外 data_map_t型構造体ポインタ
  * @retval NULL キーに該当するものが見つからなかった
  */
-static data_map_t* getDataMap(parametertable_t* table,const char* key);
+static data_map_t* get_data_map(parametertable_t* table,const char* key);
 
-static data_map_t* getDataMap(parametertable_t* table,const char* key)
+static data_map_t* get_data_map(parametertable_t* table,const char* key)
 {
     int i;
     for(i = 0;i < table->n_store;i++)
@@ -55,7 +55,7 @@ static data_map_t* getDataMap(parametertable_t* table,const char* key)
 }
 
 
-ParameterTable_Handle ParameterTable_create(int n_key)
+ParameterTable_Handle parametertable_create(int n_key)
 {
     parametertable_t* This;
     This = (parametertable_t*)x_malloc(sizeof(parametertable_t));
@@ -73,15 +73,15 @@ ParameterTable_Handle ParameterTable_create(int n_key)
     return NULL;
 }
 
-void      ParameterTable_delete(ParameterTable_Handle h_obj)
+void      parametertable_delete(ParameterTable_Handle h_obj)
 {
     parametertable_t* This = (parametertable_t*)h_obj;
-    ParameterTable_initialize(h_obj);
+    parametertable_initialize(h_obj);
     SAFE_FREE(This->p_map);
     SAFE_FREE(This);
 }
 
-void      ParameterTable_initialize(ParameterTable_Handle h_obj)
+void      parametertable_initialize(ParameterTable_Handle h_obj)
 {
     parametertable_t* This = (parametertable_t*)h_obj;
     int               i;
@@ -93,7 +93,7 @@ void      ParameterTable_initialize(ParameterTable_Handle h_obj)
     This->n_store = 0;
 }
 
-int32_t    ParameterTable_store(ParameterTable_Handle h_obj,
+int32_t    parametertable_store(ParameterTable_Handle h_obj,
                                 const char*           key,
                                 int32_t               val)
 {
@@ -102,9 +102,9 @@ int32_t    ParameterTable_store(ParameterTable_Handle h_obj,
     if(This->n_store < This->n_map)
     {
         int32_t ref;
-        if(ParameterTable_fetch(h_obj,key,&ref) == SUCCESS)
+        if(parametertable_fetch(h_obj,key,&ref) == SUCCESS)
         {
-            data_map_t* p_map = getDataMap(This,key);
+            data_map_t* p_map = get_data_map(This,key);
             p_map->val        = val;
             ret               = SUCCESS;
         }
@@ -125,13 +125,13 @@ int32_t    ParameterTable_store(ParameterTable_Handle h_obj,
 }
 
 
-int32_t    ParameterTable_fetch(ParameterTable_Handle h_obj,
+int32_t    parametertable_fetch(ParameterTable_Handle h_obj,
                                   const char*           key,
                                   int32_t*              val)
 {
     parametertable_t* This  = (parametertable_t*)h_obj;
     int32_t           ret   = FAILURE;
-    data_map_t*       p_map = getDataMap(This,key);
+    data_map_t*       p_map = get_data_map(This,key);
 
     if(p_map != NULL)
     {
@@ -141,7 +141,7 @@ int32_t    ParameterTable_fetch(ParameterTable_Handle h_obj,
     return ret;
 }
 
-int32_t    ParameterTable_writeFile(ParameterTable_Handle h_obj,
+int32_t    parametertable_write_file(ParameterTable_Handle h_obj,
                                     const char*           file)
 {
     parametertable_t* This = (parametertable_t*)h_obj;
@@ -161,7 +161,7 @@ int32_t    ParameterTable_writeFile(ParameterTable_Handle h_obj,
     return ret;
 }
 
-int32_t    ParameterTable_readFile(ParameterTable_Handle h_obj,
+int32_t    parametertable_read_file(ParameterTable_Handle h_obj,
                                    const char*           file)
 {
     int32_t ret = FAILURE;
@@ -173,9 +173,9 @@ int32_t    ParameterTable_readFile(ParameterTable_Handle h_obj,
         {
             char first[MAX_KEY_SIZE];
             char second[MAX_PARAM_FILE_LINE_LEN - MAX_KEY_SIZE];
-            if(splitString(buffer,DELIM,first,second) == SUCCESS)
+            if(split_string(buffer,DELIM,first,second) == SUCCESS)
             {
-                ParameterTable_store(h_obj,first,atoi(second));
+                parametertable_store(h_obj,first,atoi(second));
             }
         }
         fclose(fp);

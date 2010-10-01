@@ -2,7 +2,7 @@
  * @file   parametertable.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-09-27 21:52:54
+ * @date   last update 2010-10-01 23:05:02
  *
  * @brief
  *
@@ -24,21 +24,21 @@ extern "C" {
      * @retval NULL以外 オブジェクトハンドル
      * @retval NULL     オブジェクの構築に失敗
      */
-    ParameterTable_Handle ParameterTable_create(int n_key);
+    ParameterTable_Handle parametertable_create(int n_key);
     /**
      * @brief パラメーターテーブルオブジェクトの消滅
      *
      * @param[in] h_obj オブジェクトハンドル
      *
      */
-    void ParameterTable_delete(ParameterTable_Handle h_obj);
+    void parametertable_delete(ParameterTable_Handle h_obj);
     /**
      * @brief パラメーターテーブルオブジェクトの初期化
      *
      * @param[in] h_obj オブジェクトハンドル
      *
      */
-    void ParameterTable_initialize(ParameterTable_Handle h_obj);
+    void parametertable_initialize(ParameterTable_Handle h_obj);
     /**
      * @brief 内部のパラメーターテーブルへ情報を登録します
      *
@@ -49,7 +49,7 @@ extern "C" {
      * @retval SUCCESS  成功
      * @retval FAILURE  失敗
      */
-    int32_t    ParameterTable_store(ParameterTable_Handle h_obj,
+    int32_t    parametertable_store(ParameterTable_Handle h_obj,
                                     const char*           key,
                                     int32_t               val);
 
@@ -63,7 +63,7 @@ extern "C" {
      * @retval SUCCESS  成功
      * @retval FAILURE   失敗
      */
-    int32_t    ParameterTable_fetch(ParameterTable_Handle h_obj,
+    int32_t    parametertable_fetch(ParameterTable_Handle h_obj,
                                       const char*         key,
                                       int32_t*            val);
 
@@ -76,7 +76,7 @@ extern "C" {
      * @retval SUCCESS  成功
      * @retval FAILURE  失敗
      */
-    int32_t    ParameterTable_writeFile(ParameterTable_Handle h_obj,
+    int32_t    parametertable_write_file(ParameterTable_Handle h_obj,
                                         const char*           file);
 
     /**
@@ -88,7 +88,7 @@ extern "C" {
      * @retval SUCCESS  成功
      * @retval FAILURE  失敗
      */
-    int32_t    ParameterTable_readFile(ParameterTable_Handle h_obj,
+    int32_t    parametertable_read_file(ParameterTable_Handle h_obj,
                                        const char*           file);
 
 #ifdef __cplusplus

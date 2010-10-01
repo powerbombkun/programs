@@ -7,7 +7,7 @@
 
 /**
  * @typedef fft_window_t型enum
- *
+ * @todo 後でHOGE
  * @brief 窓掛け用の窓のID
  */
 typedef enum

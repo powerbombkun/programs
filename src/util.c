@@ -6,7 +6,7 @@
 
 #define MAX_BUFFER_SIZE 128
 
-uint32_t getFileSize(const char* file)
+uint32_t get_file_size(const char* file)
 {
     FILE*   fp;
     uint32_t fsize = -1U;
@@ -23,7 +23,7 @@ uint32_t getFileSize(const char* file)
     return fsize;
 }
 
-uint32_t    getFileLineNum(const char* file)
+uint32_t    get_file_line_num(const char* file)
 {
     FILE*   fp;
     uint32_t n_line = -1U;
@@ -39,7 +39,7 @@ uint32_t    getFileLineNum(const char* file)
     return n_line;
 }
 
-int16_t getMaxAmp(const int16_t* p_data,int32_t n_data)
+int16_t get_max_amp(const int16_t* p_data,int32_t n_data)
 {
     int i;
     int16_t level = 0;
@@ -53,7 +53,7 @@ int16_t getMaxAmp(const int16_t* p_data,int32_t n_data)
     return level;
 }
 
-const char* getFileName(const char* file)
+const char* get_file_name(const char* file)
 {
     const char* pName = NULL;
 #ifdef _WIN32
@@ -77,7 +77,7 @@ const char* getFileName(const char* file)
     return pName;
 }
 
-int32_t splitString(const char* str,const char* separator,char* first,char* second)
+int32_t split_string(const char* str,const char* separator,char* first,char* second)
 {
     int32_t ret = FAILURE;
     const char* p_sep = strstr(str,separator);
@@ -99,7 +99,7 @@ char* trim(char* str)
     return str;
 }
 
-uint32_t readFromFile(const char* file,void* p_buffer,int32_t size)
+uint32_t read_from_file(const char* file,void* p_buffer,int32_t size)
 {
     uint32_t n = 0;
     FILE* fp;
@@ -112,7 +112,7 @@ uint32_t readFromFile(const char* file,void* p_buffer,int32_t size)
     return n;
 }
 
-uint32_t writeToFile(const char* file,void* p_data,int32_t size)
+uint32_t write_to_file(const char* file,void* p_data,int32_t size)
 {
     uint32_t n = 0;
     FILE* fp;

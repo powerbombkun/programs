@@ -1,7 +1,7 @@
 /**
  * @file   test_parametertable.c
  * @author Junsei Takahashi
- * @date   last update 2010-08-08 23:25:26
+ * @date   last update 2010-10-01 23:07:05
  *
  * @brief test suite for test_parametertable.c
  */
@@ -22,8 +22,8 @@ static void test_normal_w_store();
 static void test_normal_re_store();
 static void test_normal_fetch();
 static void test_normal_re_sotre_fetch();
-static void test_normal_writeFile();
-static void test_normal_readFile();
+static void test_normal_write_file();
+static void test_normal_read_file();
 /* test cases */
 CU_TestInfo test_parametertable_array[] = {
     {"normal_initialize",    test_normal_initialize},
@@ -32,18 +32,18 @@ CU_TestInfo test_parametertable_array[] = {
     {"normal_re_store",    test_normal_re_store},
     {"normal_fetch",    test_normal_fetch},
     {"normal_re_sotre_fetch",    test_normal_re_sotre_fetch},
-    {"normal_writeFile",    test_normal_writeFile},
-    {"normal_readFile",    test_normal_readFile},
+    {"normal_write_file",    test_normal_write_file},
+    {"normal_read_file",    test_normal_read_file},
     CU_TEST_INFO_NULL
 };
 
 int
 setup_test_parametertable()
 {
-    hParameterTable = ParameterTable_create(KEY_NUM);
+    hParameterTable = parametertable_create(KEY_NUM);
     if(hParameterTable == NULL)
     {
-        CU_FAIL_FATAL("ParameterTable_create failed");
+        CU_FAIL_FATAL("parametertable_create failed");
     }
    return 0;
 }
@@ -51,7 +51,7 @@ setup_test_parametertable()
 int
 teardown_test_parametertable()
 {
-    ParameterTable_delete(hParameterTable);
+    parametertable_delete(hParameterTable);
     return 0;
 }
 
@@ -61,14 +61,14 @@ test_normal_initialize()
     int32_t ret;
     int32_t val;
     int32_t ref = 128;
-    ParameterTable_initialize(hParameterTable);
-    ret = ParameterTable_store(hParameterTable,"TEST",ref);
+    parametertable_initialize(hParameterTable);
+    ret = parametertable_store(hParameterTable,"TEST",ref);
     CU_ASSERT_EQUAL(ret,SUCCESS);
-    ret = ParameterTable_fetch(hParameterTable,"TEST",&val);
+    ret = parametertable_fetch(hParameterTable,"TEST",&val);
     CU_ASSERT_EQUAL(ret,SUCCESS);
     CU_ASSERT_EQUAL(val,ref);
-    ParameterTable_initialize(hParameterTable);
-    ret = ParameterTable_fetch(hParameterTable,"TEST",&val);
+    parametertable_initialize(hParameterTable);
+    ret = parametertable_fetch(hParameterTable,"TEST",&val);
     CU_ASSERT_EQUAL(ret,FAILURE);
 }
 
@@ -76,8 +76,8 @@ static void
 test_normal_store()
 {
     int32_t ret;
-    ParameterTable_initialize(hParameterTable);
-    ret = ParameterTable_store(hParameterTable,"TEST",128);
+    parametertable_initialize(hParameterTable);
+    ret = parametertable_store(hParameterTable,"TEST",128);
     CU_ASSERT_EQUAL(ret,SUCCESS);
 }
 
@@ -85,9 +85,9 @@ static void
 test_normal_w_store()
 {
     int32_t ret;
-    ParameterTable_initialize(hParameterTable);
-    ParameterTable_store(hParameterTable,"TEST",128);
-    ret = ParameterTable_store(hParameterTable,"HOGE",256);
+    parametertable_initialize(hParameterTable);
+    parametertable_store(hParameterTable,"TEST",128);
+    ret = parametertable_store(hParameterTable,"HOGE",256);
     CU_ASSERT_EQUAL(ret,SUCCESS);
 }
 
@@ -95,9 +95,9 @@ static void
 test_normal_re_store()
 {
     int32_t ret;
-    ParameterTable_initialize(hParameterTable);
-    ParameterTable_store(hParameterTable,"TEST",128);
-    ret = ParameterTable_store(hParameterTable,"TEST",256);
+    parametertable_initialize(hParameterTable);
+    parametertable_store(hParameterTable,"TEST",128);
+    ret = parametertable_store(hParameterTable,"TEST",256);
     CU_ASSERT_EQUAL(ret,SUCCESS);
 }
 
@@ -108,9 +108,9 @@ test_normal_fetch()
     int32_t ret;
     int32_t ref = 128;
     int32_t val;
-    ParameterTable_initialize(hParameterTable);
-    ParameterTable_store(hParameterTable,"TEST",ref);
-    ret = ParameterTable_fetch(hParameterTable,"TEST",&val);
+    parametertable_initialize(hParameterTable);
+    parametertable_store(hParameterTable,"TEST",ref);
+    ret = parametertable_fetch(hParameterTable,"TEST",&val);
     CU_ASSERT_EQUAL(ret,SUCCESS);
     CU_ASSERT_EQUAL(ref,val);
 }
@@ -121,41 +121,41 @@ test_normal_re_sotre_fetch()
     int32_t ret;
     int32_t ref = 256;
     int32_t val;
-    ParameterTable_initialize(hParameterTable);
-    ParameterTable_store(hParameterTable,"TEST",128);
-    ParameterTable_store(hParameterTable,"TEST",256);
-    ret = ParameterTable_fetch(hParameterTable,"TEST",&val);
+    parametertable_initialize(hParameterTable);
+    parametertable_store(hParameterTable,"TEST",128);
+    parametertable_store(hParameterTable,"TEST",256);
+    ret = parametertable_fetch(hParameterTable,"TEST",&val);
     CU_ASSERT_EQUAL(ret,SUCCESS);
     CU_ASSERT_EQUAL(ref,val);
 }
 
 static void
-test_normal_writeFile()
+test_normal_write_file()
 {
     int32_t ret;
-    ParameterTable_initialize(hParameterTable);
-    ParameterTable_store(hParameterTable,"TEST",128);
-    ParameterTable_store(hParameterTable,"HOGE",256);
-    ret = ParameterTable_writeFile(hParameterTable,TEMP_FILE);
+    parametertable_initialize(hParameterTable);
+    parametertable_store(hParameterTable,"TEST",128);
+    parametertable_store(hParameterTable,"HOGE",256);
+    ret = parametertable_write_file(hParameterTable,TEMP_FILE);
     CU_ASSERT_EQUAL(ret,SUCCESS);
 }
 
 static void
-test_normal_readFile()
+test_normal_read_file()
 {
     int32_t ret;
     int32_t val;
-    ParameterTable_initialize(hParameterTable);
-    ParameterTable_store(hParameterTable,"TEST",128);
-    ParameterTable_store(hParameterTable,"HOGE",256);
-    ParameterTable_writeFile(hParameterTable,TEMP_FILE);
-    ParameterTable_initialize(hParameterTable);
-    ret = ParameterTable_readFile(hParameterTable,TEMP_FILE);
+    parametertable_initialize(hParameterTable);
+    parametertable_store(hParameterTable,"TEST",128);
+    parametertable_store(hParameterTable,"HOGE",256);
+    parametertable_write_file(hParameterTable,TEMP_FILE);
+    parametertable_initialize(hParameterTable);
+    ret = parametertable_read_file(hParameterTable,TEMP_FILE);
     CU_ASSERT_EQUAL(ret,SUCCESS);
-    ret = ParameterTable_fetch(hParameterTable,"TEST",&val);
+    ret = parametertable_fetch(hParameterTable,"TEST",&val);
     CU_ASSERT_EQUAL(ret,SUCCESS);
     CU_ASSERT_EQUAL(128,val);
-    ret = ParameterTable_fetch(hParameterTable,"HOGE",&val);
+    ret = parametertable_fetch(hParameterTable,"HOGE",&val);
     CU_ASSERT_EQUAL(ret,SUCCESS);
     CU_ASSERT_EQUAL(256,val);
 }

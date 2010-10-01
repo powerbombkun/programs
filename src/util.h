@@ -2,7 +2,7 @@
  * @file   util.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-09-27 22:04:51
+ * @date   last update 2010-10-01 22:56:24
  *
  * @brief  汎用関数類
  *
@@ -20,21 +20,21 @@ extern "C" {
      * @retval 0以上 ファイルサイズ
      * @retval -1 エラー
      */
-    uint32_t    getFileSize(const char* file);
+    uint32_t    get_file_size(const char* file);
     /**
      * @brief ファイルの行数を取得します
      * @param[in] file	ファイルパス
      * @retval 0以上 行数
      * @retval -1 エラー
      */
-    uint32_t    getFileLineNum(const char* file);
+    uint32_t    get_file_line_num(const char* file);
     /**
      * @brief 最大振幅レベル取得関数
      * @param[in] pData 符号付き16bitデータ
      * @param[in] nData 16bitデータ個数
      * @retval 最大振幅レベル
      */
-    int16_t     getMaxAmp(const int16_t* p_data,int32_t n_data);
+    int16_t     get_max_amp(const int16_t* p_data,int32_t n_data);
     /**
      * @brief ファイル名の取得
      *
@@ -42,7 +42,7 @@ extern "C" {
      *
      * @retval ファイル名文字列
      */
-    const char* getFileName(const char* file);
+    const char* get_file_name(const char* file);
     /**
      * @brief 文字列をseparatorで指定した文字で分割します
      *
@@ -55,7 +55,7 @@ extern "C" {
      * @retval FAILURE 失敗
      *
      */
-    int32_t splitString(const char* str,const char* separator,char* first,char* second);
+    int32_t split_string(const char* str,const char* separator,char* first,char* second);
     /**
      * @brief 文字列の頭の空白を削除した位置のポインタを返します
      *
@@ -73,7 +73,7 @@ extern "C" {
      *
      * @retval　取得したデータサイズ
      */
-    uint32_t readFromFile(const char* file,void* p_buffer,int32_t size);
+    uint32_t read_from_file(const char* file,void* p_buffer,int32_t size);
     /**
      * @brief　ファイルへデータを書き込みます
      *
@@ -83,7 +83,7 @@ extern "C" {
      *
      * @retval　書き込んだデータサイズ
      */
-    uint32_t writeToFile(const char* file,void* p_data,int32_t size);
+    uint32_t write_to_file(const char* file,void* p_data,int32_t size);
     /**
      * @brief ビット反転を行う関数
      *

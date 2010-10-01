@@ -28,7 +28,7 @@ typedef struct
  *
  * @retval
  */
-static int32_t readFileWaveHdr(const char* file,wave_t* p_wave);
+static int32_t read_file_wave_hdr(const char* file,wave_t* p_wave);
 /**
  * @brief WAVEヘッダーのファイルポインタを進めます
  *
@@ -38,7 +38,7 @@ static int32_t readFileWaveHdr(const char* file,wave_t* p_wave);
  * @retval SUCCESS 成功
  * @retval FAILED  失敗
  */
-static int32_t skipWaveHdr(FILE** p_fp,wave_t* p_wave);
+static int32_t skip_wave_hdr(FILE** p_fp,wave_t* p_wave);
 /**
  * @brief WAVEヘッダーを書き込みます
  *
@@ -47,11 +47,11 @@ static int32_t skipWaveHdr(FILE** p_fp,wave_t* p_wave);
  *
  * @retval
  */
-static int32_t writeWaveHdr(FILE** p_fp,wave_t wave);
+static int32_t write_wave_hdr(FILE** p_fp,wave_t wave);
 
-static int32_t setWaveHdr(uint8_t* p_buffer,int32_t n_buffer,wave_t wave);
+static int32_t set_wave_hdr(uint8_t* p_buffer,int32_t n_buffer,wave_t wave);
 
-static int32_t readFileWaveHdr(const char* file,wave_t* p_wave)
+static int32_t read_file_wave_hdr(const char* file,wave_t* p_wave)
 {
     FILE*   fp  = NULL;
     int32_t ret = FAILURE;
@@ -59,13 +59,13 @@ static int32_t readFileWaveHdr(const char* file,wave_t* p_wave)
     fp = fopen(file,"rb");
     if(fp != NULL)
     {
-        ret = skipWaveHdr(&fp,p_wave);
+        ret = skip_wave_hdr(&fp,p_wave);
         fclose(fp);
     }
     return ret;
 }
 
-static int32_t skipWaveHdr(FILE** p_fp,wave_t* p_wave)
+static int32_t skip_wave_hdr(FILE** p_fp,wave_t* p_wave)
 {
     int32_t ret        = FAILURE;
     char       buff[5] = {0};
@@ -107,19 +107,19 @@ static int32_t skipWaveHdr(FILE** p_fp,wave_t* p_wave)
 }
 
 
-static int32_t writeWaveHdr(FILE** p_fp,wave_t wave)
+static int32_t write_wave_hdr(FILE** p_fp,wave_t wave)
 {
     int32_t ret = FAILURE;
     if(*p_fp != NULL)
     {
         uint8_t hdr[DEF_WAVE_HDR_SIZE];
-        ret = setWaveHdr(hdr,sizeof(hdr),wave);
+        ret = set_wave_hdr(hdr,sizeof(hdr),wave);
         fwrite(hdr,sizeof(hdr),1,*p_fp);
     }
     return ret;
 }
 
-static int32_t setWaveHdr(uint8_t* p_buffer,int32_t n_buffer,wave_t wave)
+static int32_t set_wave_hdr(uint8_t* p_buffer,int32_t n_buffer,wave_t wave)
 {
     int32_t ret = FAILURE;
     if(DEF_WAVE_HDR_SIZE <= n_buffer)
@@ -154,7 +154,7 @@ int32_t pcm2wav(const char* pcm_file,
     wave.ch            = ch;
     wave.bitspersample = bitspersample;
     wave.samplingrate  = samplingrate;
-    wave.datasize      = getFileSize(pcm_file);
+    wave.datasize      = get_file_size(pcm_file);
 
     if(fp_in != NULL)
     {
@@ -165,7 +165,7 @@ int32_t pcm2wav(const char* pcm_file,
             if(p_buffer != NULL)
             {
                 fread(p_buffer,wave.datasize,sizeof(unsigned char),fp_in);
-                ret = writeWaveHdr(&fp_out,wave);
+                ret = write_wave_hdr(&fp_out,wave);
                 if(ret == SUCCESS)
                 {
                     fwrite(p_buffer,wave.datasize,sizeof(unsigned char),fp_out);
@@ -193,7 +193,7 @@ int32_t wav2pcm(const char* wav_file,
         if(fp_out != NULL)
         {
             wave_t  wave;
-            if(skipWaveHdr(&fp_in,&wave) == SUCCESS)
+            if(skip_wave_hdr(&fp_in,&wave) == SUCCESS)
             {
                 unsigned char* p_buffer = (unsigned char*)x_malloc(wave.datasize);
                 if(p_buffer != NULL)
