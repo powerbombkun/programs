@@ -1,7 +1,7 @@
 /**
  * @file   test_parametertable.c
  * @author Junsei Takahashi
- * @date   last update 2010-10-01 23:07:05
+ * @date   last update 2010-10-01 23:11:41
  *
  * @brief test suite for test_parametertable.c
  */
@@ -15,7 +15,7 @@
 int setup_test_parametertable();
 int teardown_test_parametertable();
 /* static func */
-static ParameterTable_Handle hParameterTable;
+static parametertable_handle hParameterTable;
 static void test_normal_initialize();
 static void test_normal_store();
 static void test_normal_w_store();

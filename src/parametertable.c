@@ -55,7 +55,7 @@ static data_map_t* get_data_map(parametertable_t* table,const char* key)
 }
 
 
-ParameterTable_Handle parametertable_create(int n_key)
+parametertable_handle parametertable_create(int n_key)
 {
     parametertable_t* This;
     This = (parametertable_t*)x_malloc(sizeof(parametertable_t));
@@ -66,14 +66,14 @@ ParameterTable_Handle parametertable_create(int n_key)
         {
             This->n_map   = n_key;
             This->n_store = 0;
-            return (ParameterTable_Handle)This;
+            return (parametertable_handle)This;
         }
         SAFE_FREE(This);
     }
     return NULL;
 }
 
-void      parametertable_delete(ParameterTable_Handle h_obj)
+void      parametertable_delete(parametertable_handle h_obj)
 {
     parametertable_t* This = (parametertable_t*)h_obj;
     parametertable_initialize(h_obj);
@@ -81,7 +81,7 @@ void      parametertable_delete(ParameterTable_Handle h_obj)
     SAFE_FREE(This);
 }
 
-void      parametertable_initialize(ParameterTable_Handle h_obj)
+void      parametertable_initialize(parametertable_handle h_obj)
 {
     parametertable_t* This = (parametertable_t*)h_obj;
     int               i;
@@ -93,7 +93,7 @@ void      parametertable_initialize(ParameterTable_Handle h_obj)
     This->n_store = 0;
 }
 
-int32_t    parametertable_store(ParameterTable_Handle h_obj,
+int32_t    parametertable_store(parametertable_handle h_obj,
                                 const char*           key,
                                 int32_t               val)
 {
@@ -125,7 +125,7 @@ int32_t    parametertable_store(ParameterTable_Handle h_obj,
 }
 
 
-int32_t    parametertable_fetch(ParameterTable_Handle h_obj,
+int32_t    parametertable_fetch(parametertable_handle h_obj,
                                   const char*           key,
                                   int32_t*              val)
 {
@@ -141,7 +141,7 @@ int32_t    parametertable_fetch(ParameterTable_Handle h_obj,
     return ret;
 }
 
-int32_t    parametertable_write_file(ParameterTable_Handle h_obj,
+int32_t    parametertable_write_file(parametertable_handle h_obj,
                                     const char*           file)
 {
     parametertable_t* This = (parametertable_t*)h_obj;
@@ -161,7 +161,7 @@ int32_t    parametertable_write_file(ParameterTable_Handle h_obj,
     return ret;
 }
 
-int32_t    parametertable_read_file(ParameterTable_Handle h_obj,
+int32_t    parametertable_read_file(parametertable_handle h_obj,
                                    const char*           file)
 {
     int32_t ret = FAILURE;

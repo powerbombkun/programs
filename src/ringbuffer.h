@@ -2,7 +2,7 @@
  * @file   ringbuffer.h
  * @author Junsei Takahashi
  *
- * @date   last update 2010-09-27 21:52:05
+ * @date   last update 2010-10-01 23:14:01
  *
  * @brief
  *
@@ -15,66 +15,66 @@
 extern "C" {
 #endif
 
-    typedef void*     RingBuffer_Handle;
+    typedef void*     ringbuffer_handle;
     /**
      * @brief リングバッファーオブジェクトの構築
      *
      * @retval NULL以外 オブジェクトハンドル
      * @retval NULL     オブジェクの構築に失敗
      */
-    RingBuffer_Handle RingBuffer_create(uint32_t n_buffer);
+    ringbuffer_handle ringbuffer_create(uint32_t n_buffer);
     /**
      * @brief リングバッファーオブジェクトの消滅
      *
-     * @param[in] h_obj RingBufferオブジェクトハンドル
+     * @param[in] h_obj ringbufferオブジェクトハンドル
      *
      */
-    void              RingBuffer_delete(RingBuffer_Handle h_obj);
+    void              ringbuffer_delete(ringbuffer_handle h_obj);
     /**
      * @brief リングバッファーの中身を捨てる
      *
-     * @param[in] h_obj RingBufferオブジェクトハンドル
+     * @param[in] h_obj ringbufferオブジェクトハンドル
      *
      */
-    void              RingBuffer_initialize(RingBuffer_Handle h_obj);
+    void              ringbuffer_initialize(ringbuffer_handle h_obj);
     /**
      * @brief リングバッファー内のデータサイズを取得するメソッド
      *
-     * @param[in] h_obj RingBufferオブジェクトハンドル
+     * @param[in] h_obj ringbufferオブジェクトハンドル
      *
      * @retval データサイズ
      */
-    int32_t           RingBuffer_getDataSize(RingBuffer_Handle h_obj);
+    int32_t           ringbuffer_get_data_size(ringbuffer_handle h_obj);
     /**
      * @brief リングバッファーのサイズを取得するメソッド
      *
-     * @param[in] h_obj RingBufferオブジェクトハンドル
+     * @param[in] h_obj ringbufferオブジェクトハンドル
      *
      * @retval バッファーサイズ
      */
-    int32_t           RingBuffer_getBufferSize(RingBuffer_Handle h_obj);
+    int32_t           ringbuffer_get_buffer_size(ringbuffer_handle h_obj);
     /**
      * @brief リングバッファーからデータを取得するメソッド
      *
-     * @param[in] h_obj RingBufferオブジェクトハンドル
+     * @param[in] h_obj ringbufferオブジェクトハンドル
      * @param[in] p_buffer データ取得用バッファーのポインタ
      * @param[in] n_buffer データ取得用バッファーのサイズ
      *
      * @retval SUCCESS 成功
      * @retval FAILURE 失敗
      */
-    int32_t           RingBuffer_getData(RingBuffer_Handle h_obj,uint8_t* p_buffer, int32_t n_buffer);
+    int32_t           ringbuffer_get_data(ringbuffer_handle h_obj,uint8_t* p_buffer, int32_t n_buffer);
     /**
      * @brief リングバッファーへデータをセットするメソッド
      *
-     * @param[in] h_obj RingBufferオブジェクトハンドル
+     * @param[in] h_obj ringbufferオブジェクトハンドル
      * @param[in] p_data データ設定用バッファーのポインタ
      * @param[in] n_data データ設定用バッファーのサイズ
      *
      * @retval SUCCESS 成功
      * @retval FAILURE 失敗
      */
-    int32_t           RingBuffer_setData(RingBuffer_Handle h_obj,const uint8_t* p_data, int32_t n_data);
+    int32_t           ringbuffer_set_data(ringbuffer_handle h_obj,const uint8_t* p_data, int32_t n_data);
 
 #ifdef __cplusplus
 }

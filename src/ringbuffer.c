@@ -14,7 +14,7 @@ typedef struct
     int32_t  data_length;
 }ringbuffer_t;
 
-RingBuffer_Handle RingBuffer_create(uint32_t n_buffer)
+ringbuffer_handle ringbuffer_create(uint32_t n_buffer)
 {
     ringbuffer_t* This;
     This = (ringbuffer_t*)x_malloc(sizeof(ringbuffer_t));
@@ -27,21 +27,21 @@ RingBuffer_Handle RingBuffer_create(uint32_t n_buffer)
             This->readCounter  = 0;
             This->writeCounter = 0;
             This->data_length  = 0;
-            return (RingBuffer_Handle)This;
+            return (ringbuffer_handle)This;
         }
         free(This);
     }
     return NULL;
 }
 
-void              RingBuffer_delete(RingBuffer_Handle h_obj)
+void              ringbuffer_delete(ringbuffer_handle h_obj)
 {
     ringbuffer_t* This = (ringbuffer_t*)h_obj;
     SAFE_FREE(This->p_buffer);
     SAFE_FREE(This);
 }
 
-void              RingBuffer_initialize(RingBuffer_Handle h_obj)
+void              ringbuffer_initialize(ringbuffer_handle h_obj)
 {
     int           i;
     ringbuffer_t* This = (ringbuffer_t*)h_obj;
@@ -55,23 +55,23 @@ void              RingBuffer_initialize(RingBuffer_Handle h_obj)
     This->data_length  = 0;
 }
 
-int32_t RingBuffer_getDataSize(RingBuffer_Handle h_obj)
+int32_t ringbuffer_get_data_size(ringbuffer_handle h_obj)
 {
     ringbuffer_t* This = (ringbuffer_t*)h_obj;
     return This->data_length;
 }
 
-int32_t RingBuffer_getBufferSize(RingBuffer_Handle h_obj)
+int32_t ringbuffer_get_buffer_size(ringbuffer_handle h_obj)
 {
     ringbuffer_t* This = (ringbuffer_t*)h_obj;
     return This->n_buffer;
 }
 
-int32_t RingBuffer_getData(RingBuffer_Handle h_obj,uint8_t* p_buffer, int32_t n_buffer)
+int32_t ringbuffer_get_data(ringbuffer_handle h_obj,uint8_t* p_buffer, int32_t n_buffer)
 {
     ringbuffer_t* This = (ringbuffer_t*)h_obj;
     int32_t       ret  = FAILURE;
-    int32_t       size = RingBuffer_getDataSize(h_obj);
+    int32_t       size = ringbuffer_get_data_size(h_obj);
 
     if(n_buffer <= size)
     {
@@ -91,11 +91,11 @@ int32_t RingBuffer_getData(RingBuffer_Handle h_obj,uint8_t* p_buffer, int32_t n_
     return ret;
 }
 
-int32_t RingBuffer_setData(RingBuffer_Handle h_obj,const uint8_t* p_data, int32_t n_data)
+int32_t ringbuffer_set_data(ringbuffer_handle h_obj,const uint8_t* p_data, int32_t n_data)
 {
     ringbuffer_t* This = (ringbuffer_t*)h_obj;
     int32_t       ret  = FAILURE;
-    int32_t       rest = This->n_buffer - RingBuffer_getDataSize(h_obj);
+    int32_t       rest = This->n_buffer - ringbuffer_get_data_size(h_obj);
 
     if(rest >= n_data)
     {
