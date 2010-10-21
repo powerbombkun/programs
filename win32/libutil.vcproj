@@ -157,6 +157,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\src\common.c"
+				>
+			</File>
+			<File
 				RelativePath="..\src\dbconv.c"
 				>
 			</File>
@@ -208,6 +212,10 @@
 			</File>
 			<File
 				RelativePath="..\src\binstr.h"
+				>
+			</File>
+			<File
+				RelativePath="..\src\common.h"
 				>
 			</File>
 			<File
